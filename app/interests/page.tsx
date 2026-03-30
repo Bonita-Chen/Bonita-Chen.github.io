@@ -126,7 +126,7 @@ export default function InterestsPage() {
   return (
     <PageWrapper mainClassName="page-main--wide">
       <section className="interests-page">
-        <header className="interests-header">
+        <header className="interests-header fade-in">
           <h1 className="page-title">Interests</h1>
           <p className="page-subtitle">
             A timeline of what I&apos;ve been investing attention in lately.

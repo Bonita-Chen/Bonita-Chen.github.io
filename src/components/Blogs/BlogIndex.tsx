@@ -97,41 +97,43 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
           return (
             <Link
               href={`/blogs/${post.slug}`}
-              className="blog-card"
+              className="blog-item"
               key={post.slug}
             >
-              <div className="blog-card-thumb">
-                {post.image ? (
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    width={320}
-                    height={220}
-                    sizes="(max-width: 736px) 100vw, 320px"
-                  />
-                ) : (
-                  <div className="blog-card-thumb-fallback" aria-hidden="true">
-                    {post.icon || '✦'}
-                  </div>
-                )}
-              </div>
-              <div className="blog-card-body">
-                <div className="blog-card-meta">
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                  {collection ? (
-                    <span className="blog-badge blog-badge--collection">
-                      {collection.emoji} {collection.label}
-                    </span>
-                  ) : null}
+              <div className="blog-item-inner">
+                <div className="blog-thumb">
+                  {post.image ? (
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      width={220}
+                      height={150}
+                      sizes="(max-width: 736px) 100vw, 220px"
+                    />
+                  ) : (
+                    <div className="blog-thumb-placeholder" aria-hidden="true">
+                      {post.icon || '✦'}
+                    </div>
+                  )}
                 </div>
-                <h2 className="blog-card-title">{post.title}</h2>
-                <p className="blog-card-description">{post.description}</p>
-                <div className="blog-card-tags">
-                  {post.tags.map((tag) => (
-                    <span className="blog-badge" key={tag}>
-                      {blogTagLabels[tag as keyof typeof blogTagLabels] || tag}
-                    </span>
-                  ))}
+
+                <div className="blog-body">
+                  <div className="blog-meta">
+                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                    {post.tags.map((tag) => (
+                      <span className="blog-tag-inline" key={tag}>
+                        {blogTagLabels[tag as keyof typeof blogTagLabels] || tag}
+                      </span>
+                    ))}
+                    {collection ? (
+                      <span className="blog-collection-badge">
+                        {collection.label}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <h2 className="blog-title">{post.title}</h2>
+                  <p className="blog-desc">{post.description}</p>
                 </div>
               </div>
             </Link>

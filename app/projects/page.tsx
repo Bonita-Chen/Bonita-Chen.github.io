@@ -17,9 +17,9 @@ export default function ProjectsPage() {
   const otherProjects = data.filter((p) => !p.featured);
 
   return (
-    <PageWrapper>
+    <PageWrapper mainClassName="page-main--wide">
       <section className="projects-page">
-        <header className="projects-header">
+        <header className="projects-header fade-in">
           <h1 className="page-title">Projects</h1>
           <p className="page-subtitle">
             Research, dashboards, strategy work, and student-led experiments
@@ -27,7 +27,7 @@ export default function ProjectsPage() {
         </header>
 
         {featuredProjects.length > 0 && (
-          <section className="projects-featured">
+          <section className="projects-featured fade-in stagger-1">
             <h2 className="projects-section-title">Featured Work</h2>
             <div className="projects-grid projects-grid--featured">
               {featuredProjects.map((project) => (
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
         )}
 
         {otherProjects.length > 0 && (
-          <section className="projects-other">
+          <section className="projects-other fade-in stagger-2">
             <h2 className="projects-section-title">More Explorations</h2>
             <div className="projects-grid">
               {otherProjects.map((project) => (

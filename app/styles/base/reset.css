@@ -48,15 +48,20 @@
   }
 
   body {
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: 16px;
     font-weight: var(--font-weight-normal);
     line-height: var(--leading-normal);
+    letter-spacing: 0.01em;
     padding-top: var(--header-height);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    transition:
+      background-color var(--duration-normal) var(--ease-out),
+      color var(--duration-normal) var(--ease-out);
   }
 
   /* Subtle grain texture for depth - GPU-accelerated layer */
@@ -78,14 +83,19 @@
     position: fixed;
     inset: 0;
     background: radial-gradient(
-      ellipse 80% 50% at 50% 0%,
-      var(--color-accent-muted) 0%,
-      transparent 60%
+      ellipse 80% 52% at 50% 0%,
+      color-mix(in srgb, var(--color-accent-secondary) 10%, transparent) 0%,
+      transparent 58%
     );
     pointer-events: none;
     z-index: -1;
     transform: translateZ(0);
     contain: strict;
+  }
+
+  ::selection {
+    background: var(--color-accent-secondary);
+    color: var(--color-accent-hover);
   }
 
   @media (min-width: 980px) {

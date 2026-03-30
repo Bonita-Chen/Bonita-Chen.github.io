@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import AboutContent from '@/components/About/Sections';
 import PageWrapper from '@/components/Template/PageWrapper';
-import { aboutMarkdown } from '@/data/about';
+import { aboutCards, aboutMarkdown } from '@/data/about';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -14,12 +14,27 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function AboutPage() {
   return (
-    <PageWrapper mainClassName="page-main--wide">
+    <PageWrapper>
       <section className="about-page">
-        <header className="about-header">
+        <header className="about-header fade-in">
           <h1 className="page-title">About</h1>
+          <p className="page-subtitle">
+            A bit more about me beyond the resume.
+          </p>
         </header>
-        <AboutContent markdown={aboutMarkdown} />
+        <div className="fade-in stagger-1">
+          <AboutContent markdown={aboutMarkdown} />
+        </div>
+        <div className="about-grid fade-in stagger-2">
+          {aboutCards.map((card) => (
+            <article className="about-card" key={card.title}>
+              <h3>
+                {card.emoji} {card.title}
+              </h3>
+              <p>{card.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </PageWrapper>
   );

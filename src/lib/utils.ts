@@ -1,3 +1,5 @@
+import { aboutAvatarPath } from '@/data/about';
+
 /**
  * Shared utility functions and constants
  */
@@ -7,7 +9,7 @@ export const SITE_URL = 'https://bonita-chen.github.io';
 export const AUTHOR_NAME = 'Baojia Chen';
 export const TWITTER_HANDLE = '';
 export const SOCIAL_IMAGE = '/images/og-baojia.svg';
-export const PORTRAIT_IMAGE = '/images/portrait-baojia.svg';
+export const PORTRAIT_IMAGE = aboutAvatarPath;
 
 // Image dimension constants
 export const AVATAR_SIZE = {

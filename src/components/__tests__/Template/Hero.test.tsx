@@ -18,30 +18,23 @@ describe('Hero', () => {
     expect(heading).toHaveTextContent('Bonita Chen');
   });
 
-  it('renders the tagline with research and analytics links', () => {
+  it('renders the updated template tagline', () => {
     render(<Hero />);
 
-    const researchLink = screen.getByRole('link', { name: /research/i });
-    expect(researchLink).toHaveAttribute(
-      'href',
-      'https://cla.umn.edu/heller-hurwicz',
+    expect(
+      screen.getByText(/Economics & Statistics at the/i),
+    ).toBeInTheDocument();
+    expect(screen.getByText('University of Minnesota')).toHaveClass(
+      'hero-highlight',
     );
-    expect(researchLink).toHaveClass('hero-highlight');
-
-    const analyticsLink = screen.getByRole('link', { name: /analytics/i });
-    expect(analyticsLink).toHaveAttribute(
-      'href',
-      'https://goatconsulting.com/',
-    );
-    expect(analyticsLink).toHaveClass('hero-highlight');
   });
 
   it('displays hero chips for credentials', () => {
     render(<Hero />);
 
-    expect(screen.getByText('UMN Twin Cities')).toBeInTheDocument();
-    expect(screen.getByText('Research + Analytics')).toBeInTheDocument();
-    expect(screen.getByText('Minneapolis, MN')).toBeInTheDocument();
+    expect(screen.getByText(/UMN Twin Cities/)).toBeInTheDocument();
+    expect(screen.getByText(/Data & Research/)).toBeInTheDocument();
+    expect(screen.getByText(/Minneapolis, MN/)).toBeInTheDocument();
   });
 
   it('renders CTA buttons with correct links', () => {

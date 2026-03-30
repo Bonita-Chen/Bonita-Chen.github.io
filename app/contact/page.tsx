@@ -16,14 +16,14 @@ export default function ContactPage() {
   return (
     <PageWrapper>
       <section className="contact-page">
-        <header className="contact-header">
-          <h1 className="page-title">Get in Touch</h1>
+        <header className="contact-header fade-in">
+          <h1 className="page-title">Contact</h1>
           <p className="page-subtitle">
             For research, internships, collaborations, or a thoughtful hello.
           </p>
         </header>
 
-        <div className="contact-content">
+        <div className="contact-content fade-in stagger-1">
           <div className="contact-email-block">
             <EmailLink />
             <p className="contact-hint">Usually respond within 24 hours</p>

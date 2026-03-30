@@ -7,11 +7,11 @@
 [data-theme='dark'] {
   /* Core colors */
   --color-bg: #0f1923;
-  --color-bg-alt: #172332;
-  --color-bg-offset: #223447;
-  --color-fg: #d7e4f3;
-  --color-fg-bold: #f2f7fd;
-  --color-fg-light: #8da6c1;
+  --color-bg-alt: #162231;
+  --color-bg-offset: #1c2c3f;
+  --color-fg: #c5d3e3;
+  --color-fg-bold: #e8f0fa;
+  --color-fg-light: #7a93ad;
   --color-white: #fff;
   --color-black: #000;
 
@@ -23,19 +23,19 @@
   /* Accent colors */
   --color-accent: #add1f3;
   --color-accent-hover: #dde7f3;
-  --color-accent-light: color-mix(in srgb, var(--color-accent) 22%, transparent);
-  --color-accent-subtle: color-mix(in srgb, var(--color-accent) 15%, transparent);
-  --color-accent-border: color-mix(in srgb, var(--color-accent) 50%, transparent);
-  --color-accent-underline: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  --color-accent-light: rgba(173, 209, 243, 0.1);
+  --color-accent-subtle: rgba(173, 209, 243, 0.05);
+  --color-accent-border: rgba(173, 209, 243, 0.2);
+  --color-accent-underline: rgba(173, 209, 243, 0.3);
 
   /* Borders */
-  --color-border: rgba(173, 209, 243, 0.16);
-  --color-border-bg: rgba(173, 209, 243, 0.1);
-  --color-border-alt: rgba(173, 209, 243, 0.22);
+  --color-border: rgba(173, 209, 243, 0.1);
+  --color-border-bg: rgba(173, 209, 243, 0.06);
+  --color-border-alt: rgba(173, 209, 243, 0.18);
 
   /* Semantic surface tokens (eliminates hardcoded rgba in component overrides) */
   --color-surface-subtle: rgba(173, 209, 243, 0.05);
-  --color-surface-hover: rgba(173, 209, 243, 0.09);
+  --color-surface-hover: rgba(173, 209, 243, 0.04);
   --color-surface-active: rgba(173, 209, 243, 0.14);
   --color-text-muted: rgba(242, 247, 253, 0.6);
   --color-text-dim: rgba(242, 247, 253, 0.72);
@@ -43,9 +43,9 @@
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.34);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.42);
 }
 
 /* Dark mode component overrides using semantic tokens */
@@ -60,14 +60,6 @@
 
 [data-theme='dark'] .nav-link.active {
   background-color: color-mix(in srgb, var(--color-accent) 18%, transparent);
-}
-
-[data-theme='dark'] .site-footer-new {
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-alt) 0%,
-    color-mix(in srgb, var(--color-bg-alt) 92%, black) 100%
-  );
 }
 
 /* Homepage sections */
@@ -129,24 +121,6 @@
   background: var(--color-surface-hover);
 }
 
-/* Contact page */
-[data-theme='dark'] .contact-email-link {
-  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-}
-
-[data-theme='dark'] .contact-email-link:hover {
-  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
-}
-
-[data-theme='dark'] .contact-email-link--invalid,
-[data-theme='dark'] .contact-email-link--invalid:hover {
-  background: var(--color-border-bg);
-}
-
-[data-theme='dark'] .contact-content > .icons li a:hover {
-  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-}
-
 [data-theme='dark'] .daterange,
 [data-theme='dark'] .degree-container .school {
   color: var(--color-text-dim);
@@ -167,37 +141,10 @@
   border-left-color: var(--color-border-alt);
 }
 
-/* Link underlines */
-[data-theme='dark'] p a:not(.hero-highlight),
-[data-theme='dark'] li a:not(.hero-highlight) {
-  background-image: linear-gradient(
-    transparent calc(100% - 1.5px),
-    var(--color-accent-underline) 1.5px
-  );
-}
-
-[data-theme='dark'] p a:not(.hero-highlight):hover,
-[data-theme='dark'] li a:not(.hero-highlight):hover {
-  background-image: linear-gradient(transparent calc(100% - 1.5px), var(--color-accent) 1.5px);
-}
-
-/* Featured cards */
-[data-theme='dark'] .featured-card {
-  background: var(--color-bg-alt);
-  border-color: var(--color-border);
-}
-
-[data-theme='dark'] .featured-card:hover {
-  background: var(--color-bg-offset);
-  border-color: var(--color-accent-border);
-}
-
-/* Prose links use text-decoration only, no background-image */
-[data-theme='dark'] .prose a,
-[data-theme='dark'] .prose p a,
-[data-theme='dark'] .prose li a,
-[data-theme='dark'] .prose a:hover,
-[data-theme='dark'] .prose p a:hover,
-[data-theme='dark'] .prose li a:hover {
-  background-image: none;
+[data-theme='dark'] .post-cover,
+[data-theme='dark'] .project-card,
+[data-theme='dark'] .interest-detail,
+[data-theme='dark'] .interests-timeline,
+[data-theme='dark'] .admin-panel-card {
+  background: rgba(22, 34, 49, 0.78);
 }

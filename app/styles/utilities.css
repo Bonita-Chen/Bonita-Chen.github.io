@@ -11,7 +11,7 @@
 /* Base state for animated elements */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
   transition:
     opacity var(--duration-slow) var(--ease-out),
     transform var(--duration-slow) var(--ease-out);
@@ -20,6 +20,36 @@
 .animate-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fade-in-up var(--duration-slow) var(--ease-out) forwards;
+}
+
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+
+.stagger-6 {
+  animation-delay: 0.3s;
 }
 
 /* Staggered delays for children */
@@ -116,5 +146,16 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

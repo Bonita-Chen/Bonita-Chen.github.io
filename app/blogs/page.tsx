@@ -23,9 +23,9 @@ export default function BlogsPage() {
   const posts = getAllPosts();
 
   return (
-    <PageWrapper>
+    <PageWrapper mainClassName="page-main--wide">
       <article className="blogs-page">
-        <header className="blogs-header">
+        <header className="blogs-header fade-in">
           <div className="blogs-header-row">
             <div>
               <h1 className="page-title">Blogs</h1>
@@ -45,7 +45,9 @@ export default function BlogsPage() {
           </div>
         </header>
 
-        <BlogIndex posts={posts} />
+        <div className="fade-in stagger-1">
+          <BlogIndex posts={posts} />
+        </div>
       </article>
     </PageWrapper>
   );

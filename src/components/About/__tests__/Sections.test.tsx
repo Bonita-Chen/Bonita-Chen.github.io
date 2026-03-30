@@ -1,9 +1,8 @@
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import { aboutMarkdown } from '@/data/about';
-import { createHeadingId } from '@/lib/anchors';
 import AboutContent from '../Sections';
 
 function getActualSectionTitles(markdown: string) {
@@ -87,24 +86,12 @@ Lead paragraph.
 
   it('renders section navigation and self-links for the real about markdown', () => {
     const sectionTitles = getActualSectionTitles(aboutMarkdown);
-    const { container } = render(<AboutContent markdown={aboutMarkdown} />);
-    const nav = screen.getByRole('navigation', { name: 'About sections' });
+    render(<AboutContent markdown={aboutMarkdown} />);
 
-    expect(within(nav).getAllByRole('link')).toHaveLength(sectionTitles.length);
-
-    for (const title of sectionTitles) {
-      const headingId = createHeadingId(title);
-      const heading = screen.getByRole('heading', { name: title });
-
-      expect(heading).toHaveAttribute('id', headingId);
-      expect(within(nav).getByRole('link', { name: title })).toHaveAttribute(
-        'href',
-        `#${headingId}`,
-      );
-      expect(
-        container.querySelector(`h2#${headingId} > a[href="#${headingId}"]`),
-      ).toBeTruthy();
-    }
+    expect(sectionTitles).toHaveLength(0);
+    expect(
+      screen.queryByRole('navigation', { name: 'About sections' }),
+    ).not.toBeInTheDocument();
   });
 
   it('renders matching hash links and heading ids into static markup', () => {
@@ -112,10 +99,9 @@ Lead paragraph.
       <AboutContent markdown={aboutMarkdown} />,
     );
 
-    expect(html).toContain('href="#right-now"');
-    expect(html).toContain('id="right-now"');
-    expect(html).toContain('href="#outside-the-resume"');
-    expect(html).toContain('id="outside-the-resume"');
+    expect(html).toContain('class="about-intro"');
+    expect(html).not.toContain('href="#right-now"');
+    expect(html).not.toContain('id="right-now"');
   });
 
   it('supports same-page hash navigation from section links', async () => {
@@ -123,32 +109,12 @@ Lead paragraph.
 
     render(<AboutContent markdown={aboutMarkdown} />);
 
-    const nav = screen.getByRole('navigation', { name: 'About sections' });
-    const navLink = within(nav).getByRole('link', {
-      name: 'Outside the Resume',
-    });
-
-    navLink.click();
+    expect(
+      screen.queryByRole('navigation', { name: 'About sections' }),
+    ).not.toBeInTheDocument();
 
     await waitFor(() => {
-      expect(window.location.hash).toBe('#outside-the-resume');
+      expect(window.location.hash).toBe('');
     });
-    expect(document.querySelector(window.location.hash)).toHaveTextContent(
-      'Outside the Resume',
-    );
-
-    const heading = screen.getByRole('heading', { name: 'Blueberry Notes' });
-    const permalink = within(heading).getByRole('link', {
-      name: 'Blueberry Notes',
-    });
-
-    permalink.click();
-
-    await waitFor(() => {
-      expect(window.location.hash).toBe('#blueberry-notes');
-    });
-    expect(document.querySelector(window.location.hash)).toHaveTextContent(
-      'Blueberry Notes',
-    );
   });
 });

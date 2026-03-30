@@ -1,36 +1,37 @@
 export const aboutMarkdown = `# Intro
 
-I’m Baojia “Bonita” Chen, an economics student at the [University of Minnesota, Twin Cities](https://twin-cities.umn.edu/), with a minor in statistics. I’m most energized by work that sits between research, analytics, and communication: messy data in, clearer decisions out.
+Hi, I'm Bonita (Baojia) Chen — a senior at the [University of Minnesota, Twin Cities](https://twin-cities.umn.edu/), studying Economics with a Minor in Statistics. I'm drawn to the intersection of data, policy, and human behavior.
 
-Right now I split my time between being a Research Assistant at the [Heller-Hurwicz Economics Institute](https://cla.umn.edu/heller-hurwicz) and a Marketing Analytics Intern at [Goat Consulting](https://goatconsulting.com/). In one role I’m building reproducible Python and Stata pipelines for large administrative datasets; in the other I’m translating performance data into decisions for Amazon marketing.
+I've worked as a Research Assistant at the [Heller-Hurwicz Economics Institute](https://cla.umn.edu/heller-hurwicz), building data pipelines on administrative datasets with ~2.5M records. I've also interned at [Bio-Techne](https://www.bio-techne.com/) and [Goat Consulting](https://goatconsulting.com/), where I designed Power BI dashboards and optimized Amazon marketing analytics.
 
-I like projects that demand both precision and empathy: public-health analysis, research workflows, business dashboards, and writing that helps people make sense of complicated systems. I care a lot about whether the final output is not only technically correct, but also useful, readable, and human.
-
-# Right Now
-
-- Building reproducible Python/Stata pipelines for roughly 2.5 million administrative records and keeping the outputs analysis-ready.
-- Learning more causal inference, time-series reasoning, and data visualization as tools for applied economics and public-interest work.
-- Writing more openly about internships, research, and the small lessons that happen between bigger milestones.
-
-# What I Care About
-
-- **Research that travels well.** I love work that can move from notebook to memo to presentation without losing its rigor.
-- **Clear storytelling.** My favorite analyses are the ones a teammate can understand quickly and act on confidently.
-- **Thoughtful ambition.** I’m interested in career paths where analytical depth and real-world usefulness are equally important.
-
-# Outside the Resume
-
-- Photography, especially when a city or season changes mood in a way numbers can’t fully explain.
-- Exploring new neighborhoods, coffee shops, and places that make Minneapolis feel layered and alive.
-- Turning complicated data into something calm, visual, and easy to return to later.
-
-# Blueberry Notes
-
-- The blueberry emoji became part of my site long before it became a design motif.
-- I like Gantt charts more than most people should.
-- A good dashboard, a good paragraph, and a good photo all solve the same problem: they guide attention well.
-
-# Looking Ahead
-
-I’m especially interested in roles where economics, analytics, and communication reinforce each other: research teams, strategy work, data storytelling, and thoughtful business analysis. If you think there’s an overlap, I’d be happy to connect.
+Outside of work and school, I enjoy photography, exploring new cities, and figuring out how to make complex data tell a compelling story.
 `;
+
+export const aboutAvatarPath = '/images/portrait-baojia.svg';
+
+export const aboutCards = [
+  {
+    title: 'Currently',
+    emoji: '🎯',
+    description:
+      'Marketing Analytics Intern at Goat Consulting and Research Assistant at Heller-Hurwicz Economics Institute.',
+  },
+  {
+    title: 'Learning',
+    emoji: '🌱',
+    description:
+      'Deepening skills in Python, Julia, and causal inference methods for applied economics research.',
+  },
+  {
+    title: 'Honors',
+    emoji: '📚',
+    description:
+      "Dean's List, Edward G. Clark Jr. Scholarship, and second place in the Department of Economics paper competition.",
+  },
+  {
+    title: 'Fun Fact',
+    emoji: '🫐',
+    description:
+      'I love blueberries, hence the theme. I also co-led a VR self-defense training proposal at Girls Who Code.',
+  },
+] as const;

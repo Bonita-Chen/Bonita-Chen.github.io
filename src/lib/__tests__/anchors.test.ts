@@ -31,13 +31,7 @@ describe('createHeadingId', () => {
         title,
         createHeadingId(title),
       ]),
-    ).toEqual([
-      ['Right Now', 'right-now'],
-      ['What I Care About', 'what-i-care-about'],
-      ['Outside the Resume', 'outside-the-resume'],
-      ['Blueberry Notes', 'blueberry-notes'],
-      ['Looking Ahead', 'looking-ahead'],
-    ]);
+    ).toEqual([]);
   });
 });
 
@@ -63,5 +57,6 @@ describe('createUniqueHeadingIds', () => {
 
     expect(ids.every((id) => id.length > 0)).toBe(true);
     expect(new Set(ids).size).toBe(ids.length);
+    expect(ids).toEqual([]);
   });
 });

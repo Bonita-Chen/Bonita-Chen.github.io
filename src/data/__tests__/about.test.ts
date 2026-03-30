@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { aboutMarkdown } from '../about';
+import { aboutAvatarPath, aboutMarkdown } from '../about';
 
 describe('about data', () => {
   it('exports aboutMarkdown as a string', () => {
@@ -15,30 +15,10 @@ describe('about data', () => {
     expect(aboutMarkdown).toContain('Goat Consulting');
   });
 
-  it('contains the right now section', () => {
-    expect(aboutMarkdown).toContain('# Right Now');
-    expect(aboutMarkdown).toContain('2.5 million administrative records');
-  });
-
-  it('contains the values section', () => {
-    expect(aboutMarkdown).toContain('# What I Care About');
-    expect(aboutMarkdown).toContain('Thoughtful ambition');
-  });
-
-  it('contains the outside-the-resume section', () => {
-    expect(aboutMarkdown).toContain('# Outside the Resume');
-    expect(aboutMarkdown).toContain('Photography');
-    expect(aboutMarkdown).toContain('Minneapolis');
-  });
-
-  it('contains the blueberry notes section', () => {
-    expect(aboutMarkdown).toContain('# Blueberry Notes');
-    expect(aboutMarkdown).toContain('blueberry emoji');
-  });
-
-  it('contains the looking ahead section', () => {
-    expect(aboutMarkdown).toContain('# Looking Ahead');
-    expect(aboutMarkdown).toContain('research teams');
+  it('contains the simplified three-paragraph intro', () => {
+    expect(aboutMarkdown).toContain('intersection of data, policy, and human behavior');
+    expect(aboutMarkdown).toContain('~2.5M records');
+    expect(aboutMarkdown).toContain('photography, exploring new cities');
   });
 
   it('contains valid markdown links', () => {
@@ -50,12 +30,16 @@ describe('about data', () => {
     expect(links!.length).toBeGreaterThan(2);
   });
 
-  it('contains properly formatted headers', () => {
+  it('contains the expected single intro header', () => {
     // Check for markdown headers
     const headerRegex = /^#+ .+$/gm;
     const headers = aboutMarkdown.match(headerRegex);
 
     expect(headers).not.toBeNull();
-    expect(headers!.length).toBeGreaterThan(5);
+    expect(headers).toEqual(['# Intro']);
+  });
+
+  it('exports the current about avatar path', () => {
+    expect(aboutAvatarPath).toBe('/images/portrait-baojia.svg');
   });
 });

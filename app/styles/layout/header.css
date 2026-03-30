@@ -6,16 +6,16 @@
 /* Header - fixed navigation with glassmorphism */
 .site-header {
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(250, 252, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: solid 1px var(--color-border);
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
   left: 0;
   line-height: var(--header-height);
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -87,7 +87,7 @@ body.is-menu-visible .site-wrapper {
   font-size: 1.15em;
   max-width: 80vw;
   overflow-y: auto;
-  padding: 2.5em 1.5em 0;
+  padding: 1.75rem 1rem 0;
   position: fixed;
   top: 0;
   transition: transform var(--duration-normal) var(--ease-menu);
@@ -111,9 +111,9 @@ body.is-menu-visible .site-wrapper {
 
 .slide-menu ul {
   color: var(--color-fg-bold);
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
   margin-top: 0;
-  padding: 0.8em;
+  padding: 0.8em 0;
 }
 
 /* Hamburger container */
@@ -159,7 +159,7 @@ body.is-menu-visible .site-wrapper {
   display: flex;
   height: 100%;
   justify-content: center;
-  padding: 0 2em 0 1em;
+  padding: 0;
 }
 
 .hamburger-button:hover {
@@ -237,12 +237,15 @@ body.is-menu-visible .site-wrapper {
   outline: none;
   text-decoration: none;
   padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
-  transition: background-color var(--duration-fast) var(--ease-out);
+  border-radius: 8px;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .hamburger-ul li a:hover {
   background-color: var(--color-border-bg);
+  color: var(--color-accent);
 }
 
 .hamburger-ul li a:focus-visible h3 {
@@ -253,16 +256,16 @@ body.is-menu-visible .site-wrapper {
   margin: 0;
   padding: 0;
   border: none;
-  font-size: 1rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-fg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: inherit;
   text-transform: none;
   letter-spacing: normal;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
 .hamburger-ul li a:hover h3 {
-  color: var(--color-fg-bold);
+  color: inherit;
 }
 
 .hamburger-ul .index-li {

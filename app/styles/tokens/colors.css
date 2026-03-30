@@ -7,12 +7,12 @@
   /* ===================
      CORE PALETTE
      =================== */
-  --color-bg: #f8fbff;
-  --color-bg-alt: #eef4fb;
-  --color-bg-offset: #e4edf7;
-  --color-fg: #29405d;
-  --color-fg-bold: #223c5b;
-  --color-fg-light: #6d84a0;
+  --color-bg: #fafcff;
+  --color-bg-alt: #f0f4fa;
+  --color-bg-offset: #e8eef6;
+  --color-fg: #2c3e50;
+  --color-fg-bold: #1a2a3a;
+  --color-fg-light: #5a7089;
 
   /* ===================
      ACCENT COLORS
@@ -26,7 +26,7 @@
   --color-accent-underline: color-mix(in srgb, var(--color-accent) 30%, transparent);
   --color-accent-underline-strong: color-mix(in srgb, var(--color-accent) 40%, transparent);
   --color-accent-glow: color-mix(in srgb, var(--color-accent) 15%, transparent);
-  --color-accent-border: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  --color-accent-border: rgba(67, 99, 140, 0.3);
 
   /* ===================
      SKILL CATEGORY COLORS
@@ -41,15 +41,15 @@
   /* ===================
      BORDER COLORS
      =================== */
-  --color-border: rgba(34, 60, 91, 0.12);
-  --color-border-bg: rgba(34, 60, 91, 0.07);
-  --color-border-alt: rgba(34, 60, 91, 0.18);
+  --color-border: rgba(34, 60, 91, 0.1);
+  --color-border-bg: rgba(34, 60, 91, 0.06);
+  --color-border-alt: rgba(34, 60, 91, 0.16);
 
   /* ===================
      SURFACE TOKENS
      =================== */
   --color-surface-subtle: rgba(34, 60, 91, 0.03);
-  --color-surface-hover: rgba(34, 60, 91, 0.06);
+  --color-surface-hover: rgba(34, 60, 91, 0.04);
   --color-surface-active: rgba(34, 60, 91, 0.1);
   --color-text-muted: rgba(34, 60, 91, 0.5);
   --color-text-dim: rgba(34, 60, 91, 0.64);
