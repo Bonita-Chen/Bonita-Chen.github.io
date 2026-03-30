@@ -3,7 +3,7 @@
  */
 
 // Site configuration
-export const SITE_URL = 'https://baojia-bonita-chen.github.io';
+export const SITE_URL = 'https://bonita-chen.github.io';
 export const AUTHOR_NAME = 'Baojia Chen';
 export const TWITTER_HANDLE = '';
 export const SOCIAL_IMAGE = '/images/og-baojia.svg';

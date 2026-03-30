@@ -2,14 +2,14 @@
 
 Personal website and GitHub Pages portfolio for Baojia "Bonita" Chen.
 
-[![Live Site](https://img.shields.io/badge/live-site-223C5B?style=flat-square)](https://baojia-bonita-chen.github.io/)
-[![Deploy to GitHub Pages](https://img.shields.io/github/actions/workflow/status/baojia-bonita-chen/baojia-bonita-chen.github.io/github-pages.yml?branch=main&label=deploy&style=flat-square)](https://github.com/baojia-bonita-chen/baojia-bonita-chen.github.io/actions)
-[![CI](https://img.shields.io/github/actions/workflow/status/baojia-bonita-chen/baojia-bonita-chen.github.io/node.js.yml?branch=main&label=ci&style=flat-square)](https://github.com/baojia-bonita-chen/baojia-bonita-chen.github.io/actions)
+[![Live Site](https://img.shields.io/badge/live-site-223C5B?style=flat-square)](https://bonita-chen.github.io/)
+[![Deploy to GitHub Pages](https://img.shields.io/github/actions/workflow/status/Bonita-Chen/Bonita-Chen.github.io/github-pages.yml?branch=main&label=deploy&style=flat-square)](https://github.com/Bonita-Chen/Bonita-Chen.github.io/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/Bonita-Chen/Bonita-Chen.github.io/node.js.yml?branch=main&label=ci&style=flat-square)](https://github.com/Bonita-Chen/Bonita-Chen.github.io/actions)
 [![License](https://img.shields.io/badge/license-MIT-43638C?style=flat-square)](./LICENSE)
 
 Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com/), then exported as a static site for GitHub Pages.
 
-**Live site:** [baojia-bonita-chen.github.io](https://baojia-bonita-chen.github.io/)
+**Live site:** [bonita-chen.github.io](https://bonita-chen.github.io/)
 
 ![Site preview](./public/images/og-baojia.svg)
 
@@ -103,7 +103,7 @@ It reads the slug from:
 The current repository is expected to be:
 
 ```text
-baojia-bonita-chen/baojia-bonita-chen.github.io
+Bonita-Chen/Bonita-Chen.github.io
 ```
 
 ## Credits

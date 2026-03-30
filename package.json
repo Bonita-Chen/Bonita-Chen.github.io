@@ -1,11 +1,11 @@
 {
   "name": "bonita-personal-site",
   "version": "4.1.0",
-  "homepage": "https://baojia-bonita-chen.github.io/",
+  "homepage": "https://bonita-chen.github.io/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/baojia-bonita-chen/baojia-bonita-chen.github.io.git"
+    "url": "https://github.com/Bonita-Chen/Bonita-Chen.github.io.git"
   },
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || >=24.0.0"
