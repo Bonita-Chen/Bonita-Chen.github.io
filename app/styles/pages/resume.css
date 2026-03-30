@@ -1,155 +1,71 @@
 /* ========================================
    RESUME PAGE STYLES
+   Directly aligned with the index.html resume language
    ======================================== */
 
-.resume-page .link-container {
-  padding-top: 1em;
-}
-
-.resume-page .link-container h4 {
-  border-bottom: none;
-  display: inline-flex;
-  text-decoration: none;
-}
-
-.resume-page .link-container h4 a {
-  margin: 0;
-  padding: 0 0.5em;
-}
-
-.resume-page .education .title,
-.resume-page .experience .title,
-.resume-page .skills .title,
-.resume-page .courses .title,
-.resume-page .references .title {
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-
-.resume-page .education .title h3,
-.resume-page .experience .title h3,
-.resume-page .skills .title h3,
-.resume-page .courses .title h3,
-.resume-page .references .title h3 {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-weight-black);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-fg-bold);
-  display: inline-block;
-  padding-bottom: 0.75rem;
-  border-bottom: 3px solid var(--color-accent);
-}
-
-.resume-page .skills {
-  margin-top: 2em;
-}
-
-.resume-page .skills .title p {
-  font-size: var(--text-md);
-}
-
-.resume-page .courses {
-  padding-top: 1em;
-}
-
-.resume-page .courses .course-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-@media (max-width: 736px) {
-  .resume-page .courses .course-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-.resume-page .references {
-  margin: var(--spacing-8) 0;
-}
-
-/* Resume page specific */
 .resume-page {
   max-width: 880px;
   margin: 0 auto;
 }
 
 .resume-header {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
+  text-align: left;
 }
 
 .resume-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: var(--font-weight-black);
-  letter-spacing: var(--tracking-tight);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.4rem;
   color: var(--color-fg-bold);
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
 }
 
 .resume-summary {
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  color: var(--color-fg);
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 680px;
+  margin: 0;
+  color: var(--color-fg-light);
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .resume-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-2);
-  margin-top: var(--spacing-6);
-  margin-bottom: var(--spacing-4);
-  position: sticky;
-  top: var(--header-height);
-  z-index: var(--z-sticky);
-  background: color-mix(in srgb, var(--color-bg-alt) 92%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: var(--spacing-4) var(--spacing-6);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-bg);
-  box-shadow: var(--shadow-sm);
-}
-
-@media (max-width: 736px) {
-  .resume-nav {
-    top: var(--header-height-mobile);
-    gap: var(--spacing-1);
-    padding: var(--spacing-3) var(--spacing-4);
-    border-radius: var(--radius-md);
-    margin-left: calc(-1 * var(--spacing-2));
-    margin-right: calc(-1 * var(--spacing-2));
-  }
+  gap: 0.45rem;
+  margin: 0 0 2rem;
+  padding: 0 0 1.25rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .resume-nav-link {
-  padding: 0.5rem 1rem;
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-fg-light);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-sm);
+  padding: 0.38rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-bg-alt);
+  color: var(--color-fg);
+  font-size: 0.8rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: all var(--duration-fast) var(--ease-out);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
 }
 
 .resume-nav-link:hover {
-  color: var(--color-fg);
-  background: var(--color-surface-hover);
+  transform: translateY(-1px);
+  border-color: var(--color-accent-border);
+  color: var(--color-accent);
 }
 
-/* Active state - subtle highlight */
 .resume-nav-link.active {
-  color: var(--color-accent);
-  background: var(--color-accent-subtle);
-  font-weight: var(--font-weight-bold);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-white);
 }
 
 .resume-nav-link:focus-visible {
@@ -160,16 +76,60 @@
 .resume-content {
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
+  gap: 2.75rem;
 }
 
 .resume-section {
-  scroll-margin-top: calc(var(--header-height) + var(--scroll-offset-resume));
-  padding-top: var(--spacing-10);
-  border-top: 2px solid var(--color-border);
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
-.resume-section:first-child {
-  border-top: none;
-  padding-top: 0;
+.resume-page .education .title,
+.resume-page .experience .title,
+.resume-page .skills .title,
+.resume-page .courses .title,
+.resume-page .references .title {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.resume-page .education .title h3,
+.resume-page .experience .title h3,
+.resume-page .skills .title h3,
+.resume-page .courses .title h3,
+.resume-page .references .title h3 {
+  display: inline-block;
+  margin: 0;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-fg-bold);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.resume-page .courses .course-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-page .references {
+  margin: 0;
+}
+
+.resume-page .references p {
+  color: var(--color-fg-light);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+@media (max-width: 736px) {
+  .resume-page .courses .course-list {
+    grid-template-columns: 1fr;
+  }
 }

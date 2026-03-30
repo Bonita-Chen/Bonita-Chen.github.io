@@ -7,13 +7,15 @@ interface DegreeProps {
 export default function Degree({ data }: DegreeProps) {
   return (
     <article className="degree-container">
-      <header>
-        <h4 className="degree">{data.degree}</h4>
-        <p className="school">
-          <a href={data.link}>{data.school}</a>,{' '}
+      <header className="resume-item-header">
+        <h4 className="degree resume-item-title">{data.degree}</h4>
+        <p className="resume-item-date">
           <time dateTime={String(data.year)}>{data.year}</time>
         </p>
       </header>
+      <p className="school resume-item-subtitle">
+        <a href={data.link}>{data.school}</a>
+      </p>
     </article>
   );
 }

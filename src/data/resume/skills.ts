@@ -114,31 +114,24 @@ const skills: Skill[] = [
   },
 ].map((skill) => ({ ...skill, category: skill.category.sort() }));
 
-/**
- * Category colors with pre-computed text contrast.
- * Uses CSS custom properties defined in tailwind.css for runtime styling,
- * with textColor pre-computed from the hex values for accessibility.
- *
- * Hex values from tailwind.css @theme block:
- * --color-skill-1: #6968b3, --color-skill-2: #37b1f5, --color-skill-3: #40494e
- * --color-skill-4: #515dd4, --color-skill-5: #e47272, --color-skill-6: #cc7b94
- */
-const CATEGORY_COLORS: { color: string; textColor: 'dark' | 'light' }[] = [
-  { color: 'var(--color-skill-1)', textColor: 'dark' },
-  { color: 'var(--color-skill-2)', textColor: 'dark' },
-  { color: 'var(--color-skill-3)', textColor: 'light' },
-  { color: 'var(--color-skill-4)', textColor: 'light' },
-  { color: 'var(--color-skill-5)', textColor: 'dark' },
-  { color: 'var(--color-skill-6)', textColor: 'light' },
-];
+const CATEGORY_CONFIG: Record<
+  string,
+  { color: string; textColor: 'dark' | 'light' }
+> = {
+  Analytics: { color: 'var(--color-skill-4)', textColor: 'light' },
+  Business: { color: 'var(--color-skill-3)', textColor: 'light' },
+  Programming: { color: 'var(--color-skill-6)', textColor: 'light' },
+  Research: { color: 'var(--color-skill-4)', textColor: 'light' },
+  Visualization: { color: 'var(--color-skill-3)', textColor: 'light' },
+};
 
 // Fallback colors for categories beyond the predefined set (with pre-computed contrast)
 const FALLBACK_COLORS: { color: string; textColor: 'dark' | 'light' }[] = [
-  { color: '#82b2e3', textColor: 'dark' },
-  { color: '#516f91', textColor: 'light' },
-  { color: '#d0e3f7', textColor: 'dark' },
-  { color: '#6d89ab', textColor: 'light' },
-  { color: '#304f75', textColor: 'light' },
+  { color: '#88a6c8', textColor: 'dark' },
+  { color: '#5d7797', textColor: 'light' },
+  { color: '#9bb6d3', textColor: 'dark' },
+  { color: '#43638c', textColor: 'light' },
+  { color: '#223c5b', textColor: 'light' },
 ];
 
 /**
@@ -149,23 +142,26 @@ function buildCategories(skillsList: Skill[]): Category[] {
   const uniqueCategories = Array.from(
     new Set(skillsList.flatMap(({ category }) => category)),
   ).sort();
-
-  const allColors = [...CATEGORY_COLORS, ...FALLBACK_COLORS];
+  let fallbackIndex = 0;
 
   if (
     process.env.NODE_ENV === 'development' &&
-    uniqueCategories.length > allColors.length
+    uniqueCategories.length >
+      Object.keys(CATEGORY_CONFIG).length + FALLBACK_COLORS.length
   ) {
     console.warn(
-      `[skills.ts] Warning: ${uniqueCategories.length} categories but only ${allColors.length} colors defined`,
+      `[skills.ts] Warning: ${uniqueCategories.length} categories but only ${
+        Object.keys(CATEGORY_CONFIG).length + FALLBACK_COLORS.length
+      } colors defined`,
     );
   }
 
-  return uniqueCategories.map((category, index) => {
-    const colorConfig = allColors[index] ?? {
-      color: '#888888',
-      textColor: 'light' as const,
-    };
+  return uniqueCategories.map((category) => {
+    const colorConfig = CATEGORY_CONFIG[category] ??
+      FALLBACK_COLORS[fallbackIndex++] ?? {
+        color: '#5d7797',
+        textColor: 'light' as const,
+      };
     return {
       name: category,
       color: colorConfig.color,

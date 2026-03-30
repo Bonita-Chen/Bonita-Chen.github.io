@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import type { BlogCollection } from '@/data/blogs';
+import type { Interest, InterestEntry } from '@/data/interests';
 import type { Post } from '@/lib/posts';
 import { PORTRAIT_IMAGE } from '@/lib/utils';
 
@@ -59,6 +60,25 @@ type EditablePost = {
   inlineImages: EditableAsset[];
 };
 
+type EditableInterestEntry = InterestEntry & {
+  id: string;
+  href: string;
+};
+
+type EditableInterest = {
+  id: string;
+  slug: string;
+  name: string;
+  icon: string;
+  summary: string;
+  trackLabel: string;
+  start: string;
+  targetMonths?: number;
+  ongoing: boolean;
+  accent: string;
+  entries: EditableInterestEntry[];
+};
+
 type AvatarDraft = {
   source: string;
   output: string;
@@ -78,6 +98,7 @@ interface AdminStudioProps {
   initialPosts: Post[];
   initialCollections: BlogCollection[];
   initialTagLabels: Record<string, string>;
+  initialInterests: Interest[];
   editableFiles: readonly EditableFileLink[];
   githubRepoSlug: string;
   repoBranch: string;
@@ -135,6 +156,26 @@ function toSeedPosts(initialPosts: Post[]): EditablePost[] {
     content: post.content,
     coverAsset: null,
     inlineImages: [],
+  }));
+}
+
+function toSeedInterests(initialInterests: Interest[]): EditableInterest[] {
+  return initialInterests.map((interest) => ({
+    id: interest.slug,
+    slug: interest.slug,
+    name: interest.name,
+    icon: interest.icon,
+    summary: interest.summary,
+    trackLabel: interest.trackLabel,
+    start: interest.start,
+    targetMonths: interest.targetMonths,
+    ongoing: Boolean(interest.ongoing),
+    accent: interest.accent,
+    entries: interest.entries.map((entry) => ({
+      ...entry,
+      id: createId('interest-entry'),
+      href: entry.href || '',
+    })),
   }));
 }
 
@@ -243,12 +284,33 @@ function buildBlogsDataSource(
   return `export interface BlogCollection {\n  slug: string;\n  label: string;\n  emoji: string;\n  description: string;\n}\n\nexport const blogCollections: BlogCollection[] = ${JSON.stringify(collectionExports, null, 2)};\n\nexport const blogTagLabels = ${JSON.stringify(tagObject, null, 2)} as const;\n\nexport type BlogTag = keyof typeof blogTagLabels;\n`;
 }
 
+function buildInterestsDataSource(interests: EditableInterest[]) {
+  const interestExports = interests.map((interest) => ({
+    slug: interest.slug,
+    name: interest.name,
+    icon: interest.icon,
+    summary: interest.summary,
+    trackLabel: interest.trackLabel,
+    start: interest.start,
+    ...(interest.targetMonths ? { targetMonths: interest.targetMonths } : {}),
+    ...(interest.ongoing ? { ongoing: true } : {}),
+    accent: interest.accent,
+    entries: interest.entries.map(({ id: _id, href, ...entry }) => ({
+      ...entry,
+      ...(href ? { href } : {}),
+    })),
+  }));
+
+  return `export interface InterestEntry {\n  type: 'Course' | 'Event' | 'Project' | 'Blog';\n  title: string;\n  description: string;\n  date: string;\n  tags: string[];\n  href?: string;\n}\n\nexport interface Interest {\n  slug: string;\n  name: string;\n  icon: string;\n  summary: string;\n  trackLabel: string;\n  start: string;\n  targetMonths?: number;\n  ongoing?: boolean;\n  accent: string;\n  entries: InterestEntry[];\n}\n\nconst interests: Interest[] = ${JSON.stringify(interestExports, null, 2)};\n\nexport default interests;\n`;
+}
+
 export default function AdminStudio({
   initialAboutMarkdown,
   initialAboutCards,
   initialPosts,
   initialCollections,
   initialTagLabels,
+  initialInterests,
   editableFiles,
   githubRepoSlug,
   repoBranch,
@@ -268,10 +330,11 @@ export default function AdminStudio({
     label,
   }));
   const initialPostsDraft = toSeedPosts(initialPosts);
+  const initialInterestsDraft = toSeedInterests(initialInterests);
 
-  const [activeTab, setActiveTab] = useState<'about' | 'blogs' | 'handoff'>(
-    'about',
-  );
+  const [activeTab, setActiveTab] = useState<
+    'about' | 'blogs' | 'interests' | 'handoff'
+  >('about');
   const [aboutParagraphs, setAboutParagraphs] =
     useState<string[]>(initialParagraphs);
   const [aboutCards, setAboutCards] = useState<EditableCard[]>(initialCards);
@@ -282,6 +345,12 @@ export default function AdminStudio({
   const [posts, setPosts] = useState<EditablePost[]>(initialPostsDraft);
   const [selectedPostId, setSelectedPostId] = useState(
     initialPostsDraft[0]?.id || '',
+  );
+  const [interests, setInterests] = useState<EditableInterest[]>(
+    initialInterestsDraft,
+  );
+  const [selectedInterestId, setSelectedInterestId] = useState(
+    initialInterestsDraft[0]?.id || '',
   );
   const [avatarDraft, setAvatarDraft] = useState<AvatarDraft>({
     source: '',
@@ -303,13 +372,15 @@ export default function AdminStudio({
       }
 
       const parsed = JSON.parse(saved) as {
-        activeTab?: 'about' | 'blogs' | 'handoff';
+        activeTab?: 'about' | 'blogs' | 'interests' | 'handoff';
         aboutParagraphs?: string[];
         aboutCards?: EditableCard[];
         collections?: EditableCollection[];
         tags?: EditableTag[];
         posts?: EditablePost[];
         selectedPostId?: string;
+        interests?: EditableInterest[];
+        selectedInterestId?: string;
         avatarDraft?: AvatarDraft;
       };
 
@@ -334,6 +405,12 @@ export default function AdminStudio({
       if (parsed.selectedPostId) {
         setSelectedPostId(parsed.selectedPostId);
       }
+      if (parsed.interests?.length) {
+        setInterests(parsed.interests);
+      }
+      if (parsed.selectedInterestId) {
+        setSelectedInterestId(parsed.selectedInterestId);
+      }
       if (parsed.avatarDraft) {
         setAvatarDraft(parsed.avatarDraft);
       }
@@ -354,6 +431,8 @@ export default function AdminStudio({
           tags,
           posts,
           selectedPostId,
+          interests,
+          selectedInterestId,
           avatarDraft,
         }),
       );
@@ -370,6 +449,8 @@ export default function AdminStudio({
     tags,
     posts,
     selectedPostId,
+    interests,
+    selectedInterestId,
     avatarDraft,
   ]);
 
@@ -445,14 +526,26 @@ export default function AdminStudio({
     }
   }, [posts, selectedPostId]);
 
+  useEffect(() => {
+    if (
+      !interests.some((interest) => interest.id === selectedInterestId) &&
+      interests.length > 0
+    ) {
+      setSelectedInterestId(interests[0].id);
+    }
+  }, [interests, selectedInterestId]);
+
   const repoConfigured = Boolean(githubRepoSlug);
   const selectedPost = posts.find((post) => post.id === selectedPostId) || null;
+  const selectedInterest =
+    interests.find((interest) => interest.id === selectedInterestId) || null;
   const aboutModuleSource = buildAboutModuleSource(
     aboutParagraphs,
     aboutCards,
     avatarDraft.output ? '/images/portrait-baojia.png' : PORTRAIT_IMAGE,
   );
   const blogsDataSource = buildBlogsDataSource(collections, tags);
+  const interestsDataSource = buildInterestsDataSource(interests);
 
   async function copyToClipboard(label: string, value: string) {
     try {
@@ -480,6 +573,8 @@ export default function AdminStudio({
     setTags(initialTags);
     setPosts(initialPostsDraft);
     setSelectedPostId(initialPostsDraft[0]?.id || '');
+    setInterests(initialInterestsDraft);
+    setSelectedInterestId(initialInterestsDraft[0]?.id || '');
     setAvatarDraft({
       source: '',
       output: '',
@@ -807,6 +902,120 @@ export default function AdminStudio({
     );
   }
 
+  function updateInterest(
+    interestId: string,
+    updater: (interest: EditableInterest) => EditableInterest,
+  ) {
+    setInterests((current) =>
+      current.map((interest) =>
+        interest.id === interestId ? updater(interest) : interest,
+      ),
+    );
+  }
+
+  function addInterest() {
+    const nextIndex = interests.length + 1;
+    const nextInterest: EditableInterest = {
+      id: createId('interest'),
+      slug: `new-interest-${nextIndex}`,
+      name: `New Interest ${nextIndex}`,
+      icon: '✨',
+      summary: 'Describe what this interest means to you.',
+      trackLabel: 'Learning Track',
+      start: new Date().toISOString().slice(0, 10),
+      targetMonths: 6,
+      ongoing: false,
+      accent: '#43638C',
+      entries: [],
+    };
+
+    setInterests((current) => [...current, nextInterest]);
+    setSelectedInterestId(nextInterest.id);
+    setActiveTab('interests');
+    setFlashMessage('New interest track created.');
+  }
+
+  function deleteSelectedInterest() {
+    if (!selectedInterest) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Delete "${selectedInterest.name}" from the local admin draft?`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setInterests((current) =>
+      current.filter((interest) => interest.id !== selectedInterest.id),
+    );
+    setFlashMessage('Selected interest removed from the admin studio.');
+  }
+
+  function addInterestEntry() {
+    if (!selectedInterest) {
+      return;
+    }
+
+    updateInterest(selectedInterest.id, (interest) => ({
+      ...interest,
+      entries: [
+        ...interest.entries,
+        {
+          id: createId('interest-entry'),
+          type: 'Project',
+          title: 'New Entry',
+          description: 'Describe the course, event, project, or blog.',
+          date: new Date().toISOString().slice(0, 10),
+          tags: ['Tag'],
+          href: '',
+        },
+      ],
+    }));
+    setFlashMessage('Interest entry added.');
+  }
+
+  function updateInterestEntry(
+    interestId: string,
+    entryId: string,
+    updater: (entry: EditableInterestEntry) => EditableInterestEntry,
+  ) {
+    updateInterest(interestId, (interest) => ({
+      ...interest,
+      entries: interest.entries.map((entry) =>
+        entry.id === entryId ? updater(entry) : entry,
+      ),
+    }));
+  }
+
+  function removeInterestEntry(interestId: string, entryId: string) {
+    updateInterest(interestId, (interest) => ({
+      ...interest,
+      entries: interest.entries.filter((entry) => entry.id !== entryId),
+    }));
+  }
+
+  function getEstimatedInterestProgress(interest: EditableInterest) {
+    if (interest.ongoing || !interest.targetMonths) {
+      return 'Ongoing';
+    }
+
+    const start = new Date(`${interest.start}T12:00:00`);
+    const now = new Date();
+    const elapsedMonths =
+      (now.getFullYear() - start.getFullYear()) * 12 +
+      now.getMonth() -
+      start.getMonth() +
+      1;
+
+    return `${Math.min(
+      100,
+      Math.max(0, Math.round((elapsedMonths / interest.targetMonths) * 100)),
+    )}%`;
+  }
+
   function exportSnapshot() {
     triggerDownload(
       'bonita-admin-studio.json',
@@ -817,6 +1026,7 @@ export default function AdminStudio({
           collections,
           tags,
           posts,
+          interests,
           avatarDraft,
         },
         null,
@@ -832,8 +1042,8 @@ export default function AdminStudio({
         <div>
           <h2>Admin Studio</h2>
           <p>
-            Visual editing for About and Blogs, with local draft persistence and
-            export tools for a static GitHub Pages workflow.
+            Edit About, Blogs, and Interests with image upload, avatar crop,
+            blog cover replacement, tag management, and gantt timeline updates.
           </p>
         </div>
         <div className="admin-studio-actions">
@@ -856,8 +1066,8 @@ export default function AdminStudio({
 
       <div className="admin-status-row">
         <p className="admin-status-pill">
-          Static mode: changes stay local until you export or paste them into
-          the repository.
+          Static mode: you can add, delete, and edit here first, then export the
+          real files back into the repository.
         </p>
         {flashMessage ? <p className="admin-flash">{flashMessage}</p> : null}
       </div>
@@ -876,6 +1086,13 @@ export default function AdminStudio({
           onClick={() => setActiveTab('blogs')}
         >
           Blogs
+        </button>
+        <button
+          type="button"
+          className={`admin-tab ${activeTab === 'interests' ? 'active' : ''}`}
+          onClick={() => setActiveTab('interests')}
+        >
+          Interests
         </button>
         <button
           type="button"
@@ -1927,6 +2144,439 @@ export default function AdminStudio({
               <section className="admin-panel-card">
                 <h3>No post selected</h3>
                 <p>Create a new post to start editing.</p>
+              </section>
+            )}
+          </div>
+        </div>
+      ) : null}
+
+      {activeTab === 'interests' ? (
+        <div className="admin-workspace admin-blog-studio">
+          <aside className="admin-post-sidebar">
+            <div className="admin-panel-header">
+              <div>
+                <h3>Interest Tracks</h3>
+                <p>
+                  {interests.length} editable tracks for the gantt timeline.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="admin-mini-button"
+                onClick={addInterest}
+              >
+                Add Interest
+              </button>
+            </div>
+
+            <div className="admin-post-list">
+              {interests.map((interest) => (
+                <button
+                  type="button"
+                  key={interest.id}
+                  className={`admin-post-list-item ${selectedInterestId === interest.id ? 'active' : ''}`}
+                  onClick={() => setSelectedInterestId(interest.id)}
+                >
+                  <strong>
+                    {interest.icon} {interest.name}
+                  </strong>
+                  <span>{interest.trackLabel}</span>
+                  <small>{getEstimatedInterestProgress(interest)}</small>
+                </button>
+              ))}
+            </div>
+          </aside>
+
+          <div className="admin-blog-editor">
+            {selectedInterest ? (
+              <>
+                <section className="admin-panel-card">
+                  <div className="admin-panel-header">
+                    <div>
+                      <h3>Selected Interest</h3>
+                      <p>
+                        Edit the timeline label, dates, color, and summary used
+                        by the interests gantt.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="admin-text-button admin-text-button--danger"
+                      onClick={deleteSelectedInterest}
+                    >
+                      Delete Interest
+                    </button>
+                  </div>
+
+                  <div className="admin-form-grid">
+                    <label>
+                      Name
+                      <input
+                        value={selectedInterest.name}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            name: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label>
+                      Slug
+                      <input
+                        value={selectedInterest.slug}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            slug: slugify(event.target.value) || interest.slug,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label>
+                      Icon
+                      <input
+                        value={selectedInterest.icon}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            icon: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label>
+                      Accent Color
+                      <input
+                        type="color"
+                        value={selectedInterest.accent}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            accent: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label>
+                      Start Date
+                      <input
+                        type="date"
+                        value={selectedInterest.start}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            start: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label>
+                      Target Months
+                      <input
+                        type="number"
+                        min="1"
+                        value={selectedInterest.targetMonths || ''}
+                        disabled={selectedInterest.ongoing}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            targetMonths: event.target.value
+                              ? Number(event.target.value)
+                              : undefined,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label className="admin-form-grid-wide">
+                      Track Label
+                      <input
+                        value={selectedInterest.trackLabel}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            trackLabel: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                    <label className="admin-form-grid-wide">
+                      Summary
+                      <textarea
+                        rows={3}
+                        value={selectedInterest.summary}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            summary: event.target.value,
+                          }))
+                        }
+                      />
+                    </label>
+                  </div>
+
+                  <div className="admin-check-row">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedInterest.ongoing}
+                        onChange={(event) =>
+                          updateInterest(selectedInterest.id, (interest) => ({
+                            ...interest,
+                            ongoing: event.target.checked,
+                            targetMonths: event.target.checked
+                              ? undefined
+                              : interest.targetMonths || 6,
+                          }))
+                        }
+                      />
+                      Ongoing
+                    </label>
+                    <p className="admin-helper-text">
+                      Estimated progress:{' '}
+                      {getEstimatedInterestProgress(selectedInterest)}
+                    </p>
+                  </div>
+                </section>
+
+                <section className="admin-panel-card">
+                  <div className="admin-panel-header">
+                    <div>
+                      <h3>Timeline Preview</h3>
+                      <p>
+                        Quick check for ordering, labels, and current progress
+                        percentages.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="admin-interest-preview-list">
+                    {interests.map((interest) => (
+                      <div
+                        className="admin-interest-preview-row"
+                        key={interest.id}
+                      >
+                        <div className="admin-interest-preview-name">
+                          <span
+                            className="admin-interest-swatch"
+                            style={{ backgroundColor: interest.accent }}
+                          />
+                          <span>
+                            {interest.icon} {interest.name}
+                          </span>
+                        </div>
+                        <div className="admin-interest-preview-track">
+                          {interest.trackLabel}
+                        </div>
+                        <div className="admin-interest-preview-progress">
+                          {getEstimatedInterestProgress(interest)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="admin-panel-card">
+                  <div className="admin-panel-header">
+                    <div>
+                      <h3>Interest Entries</h3>
+                      <p>
+                        Courses, events, projects, and blog links that appear
+                        under this interest.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="admin-mini-button"
+                      onClick={addInterestEntry}
+                    >
+                      Add Entry
+                    </button>
+                  </div>
+
+                  <div className="admin-stack">
+                    {selectedInterest.entries.length > 0 ? (
+                      selectedInterest.entries.map((entry) => (
+                        <div className="admin-card-editor" key={entry.id}>
+                          <div className="admin-card-editor-row">
+                            <label>
+                              Type
+                              <select
+                                value={entry.type}
+                                onChange={(event) =>
+                                  updateInterestEntry(
+                                    selectedInterest.id,
+                                    entry.id,
+                                    (currentEntry) => ({
+                                      ...currentEntry,
+                                      type: event.target
+                                        .value as EditableInterestEntry['type'],
+                                    }),
+                                  )
+                                }
+                              >
+                                <option value="Course">Course</option>
+                                <option value="Event">Event</option>
+                                <option value="Project">Project</option>
+                                <option value="Blog">Blog</option>
+                              </select>
+                            </label>
+                            <label>
+                              Date
+                              <input
+                                type="date"
+                                value={entry.date}
+                                onChange={(event) =>
+                                  updateInterestEntry(
+                                    selectedInterest.id,
+                                    entry.id,
+                                    (currentEntry) => ({
+                                      ...currentEntry,
+                                      date: event.target.value,
+                                    }),
+                                  )
+                                }
+                              />
+                            </label>
+                            <button
+                              type="button"
+                              className="admin-text-button admin-text-button--danger"
+                              onClick={() =>
+                                removeInterestEntry(
+                                  selectedInterest.id,
+                                  entry.id,
+                                )
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
+
+                          <label>
+                            Title
+                            <input
+                              value={entry.title}
+                              onChange={(event) =>
+                                updateInterestEntry(
+                                  selectedInterest.id,
+                                  entry.id,
+                                  (currentEntry) => ({
+                                    ...currentEntry,
+                                    title: event.target.value,
+                                  }),
+                                )
+                              }
+                            />
+                          </label>
+
+                          <label>
+                            Description
+                            <textarea
+                              rows={3}
+                              value={entry.description}
+                              onChange={(event) =>
+                                updateInterestEntry(
+                                  selectedInterest.id,
+                                  entry.id,
+                                  (currentEntry) => ({
+                                    ...currentEntry,
+                                    description: event.target.value,
+                                  }),
+                                )
+                              }
+                            />
+                          </label>
+
+                          <div className="admin-card-editor-row">
+                            <label className="admin-grow">
+                              Tags
+                              <input
+                                value={entry.tags.join(', ')}
+                                onChange={(event) =>
+                                  updateInterestEntry(
+                                    selectedInterest.id,
+                                    entry.id,
+                                    (currentEntry) => ({
+                                      ...currentEntry,
+                                      tags: event.target.value
+                                        .split(',')
+                                        .map((tag) => tag.trim())
+                                        .filter(Boolean),
+                                    }),
+                                  )
+                                }
+                              />
+                            </label>
+                            <label className="admin-grow">
+                              Link
+                              <input
+                                value={entry.href}
+                                placeholder="/blogs/post-slug/ or https://..."
+                                onChange={(event) =>
+                                  updateInterestEntry(
+                                    selectedInterest.id,
+                                    entry.id,
+                                    (currentEntry) => ({
+                                      ...currentEntry,
+                                      href: event.target.value,
+                                    }),
+                                  )
+                                }
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="admin-helper-text">
+                        No entries yet. Add a course, event, project, or blog to
+                        populate this interest section.
+                      </p>
+                    )}
+                  </div>
+                </section>
+
+                <section className="admin-panel-card">
+                  <div className="admin-panel-header">
+                    <div>
+                      <h3>Interest Export</h3>
+                      <p>
+                        Download or copy the updated <code>interests.ts</code>{' '}
+                        source for the repository.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="admin-export-list">
+                    <button
+                      type="button"
+                      className="admin-action-button"
+                      onClick={() =>
+                        triggerDownload(
+                          'interests.ts',
+                          interestsDataSource,
+                          'text/plain;charset=utf-8',
+                        )
+                      }
+                    >
+                      Download interests.ts
+                    </button>
+                    <button
+                      type="button"
+                      className="admin-action-button admin-action-button--ghost"
+                      onClick={() =>
+                        copyToClipboard('Interests source', interestsDataSource)
+                      }
+                    >
+                      Copy interests.ts
+                    </button>
+                  </div>
+                </section>
+              </>
+            ) : (
+              <section className="admin-panel-card">
+                <h3>No interest selected</h3>
+                <p>Create a new interest track to start editing.</p>
               </section>
             )}
           </div>

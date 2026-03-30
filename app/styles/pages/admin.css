@@ -510,6 +510,60 @@
   color: var(--color-fg-light);
 }
 
+.admin-interest-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.admin-interest-preview-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.8fr) auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg-alt);
+}
+
+.admin-interest-preview-name {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  color: var(--color-fg-bold);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.admin-interest-preview-name span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-interest-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(34, 60, 91, 0.08);
+}
+
+.admin-interest-preview-track {
+  color: var(--color-fg-light);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.admin-interest-preview-progress {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 @media (max-width: 960px) {
   .admin-workspace--split,
   .admin-blog-studio,
@@ -526,12 +580,17 @@
 
 @media (max-width: 640px) {
   .admin-form-grid,
-  .admin-asset-card {
+  .admin-asset-card,
+  .admin-interest-preview-row {
     grid-template-columns: 1fr;
   }
 
   .admin-panel-card,
   .admin-post-sidebar {
     padding: 1rem;
+  }
+
+  .admin-interest-preview-progress {
+    text-align: left;
   }
 }

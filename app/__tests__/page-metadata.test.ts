@@ -56,9 +56,7 @@ describe('page metadata', () => {
     );
   });
 
-  it('preserves the blogs rss alternate', () => {
-    expect(blogsMetadata.alternates?.types?.['application/rss+xml']).toBe(
-      '/feed.xml',
-    );
+  it('does not expose an rss alternate for blogs', () => {
+    expect(blogsMetadata.alternates).toBeUndefined();
   });
 });

@@ -5,13 +5,14 @@ import PageWrapper from '@/components/Template/PageWrapper';
 import { aboutCards, aboutMarkdown } from '@/data/about';
 import { editableFiles, githubRepoSlug, repoBranch } from '@/data/admin';
 import { blogCollections, blogTagLabels } from '@/data/blogs';
+import interests from '@/data/interests';
 import { createPageMetadata } from '@/lib/metadata';
 import { getAllPosts } from '@/lib/posts';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Admin',
   description:
-    'Visual admin studio for Baojia Chen’s personal site, with local draft editing for About and Blogs.',
+    'Visual admin studio for Baojia Chen’s personal site, including avatar crop, blog editing, and interests timeline updates.',
   path: '/admin/',
 });
 
@@ -35,6 +36,7 @@ export default function AdminPage() {
           initialPosts={posts}
           initialCollections={blogCollections}
           initialTagLabels={blogTagLabels}
+          initialInterests={interests}
           editableFiles={editableFiles}
           githubRepoSlug={githubRepoSlug}
           repoBranch={repoBranch}

@@ -90,12 +90,13 @@
 
 /* Job cards in dark mode */
 [data-theme='dark'] .jobs-container {
-  background: var(--color-surface-subtle);
+  background: transparent;
   border-color: var(--color-border);
 }
 
 [data-theme='dark'] .jobs-container:hover {
-  border-color: var(--color-border-alt);
+  background: transparent;
+  border-color: var(--color-border);
 }
 
 /* Course cards */
@@ -112,13 +113,16 @@
 /* Skill buttons/tags */
 [data-theme='dark'] .skillbutton,
 [data-theme='dark'] .skill-tag {
-  background: var(--color-surface-subtle);
+  background: var(--color-bg-alt);
   border-color: var(--color-border);
+  color: var(--color-accent);
 }
 
 [data-theme='dark'] .skillbutton:hover,
 [data-theme='dark'] .skill-tag:hover {
-  background: var(--color-surface-hover);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
 }
 
 [data-theme='dark'] .daterange,
