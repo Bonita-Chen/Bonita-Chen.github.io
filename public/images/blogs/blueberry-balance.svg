@@ -1,0 +1,19 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#F6FAFF"/>
+  <rect x="72" y="72" width="1056" height="576" rx="34" fill="url(#g)"/>
+  <circle cx="386" cy="358" r="126" fill="rgba(255,255,255,0.34)"/>
+  <circle cx="810" cy="320" r="104" fill="rgba(34,60,91,0.1)"/>
+  <circle cx="770" cy="382" r="104" fill="rgba(255,255,255,0.24)"/>
+  <text x="312" y="390" fill="#223C5B" font-size="126">🫐</text>
+  <path d="M596 238C596 238 644 314 644 360C644 406 607 444 560 444C513 444 476 406 476 360C476 314 524 238 524 238" fill="rgba(255,255,255,0.3)"/>
+  <path d="M560 214V500" stroke="#223C5B" stroke-width="20" stroke-linecap="round"/>
+  <path d="M502 322H618" stroke="#223C5B" stroke-width="20" stroke-linecap="round"/>
+  <text x="156" y="604" fill="#223C5B" font-family="Georgia, serif" font-size="52" font-weight="700">Balance</text>
+  <defs>
+    <linearGradient id="g" x1="118" y1="110" x2="1090" y2="604" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDE7F3"/>
+      <stop offset="0.38" stop-color="#ADD1F3"/>
+      <stop offset="1" stop-color="#7189A5"/>
+    </linearGradient>
+  </defs>
+</svg>

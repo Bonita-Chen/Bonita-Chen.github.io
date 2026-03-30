@@ -1,0 +1,20 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#F6FBFF"/>
+  <rect x="70" y="74" width="1060" height="572" rx="34" fill="url(#g)"/>
+  <rect x="160" y="164" width="880" height="392" rx="28" fill="rgba(255,255,255,0.34)"/>
+  <rect x="226" y="406" width="72" height="96" rx="16" fill="#43638C"/>
+  <rect x="330" y="344" width="72" height="158" rx="16" fill="#7189A5"/>
+  <rect x="434" y="280" width="72" height="222" rx="16" fill="#223C5B"/>
+  <path d="M654 220L930 220" stroke="#223C5B" stroke-width="20" stroke-linecap="round"/>
+  <path d="M654 284L914 284" stroke="#43638C" stroke-width="16" stroke-linecap="round"/>
+  <path d="M654 340L874 340" stroke="#7189A5" stroke-width="16" stroke-linecap="round"/>
+  <path d="M654 396L824 396" stroke="#7189A5" stroke-width="16" stroke-linecap="round"/>
+  <text x="156" y="606" fill="#223C5B" font-family="Georgia, serif" font-size="52" font-weight="700">Power BI &amp; EMEA</text>
+  <defs>
+    <linearGradient id="g" x1="102" y1="104" x2="1078" y2="612" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDE7F3"/>
+      <stop offset="0.42" stop-color="#ADD1F3"/>
+      <stop offset="1" stop-color="#43638C"/>
+    </linearGradient>
+  </defs>
+</svg>

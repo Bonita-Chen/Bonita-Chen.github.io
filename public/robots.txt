@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /api
+
+Sitemap: https://baojia-bonita-chen.github.io/sitemap.xml

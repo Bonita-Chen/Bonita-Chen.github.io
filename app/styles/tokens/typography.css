@@ -1,0 +1,51 @@
+/* ========================================
+   TYPOGRAPHY TOKENS
+   Font families, sizes, weights, and spacing
+   ======================================== */
+
+@theme {
+  /* ===================
+     FONT FAMILIES
+     =================== */
+  --font-sans: 'Manrope', Helvetica, sans-serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'Courier New', monospace;
+
+  /* ===================
+     FONT WEIGHTS
+     =================== */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 700;
+
+  /* ===================
+     FONT SIZES (relative units)
+     =================== */
+  --text-2xs: 0.68em;
+  --text-xs: 0.78em;
+  --text-sm: 0.92em;
+  --text-base: 1em;
+  --text-md: 1.08em;
+  --text-lg: 1.26em;
+  --text-xl: 1.55em;
+  --text-2xl: 2.15em;
+  --text-3xl: 2.95em;
+}
+
+@theme inline {
+  /* ===================
+     LETTER SPACING
+     =================== */
+  --tracking-tight: 0.01em;
+  --tracking-normal: 0.02em;
+  --tracking-wide: 0.04em;
+
+  /* ===================
+     LINE HEIGHTS
+     =================== */
+  --leading-tight: 1.3;
+  --leading-normal: 1.7;
+  --leading-loose: 2;
+}

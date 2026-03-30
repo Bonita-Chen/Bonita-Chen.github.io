@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="48" fill="#F8FBFF"/>
+  <rect x="36" y="36" width="1128" height="558" rx="36" fill="url(#card)"/>
+  <circle cx="205" cy="196" r="104" fill="rgba(255,255,255,0.35)"/>
+  <text x="205" y="236" text-anchor="middle" fill="#223C5B" font-family="Georgia, serif" font-size="108" font-weight="700">BC</text>
+  <text x="368" y="208" fill="#223C5B" font-family="Georgia, serif" font-size="68" font-weight="700">Baojia Chen</text>
+  <text x="368" y="278" fill="#43638C" font-family="Arial, sans-serif" font-size="28">Economics, statistics, research, analytics, and reflective writing.</text>
+  <text x="368" y="328" fill="#7189A5" font-family="Arial, sans-serif" font-size="24">UMN Twin Cities • Blogs • Interests • Projects</text>
+  <rect x="368" y="390" width="176" height="52" rx="26" fill="rgba(255,255,255,0.45)"/>
+  <text x="456" y="423" text-anchor="middle" fill="#223C5B" font-family="Arial, sans-serif" font-size="24">Research</text>
+  <rect x="562" y="390" width="176" height="52" rx="26" fill="rgba(255,255,255,0.3)"/>
+  <text x="650" y="423" text-anchor="middle" fill="#223C5B" font-family="Arial, sans-serif" font-size="24">Analytics</text>
+  <rect x="756" y="390" width="176" height="52" rx="26" fill="rgba(255,255,255,0.3)"/>
+  <text x="844" y="423" text-anchor="middle" fill="#223C5B" font-family="Arial, sans-serif" font-size="24">Writing</text>
+  <defs>
+    <linearGradient id="card" x1="92" y1="78" x2="1049" y2="583" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDE7F3"/>
+      <stop offset="0.45" stop-color="#ADD1F3"/>
+      <stop offset="1" stop-color="#7189A5"/>
+    </linearGradient>
+  </defs>
+</svg>

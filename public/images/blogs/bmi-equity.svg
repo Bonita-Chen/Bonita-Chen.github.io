@@ -1,0 +1,17 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#F8FBFF"/>
+  <rect x="70" y="74" width="1060" height="572" rx="34" fill="url(#g)"/>
+  <rect x="164" y="160" width="320" height="400" rx="28" fill="rgba(255,255,255,0.34)"/>
+  <path d="M262 460C262 402 308 356 366 356C424 356 470 402 470 460" stroke="#223C5B" stroke-width="20" stroke-linecap="round"/>
+  <path d="M644 462C688 384 772 334 866 334C960 334 1032 386 1032 452" stroke="#223C5B" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="366" cy="290" r="62" fill="#43638C" fill-opacity="0.84"/>
+  <circle cx="834" cy="270" r="62" fill="#7189A5" fill-opacity="0.84"/>
+  <text x="160" y="604" fill="#223C5B" font-family="Georgia, serif" font-size="52" font-weight="700">Health Equity</text>
+  <defs>
+    <linearGradient id="g" x1="108" y1="108" x2="1086" y2="612" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDE7F3"/>
+      <stop offset="0.44" stop-color="#ADD1F3"/>
+      <stop offset="1" stop-color="#7189A5"/>
+    </linearGradient>
+  </defs>
+</svg>
