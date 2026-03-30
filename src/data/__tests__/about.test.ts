@@ -16,7 +16,9 @@ describe('about data', () => {
   });
 
   it('contains the simplified three-paragraph intro', () => {
-    expect(aboutMarkdown).toContain('intersection of data, policy, and human behavior');
+    expect(aboutMarkdown).toContain(
+      'intersection of data, policy, and human behavior',
+    );
     expect(aboutMarkdown).toContain('~2.5M records');
     expect(aboutMarkdown).toContain('photography, exploring new cities');
   });

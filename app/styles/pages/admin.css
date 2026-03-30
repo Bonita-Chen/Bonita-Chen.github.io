@@ -286,8 +286,7 @@
 
 .admin-content-textarea {
   min-height: 22rem;
-  font-family:
-    'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: 'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.88rem;
   line-height: 1.65;
 }

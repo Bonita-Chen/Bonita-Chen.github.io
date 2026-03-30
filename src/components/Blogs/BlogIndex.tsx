@@ -122,7 +122,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                     <time dateTime={post.date}>{formatDate(post.date)}</time>
                     {post.tags.map((tag) => (
                       <span className="blog-tag-inline" key={tag}>
-                        {blogTagLabels[tag as keyof typeof blogTagLabels] || tag}
+                        {blogTagLabels[tag as keyof typeof blogTagLabels] ||
+                          tag}
                       </span>
                     ))}
                     {collection ? (

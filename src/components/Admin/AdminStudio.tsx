@@ -236,7 +236,9 @@ function buildBlogsDataSource(
     }),
   );
 
-  const tagObject = Object.fromEntries(tags.map((tag) => [tag.slug, tag.label]));
+  const tagObject = Object.fromEntries(
+    tags.map((tag) => [tag.slug, tag.label]),
+  );
 
   return `export interface BlogCollection {\n  slug: string;\n  label: string;\n  emoji: string;\n  description: string;\n}\n\nexport const blogCollections: BlogCollection[] = ${JSON.stringify(collectionExports, null, 2)};\n\nexport const blogTagLabels = ${JSON.stringify(tagObject, null, 2)} as const;\n\nexport type BlogTag = keyof typeof blogTagLabels;\n`;
 }
@@ -356,7 +358,9 @@ export default function AdminStudio({
         }),
       );
     } catch {
-      setFlashMessage('Draft too large for local storage. Export before refresh.');
+      setFlashMessage(
+        'Draft too large for local storage. Export before refresh.',
+      );
     }
   }, [
     activeTab,
@@ -569,7 +573,8 @@ export default function AdminStudio({
       Array.from(files).map(async (file) => {
         const preview = await readFileAsDataUrl(file);
         const extension = extractExtension(file.name);
-        const baseName = slugify(file.name.replace(/\.[a-z0-9]+$/iu, '')) || 'image';
+        const baseName =
+          slugify(file.name.replace(/\.[a-z0-9]+$/iu, '')) || 'image';
 
         return {
           id: createId('asset'),
@@ -587,7 +592,9 @@ export default function AdminStudio({
       inlineImages: [...post.inlineImages, ...uploads],
     }));
 
-    setFlashMessage(`${uploads.length} inline image${uploads.length > 1 ? 's' : ''} added.`);
+    setFlashMessage(
+      `${uploads.length} inline image${uploads.length > 1 ? 's' : ''} added.`,
+    );
   }
 
   function insertImageMarkdown(asset: EditableAsset) {
@@ -665,7 +672,9 @@ export default function AdminStudio({
       return;
     }
 
-    setPosts((current) => current.filter((post) => post.id !== selectedPost.id));
+    setPosts((current) =>
+      current.filter((post) => post.id !== selectedPost.id),
+    );
     setFlashMessage('Selected blog draft removed from the admin studio.');
   }
 
@@ -693,7 +702,11 @@ export default function AdminStudio({
     setFlashMessage('Collection added.');
   }
 
-  function updateTagField(tagId: string, field: 'slug' | 'label', value: string) {
+  function updateTagField(
+    tagId: string,
+    field: 'slug' | 'label',
+    value: string,
+  ) {
     setTags((current) => {
       const existing = current.find((tag) => tag.id === tagId);
       if (!existing) {
@@ -705,7 +718,9 @@ export default function AdminStudio({
         setPosts((postList) =>
           postList.map((post) => ({
             ...post,
-            tags: post.tags.map((tag) => (tag === existing.slug ? nextSlug : tag)),
+            tags: post.tags.map((tag) =>
+              tag === existing.slug ? nextSlug : tag,
+            ),
           })),
         );
 
@@ -726,7 +741,9 @@ export default function AdminStudio({
     value: string,
   ) {
     setCollections((current) => {
-      const existing = current.find((collection) => collection.id === collectionId);
+      const existing = current.find(
+        (collection) => collection.id === collectionId,
+      );
       if (!existing) {
         return current;
       }
@@ -736,7 +753,8 @@ export default function AdminStudio({
         setPosts((postList) =>
           postList.map((post) => ({
             ...post,
-            collection: post.collection === existing.slug ? nextSlug : post.collection,
+            collection:
+              post.collection === existing.slug ? nextSlug : post.collection,
           })),
         );
 
@@ -771,7 +789,9 @@ export default function AdminStudio({
   }
 
   function removeCollection(collectionId: string) {
-    const existing = collections.find((collection) => collection.id === collectionId);
+    const existing = collections.find(
+      (collection) => collection.id === collectionId,
+    );
     if (!existing) {
       return;
     }
@@ -873,7 +893,10 @@ export default function AdminStudio({
               <div className="admin-panel-header">
                 <div>
                   <h3>Avatar</h3>
-                  <p>Upload a portrait, adjust the crop, and export a square file.</p>
+                  <p>
+                    Upload a portrait, adjust the crop, and export a square
+                    file.
+                  </p>
                 </div>
               </div>
 
@@ -884,7 +907,9 @@ export default function AdminStudio({
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(event) => handleAvatarUpload(event.target.files)}
+                      onChange={(event) =>
+                        handleAvatarUpload(event.target.files)
+                      }
                     />
                   </label>
 
@@ -974,10 +999,15 @@ export default function AdminStudio({
                       onClick={() =>
                         avatarDraft.output
                           ? triggerDataUrlDownload(
-                              avatarDraft.fileName.replace(/\.[a-z0-9]+$/iu, '.png'),
+                              avatarDraft.fileName.replace(
+                                /\.[a-z0-9]+$/iu,
+                                '.png',
+                              ),
                               avatarDraft.output,
                             )
-                          : setFlashMessage('Upload an avatar before exporting.')
+                          : setFlashMessage(
+                              'Upload an avatar before exporting.',
+                            )
                       }
                     >
                       Download Cropped Avatar
@@ -1025,7 +1055,10 @@ export default function AdminStudio({
 
               <div className="admin-stack">
                 {aboutParagraphs.map((paragraph, index) => (
-                  <div className="admin-block-editor" key={`paragraph-${index + 1}`}>
+                  <div
+                    className="admin-block-editor"
+                    key={`paragraph-${index + 1}`}
+                  >
                     <div className="admin-block-header">
                       <strong>Paragraph {index + 1}</strong>
                       {aboutParagraphs.length > 1 ? (
@@ -1034,7 +1067,9 @@ export default function AdminStudio({
                           className="admin-text-button"
                           onClick={() =>
                             setAboutParagraphs((current) =>
-                              current.filter((_, currentIndex) => currentIndex !== index),
+                              current.filter(
+                                (_, currentIndex) => currentIndex !== index,
+                              ),
                             )
                           }
                         >
@@ -1090,7 +1125,10 @@ export default function AdminStudio({
                             setAboutCards((current) =>
                               current.map((currentCard) =>
                                 currentCard.id === card.id
-                                  ? { ...currentCard, emoji: event.target.value }
+                                  ? {
+                                      ...currentCard,
+                                      emoji: event.target.value,
+                                    }
                                   : currentCard,
                               ),
                             )
@@ -1105,7 +1143,10 @@ export default function AdminStudio({
                             setAboutCards((current) =>
                               current.map((currentCard) =>
                                 currentCard.id === card.id
-                                  ? { ...currentCard, title: event.target.value }
+                                  ? {
+                                      ...currentCard,
+                                      title: event.target.value,
+                                    }
                                   : currentCard,
                               ),
                             )
@@ -1117,7 +1158,9 @@ export default function AdminStudio({
                         className="admin-text-button admin-text-button--danger"
                         onClick={() =>
                           setAboutCards((current) =>
-                            current.filter((currentCard) => currentCard.id !== card.id),
+                            current.filter(
+                              (currentCard) => currentCard.id !== card.id,
+                            ),
                           )
                         }
                       >
@@ -1404,7 +1447,10 @@ export default function AdminStudio({
                   <div className="admin-panel-header">
                     <div>
                       <h3>Cover Image</h3>
-                      <p>Upload a replacement cover or point the post to a new path.</p>
+                      <p>
+                        Upload a replacement cover or point the post to a new
+                        path.
+                      </p>
                     </div>
                   </div>
 
@@ -1418,7 +1464,11 @@ export default function AdminStudio({
                       />
                       <p className="admin-helper-text">
                         Suggested cover path:{' '}
-                        <code>{selectedPost.coverAsset?.suggestedPath || selectedPost.image || '/images/blogs/your-cover.png'}</code>
+                        <code>
+                          {selectedPost.coverAsset?.suggestedPath ||
+                            selectedPost.image ||
+                            '/images/blogs/your-cover.png'}
+                        </code>
                       </p>
                     </div>
                     <div className="admin-stack">
@@ -1440,7 +1490,9 @@ export default function AdminStudio({
                         <input
                           type="file"
                           accept="image/*"
-                          onChange={(event) => handleCoverUpload(event.target.files)}
+                          onChange={(event) =>
+                            handleCoverUpload(event.target.files)
+                          }
                         />
                       </label>
 
@@ -1454,7 +1506,9 @@ export default function AdminStudio({
                                   selectedPost.coverAsset.name,
                                   selectedPost.coverAsset.preview,
                                 )
-                              : setFlashMessage('Upload a cover before downloading it.')
+                              : setFlashMessage(
+                                  'Upload a cover before downloading it.',
+                                )
                           }
                         >
                           Download Cover
@@ -1498,11 +1552,14 @@ export default function AdminStudio({
                           onClick={() =>
                             updatePost(selectedPost.id, (post) => ({
                               ...post,
-                              tags: post.tags.filter((currentTag) => currentTag !== tag),
+                              tags: post.tags.filter(
+                                (currentTag) => currentTag !== tag,
+                              ),
                             }))
                           }
                         >
-                          {tags.find((item) => item.slug === tag)?.label || tag} ×
+                          {tags.find((item) => item.slug === tag)?.label || tag}{' '}
+                          ×
                         </button>
                       ))
                     ) : (
@@ -1556,7 +1613,11 @@ export default function AdminStudio({
                               <input
                                 value={tag.slug}
                                 onChange={(event) =>
-                                  updateTagField(tag.id, 'slug', event.target.value)
+                                  updateTagField(
+                                    tag.id,
+                                    'slug',
+                                    event.target.value,
+                                  )
                                 }
                               />
                             </label>
@@ -1565,7 +1626,11 @@ export default function AdminStudio({
                               <input
                                 value={tag.label}
                                 onChange={(event) =>
-                                  updateTagField(tag.id, 'label', event.target.value)
+                                  updateTagField(
+                                    tag.id,
+                                    'label',
+                                    event.target.value,
+                                  )
                                 }
                               />
                             </label>
@@ -1586,7 +1651,9 @@ export default function AdminStudio({
                     <div className="admin-panel-header">
                       <div>
                         <h3>Collection Manager</h3>
-                        <p>Update blog collections, emojis, and descriptions.</p>
+                        <p>
+                          Update blog collections, emojis, and descriptions.
+                        </p>
                       </div>
                       <button
                         type="button"
@@ -1712,10 +1779,14 @@ export default function AdminStudio({
                                 onChange={(event) =>
                                   updatePost(selectedPost.id, (post) => ({
                                     ...post,
-                                    inlineImages: post.inlineImages.map((image) =>
-                                      image.id === asset.id
-                                        ? { ...image, alt: event.target.value }
-                                        : image,
+                                    inlineImages: post.inlineImages.map(
+                                      (image) =>
+                                        image.id === asset.id
+                                          ? {
+                                              ...image,
+                                              alt: event.target.value,
+                                            }
+                                          : image,
                                     ),
                                   }))
                                 }
@@ -1733,7 +1804,10 @@ export default function AdminStudio({
                                 type="button"
                                 className="admin-action-button admin-action-button--ghost"
                                 onClick={() =>
-                                  triggerDataUrlDownload(asset.name, asset.preview)
+                                  triggerDataUrlDownload(
+                                    asset.name,
+                                    asset.preview,
+                                  )
                                 }
                               >
                                 Download File
@@ -1866,9 +1940,9 @@ export default function AdminStudio({
               <div>
                 <h3>GitHub Handoff</h3>
                 <p>
-                  Use these links after exporting files or images. Text files can
-                  open directly in GitHub; images should be uploaded through the
-                  repository web UI.
+                  Use these links after exporting files or images. Text files
+                  can open directly in GitHub; images should be uploaded through
+                  the repository web UI.
                 </p>
               </div>
             </div>
