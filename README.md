@@ -15,9 +15,9 @@ Built with [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScr
 
 ## About This Site
 
-This project is a GitHub Pages portfolio for Baojia Chen, adapted from the structure of `mldangelo/personal-site` and redesigned around a soft blue visual system. The site combines resume content, markdown-based blog writing, interest tracking, and project storytelling in a static-first setup that is easy to maintain over time.
+This project is a GitHub Pages portfolio for Baojia Chen, adapted from the structure of `mldangelo/personal-site` and visually tuned against the local `index.html` reference. The site combines resume content, markdown-based blog writing, interest tracking, and project storytelling in a static-first setup that is easy to maintain over time.
 
-The content model is intentionally simple: structured TypeScript files for stable profile data, markdown for blog posts, and a GitHub-native `/admin/` page that links directly to the relevant repository files for editing.
+The content model is intentionally simple: structured TypeScript files for stable profile data, markdown for blog posts, and a GitHub-native `/admin/` page that supports draft editing for About, Blogs, and Interests before exporting the real repository files.
 
 ## What Is Included
 
@@ -27,7 +27,7 @@ The content model is intentionally simple: structured TypeScript files for stabl
 - Interests timeline with progress estimates and linked detail cards
 - Projects page
 - Contact page
-- `/admin` entry for GitHub-native editing
+- `/admin` visual editing studio for About, Blogs, and Interests
 
 ## Tech Stack
 
@@ -64,7 +64,8 @@ The main site content lives in a few predictable places:
 
 - Homepage hero: `src/components/Template/Hero.tsx`
 - About page copy: `src/data/about.ts`
-- Resume experience: `src/data/resume/work.ts`
+- Resume experience and subtitles: `src/data/resume/work.ts`
+- Resume education and honors: `src/data/resume/degrees.ts`
 - Resume skills: `src/data/resume/skills.ts`
 - Resume courses: `src/data/resume/courses.ts`
 - Projects: `src/data/projects.ts`

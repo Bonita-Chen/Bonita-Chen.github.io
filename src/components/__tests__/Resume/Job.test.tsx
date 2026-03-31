@@ -10,6 +10,7 @@ describe('Job', () => {
     url: 'https://acme.com',
     startDate: '2020-01-15',
     endDate: '2023-06-30',
+    subtitleSuffix: 'Remote · Supervisor: Jane Smith',
     summary: 'Led development of **critical systems**.',
     highlights: ['Shipped feature X', 'Improved performance by 50%'],
   };
@@ -32,8 +33,7 @@ describe('Job', () => {
   it('formats date range correctly', () => {
     render(<Job data={mockJob} />);
 
-    expect(screen.getByText(/january 2020/i)).toBeInTheDocument();
-    expect(screen.getByText(/june 2023/i)).toBeInTheDocument();
+    expect(screen.getByText('Jan 2020 – Jun 2023')).toBeInTheDocument();
   });
 
   it('shows Present for current job (no end date)', () => {
@@ -47,11 +47,11 @@ describe('Job', () => {
     expect(screen.getByText(/present/i)).toBeInTheDocument();
   });
 
-  it('renders summary with markdown', () => {
+  it('renders subtitle details when provided', () => {
     render(<Job data={mockJob} />);
 
-    // Summary text should be present
-    expect(screen.getByText(/led development of/i)).toBeInTheDocument();
+    expect(screen.getByText(/remote/i)).toBeInTheDocument();
+    expect(screen.getByText(/jane smith/i)).toBeInTheDocument();
   });
 
   it('renders highlights as list items', () => {

@@ -5,16 +5,21 @@ export interface Degree {
   year: number;
   startDate?: string;
   endDate?: string;
+  subtitleSuffix?: string;
+  description?: string;
 }
 
 const degrees: Degree[] = [
   {
     school: 'University of Minnesota, Twin Cities',
-    degree: 'B.S. Economics, Minor in Statistics (GPA: 3.85 / 4.0)',
+    degree: 'B.S. Economics & Minor in Statistics',
     link: 'https://twin-cities.umn.edu/',
     year: 2026,
     startDate: '2024-09-01',
     endDate: '2026-05-01',
+    subtitleSuffix: 'GPA: 3.85 / 4.0',
+    description:
+      "Dean's List (Fall '24 & Spring '25), Edward G. Clark Jr. Scholarship ($2,000), Mooty Internship Scholarship, Department of Economics Paper Competition 2nd Place, Senior Capstone Award ($500).",
   },
 ];
 

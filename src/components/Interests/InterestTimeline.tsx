@@ -43,6 +43,8 @@ interface InterestTimelineProps {
   interests: Interest[];
 }
 
+const BAR_CLASSES = ['c1', 'c2', 'c4', 'c3'] as const;
+
 export default function InterestTimeline({ interests }: InterestTimelineProps) {
   const [hoveredRange, setHoveredRange] = useState<{
     start: number;
@@ -88,7 +90,6 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
 
   function getBarStyle(
     interestStart: string,
-    accent: string,
     targetMonths?: number,
     ongoing?: boolean,
   ) {
@@ -102,7 +103,6 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     return {
       '--interest-left': `${left}%`,
       '--interest-width': `${width}%`,
-      '--interest-accent': accent,
     } as CSSProperties;
   }
 
@@ -200,26 +200,28 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
           </div>
 
           {/* Track rows */}
-          {interests.map((interest) => {
+          {interests.map((interest, index) => {
             const range = getBarRange(
               interest.start,
               interest.targetMonths,
               interest.ongoing,
             );
+            const barClass = BAR_CLASSES[index % BAR_CLASSES.length];
             return (
               <div
                 className="gantt-track"
                 key={interest.slug}
                 style={getBarStyle(
                   interest.start,
-                  interest.accent,
                   interest.targetMonths,
                   interest.ongoing,
                 )}
                 onMouseEnter={() => setHoveredRange(range)}
                 onMouseLeave={() => setHoveredRange(null)}
               >
-                <span className="gantt-bar">{interest.trackLabel}</span>
+                <span className={`gantt-bar ${barClass}`}>
+                  {interest.trackLabel}
+                </span>
               </div>
             );
           })}
@@ -237,7 +239,10 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
             interest.ongoing,
           );
           return (
-            <div className="gantt-progress" key={interest.slug}>
+            <div
+              className={`gantt-progress${interest.ongoing ? ' gantt-progress--ongoing' : ''}`}
+              key={interest.slug}
+            >
               {interest.ongoing ? '∞' : `${progress}%`}
             </div>
           );

@@ -59,6 +59,10 @@ describe('Degree', () => {
     degree: 'M.S. Computer Science',
     link: 'https://stanford.edu',
     year: 2020,
+    startDate: '2018-09-01',
+    endDate: '2020-06-01',
+    subtitleSuffix: 'GPA: 4.0 / 4.0',
+    description: 'Research focus in systems and machine learning.',
   };
 
   it('renders degree title', () => {
@@ -76,10 +80,25 @@ describe('Degree', () => {
     expect(link).toHaveAttribute('href', 'https://stanford.edu');
   });
 
-  it('displays year', () => {
+  it('renders subtitle suffix text outside the school link', () => {
     render(<Degree data={mockDegree} />);
 
-    expect(screen.getByText(/2020/)).toBeInTheDocument();
+    expect(screen.getByText(/gpa: 4.0 \/ 4.0/i)).toBeInTheDocument();
+  });
+
+  it('displays the formatted date range', () => {
+    render(<Degree data={mockDegree} />);
+
+    expect(screen.getByText(/sep/i)).toBeInTheDocument();
+    expect(screen.getByText(/jun 2020/i)).toBeInTheDocument();
+  });
+
+  it('renders the description when present', () => {
+    render(<Degree data={mockDegree} />);
+
+    expect(
+      screen.getByText(/research focus in systems and machine learning/i),
+    ).toBeInTheDocument();
   });
 
   it('renders as article element', () => {

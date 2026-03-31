@@ -4,7 +4,6 @@ import Courses from '@/components/Resume/Courses';
 import Education from '@/components/Resume/Education';
 import Experience from '@/components/Resume/Experience';
 import References from '@/components/Resume/References';
-import ResumeNav from '@/components/Resume/ResumeNav';
 import Skills from '@/components/Resume/Skills';
 import PageWrapper from '@/components/Template/PageWrapper';
 import courses from '@/data/resume/courses';
@@ -26,17 +25,8 @@ export default function ResumePage() {
       <section className="resume-page">
         <header className="resume-header fade-in">
           <h1 className="resume-title">Resume</h1>
-          <p className="resume-summary">
-            Economics student with hands-on experience in research pipelines,
-            dashboarding, public-interest analysis, and client-facing strategy
-            work. I&apos;m especially interested in roles where rigorous
-            analysis and clear communication reinforce each other.
-          </p>
+          <p className="resume-summary">Experience, education, and skills.</p>
         </header>
-
-        <div className="fade-in stagger-1">
-          <ResumeNav />
-        </div>
 
         <div className="resume-content">
           <section id="experience" className="resume-section fade-in stagger-2">

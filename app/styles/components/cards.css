@@ -271,10 +271,11 @@
 
 .jobs-container .role {
   display: block;
-  margin-top: 0.25rem;
+  margin-top: 0;
   color: var(--color-accent);
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1.45;
 }
 
 .jobs-container .points {
@@ -300,7 +301,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 .resume-item-title {
@@ -321,6 +322,16 @@
   margin-bottom: 0.3rem;
   color: var(--color-accent);
   font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.resume-item-subtitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.resume-item-subtitle a:hover {
+  color: var(--color-accent-hover);
 }
 
 .resume-item-desc,
@@ -328,6 +339,10 @@
   color: var(--color-fg-light);
   font-size: 0.875rem;
   line-height: 1.6;
+}
+
+.resume-item-desc {
+  margin: 0;
 }
 
 .summary code,
@@ -375,6 +390,10 @@
   font-size: 0.875rem;
   letter-spacing: 0;
   text-transform: none;
+}
+
+.degree-description {
+  max-width: 42rem;
 }
 
 /* ========================================

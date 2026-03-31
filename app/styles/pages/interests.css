@@ -172,9 +172,9 @@
 
 .gantt-month--active {
   color: var(--color-accent);
-  background: var(--color-accent-light);
-  border-radius: 4px;
-  transition: background-color var(--duration-fast) var(--ease-out);
+  background: transparent;
+  border-radius: 0;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .gantt-month--active small {
@@ -214,11 +214,6 @@
   display: inline-flex;
   align-items: center;
   border-radius: 3px;
-  background: linear-gradient(
-    135deg,
-    var(--interest-accent),
-    color-mix(in srgb, var(--interest-accent) 54%, white)
-  );
   color: white;
   font-size: 0.58rem;
   font-weight: 700;
@@ -228,6 +223,23 @@
   text-overflow: ellipsis;
   z-index: 1;
   animation: gantt-grow 0.8s var(--ease-out) forwards;
+}
+
+.gantt-bar.c1 {
+  background: var(--blue-400);
+}
+
+.gantt-bar.c2 {
+  background: var(--blue-300);
+}
+
+.gantt-bar.c3 {
+  background: var(--blue-500);
+}
+
+.gantt-bar.c4 {
+  background: var(--blue-200);
+  color: var(--blue-500);
 }
 
 .gantt-bar:hover {
@@ -250,6 +262,12 @@
   color: var(--color-accent);
   font-size: 0.76rem;
   font-weight: 700;
+}
+
+.gantt-progress--ongoing {
+  color: var(--color-fg-light);
+  font-size: 0.68rem;
+  font-style: italic;
 }
 
 /* ========================================
