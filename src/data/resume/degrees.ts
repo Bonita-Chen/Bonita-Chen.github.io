@@ -7,6 +7,7 @@ export interface Degree {
   endDate?: string;
   subtitleSuffix?: string;
   description?: string;
+  achievements?: string[];
 }
 
 const degrees: Degree[] = [
@@ -18,8 +19,13 @@ const degrees: Degree[] = [
     startDate: '2024-09-01',
     endDate: '2026-05-01',
     subtitleSuffix: 'GPA: 3.85 / 4.0',
-    description:
-      "Dean's List (Fall '24 & Spring '25), Edward G. Clark Jr. Scholarship ($2,000), Mooty Internship Scholarship, Department of Economics Paper Competition 2nd Place, Senior Capstone Award ($500).",
+    achievements: [
+      "Dean's List (Fall '24 & Spring '25)",
+      'Edward G. Clark Jr. Scholarship ($2,000)',
+      'Mooty Internship Scholarship',
+      'Department of Economics Paper Competition — 2nd Place',
+      'Senior Capstone Award ($500)',
+    ],
   },
 ];
 

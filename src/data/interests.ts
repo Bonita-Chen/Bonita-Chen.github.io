@@ -30,7 +30,7 @@ const interests: Interest[] = [
     trackLabel: 'Causal Methods',
     start: '2025-04-01',
     targetMonths: 12,
-    accent: '#43638C',
+    accent: '#223C5B',
     entries: [
       {
         type: 'Course',
@@ -67,7 +67,7 @@ const interests: Interest[] = [
     trackLabel: 'Viz Journey',
     start: '2025-06-01',
     targetMonths: 12,
-    accent: '#7189A5',
+    accent: '#43638C',
     entries: [
       {
         type: 'Project',
@@ -107,7 +107,7 @@ const interests: Interest[] = [
     trackLabel: 'Research & Writing',
     start: '2025-09-01',
     targetMonths: 9,
-    accent: '#223C5B',
+    accent: '#7189A5',
     entries: [
       {
         type: 'Project',
@@ -176,7 +176,7 @@ const interests: Interest[] = [
     trackLabel: 'Ongoing',
     start: '2025-01-01',
     ongoing: true,
-    accent: '#7189A5',
+    accent: '#DDE7F3',
     entries: [
       {
         type: 'Event',

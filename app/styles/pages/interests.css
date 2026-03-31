@@ -26,7 +26,7 @@
 
 .gantt-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr) 56px;
+  grid-template-columns: 238px minmax(0, 1fr) 64px;
   gap: 0;
   align-items: start;
 }
@@ -44,10 +44,10 @@
   align-items: flex-end;
   padding-bottom: 0.4rem;
   padding-right: 0.9rem;
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--color-fg-light);
 }
 
@@ -70,8 +70,8 @@
   gap: 0.45rem;
   color: var(--color-accent);
   text-decoration: none;
-  font-weight: 650;
-  font-size: 0.82rem;
+  font-weight: 700;
+  font-size: 0.94rem;
   padding-right: 0.75rem;
   white-space: nowrap;
   overflow: hidden;
@@ -131,11 +131,11 @@
   justify-content: flex-end;
   padding: 0.35rem 0;
   color: var(--color-fg-light);
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-size: 0.66rem;
+  font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   border-left: 1px solid var(--color-border);
   min-width: 0;
   overflow: hidden;
@@ -155,10 +155,10 @@
 
 .gantt-month small {
   display: block;
-  font-size: 0.52rem;
-  font-weight: 600;
-  opacity: 0.65;
-  margin-top: 1px;
+  font-size: 0.56rem;
+  font-weight: 700;
+  opacity: 0.72;
+  margin-top: 2px;
 }
 
 .gantt-month--jan {
@@ -181,10 +181,10 @@
 
 .gantt-month--active > span,
 .gantt-month--active small {
-  font-weight: 800;
+  font-weight: 900;
   text-shadow:
-    0 0 8px color-mix(in srgb, var(--color-accent) 24%, transparent),
-    0 0 16px color-mix(in srgb, var(--color-accent) 12%, transparent);
+    0 0 10px color-mix(in srgb, var(--color-accent) 28%, transparent),
+    0 0 20px color-mix(in srgb, var(--color-accent) 16%, transparent);
 }
 
 .gantt-month--active small {
@@ -210,73 +210,47 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 7px;
-  bottom: 7px;
-  background: var(--color-bg-alt);
-  border-radius: 5px;
+  top: 6px;
+  bottom: 6px;
+  background: color-mix(in srgb, var(--color-bg-alt) 80%, var(--blue-500) 20%);
+  border: 1px solid color-mix(in srgb, var(--color-border-alt) 80%, transparent);
+  border-radius: 8px;
 }
 
 .gantt-bar {
   position: absolute;
   left: var(--interest-left);
   width: var(--interest-width);
-  top: 10px;
-  bottom: 10px;
+  top: 8px;
+  bottom: 8px;
   display: inline-flex;
   align-items: center;
-  border-radius: 3px;
-  color: white;
-  font-size: 0.58rem;
-  font-weight: 700;
-  padding: 0 0.45rem;
+  border-radius: 7px;
+  border: 1px solid var(--interest-bar-border);
+  background: linear-gradient(
+    135deg,
+    var(--interest-bar-start) 0%,
+    var(--interest-bar-color) 48%,
+    var(--interest-bar-end) 100%
+  );
+  color: var(--interest-bar-text);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0 0.55rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 1;
   animation: gantt-grow 0.8s var(--ease-out) forwards;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
-}
-
-.gantt-bar.c1 {
-  background: linear-gradient(
-    90deg,
-    var(--blue-400) 0%,
-    color-mix(in srgb, var(--blue-400) 82%, var(--blue-300)) 62%,
-    var(--blue-300) 100%
-  );
-}
-
-.gantt-bar.c2 {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--blue-300) 84%, var(--blue-400)) 0%,
-    var(--blue-300) 55%,
-    color-mix(in srgb, var(--blue-300) 68%, var(--blue-200)) 100%
-  );
-}
-
-.gantt-bar.c3 {
-  background: linear-gradient(
-    90deg,
-    var(--blue-500) 0%,
-    color-mix(in srgb, var(--blue-500) 84%, var(--blue-400)) 60%,
-    var(--blue-400) 100%
-  );
-}
-
-.gantt-bar.c4 {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--blue-100) 95%, white) 0%,
-    var(--blue-200) 60%,
-    color-mix(in srgb, var(--blue-200) 82%, var(--blue-100)) 100%
-  );
-  color: var(--blue-500);
+  box-shadow:
+    0 8px 18px var(--interest-bar-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .gantt-bar:hover {
-  filter: brightness(1.1);
-  transform: scaleY(1.12);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 /* — Right column: progress — */
@@ -292,13 +266,13 @@
 .gantt-progress {
   justify-content: center;
   color: var(--color-accent);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .gantt-progress--ongoing {
   color: var(--color-fg-light);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-style: italic;
 }
 
@@ -309,7 +283,7 @@
 .interests-details {
   display: flex;
   flex-direction: column;
-  gap: 2.6rem;
+  gap: 3rem;
 }
 
 .interest-detail {
@@ -331,7 +305,7 @@
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.35rem;
 }
 
 .interest-detail-kicker {
@@ -348,7 +322,7 @@
   gap: 0.75rem;
   margin: 0 0 0.45rem;
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: var(--color-fg-bold);
 }
@@ -356,8 +330,8 @@
 .interest-detail-summary {
   margin: 0;
   color: var(--color-fg-light);
-  font-size: 0.96rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.78;
   max-width: 42rem;
 }
 
@@ -377,69 +351,77 @@
 
 .interest-detail-stat strong {
   display: block;
-  font-size: 1.8rem;
+  font-size: 1.95rem;
   color: var(--color-fg-bold);
   margin: 0.25rem 0;
 }
 
 .interest-entry-list {
   display: grid;
-  gap: 0;
+  gap: 1rem;
 }
 
 .interest-entry {
   display: block;
-  padding: 1rem 0;
-  border: 0;
-  border-top: 1px solid var(--color-border);
-  border-radius: 0;
-  background: transparent;
+  padding: 1.18rem 1.32rem 1.06rem;
+  border: 1px solid color-mix(in srgb, var(--color-border-alt) 88%, transparent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--color-bg-alt) 90%, var(--blue-100) 10%);
+  box-shadow:
+    0 10px 26px rgba(34, 60, 91, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
   text-decoration: none;
   transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
-}
-
-.interest-entry:first-child {
-  padding-top: 0.15rem;
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
 }
 
 .interest-entry--link:hover {
-  transform: translateX(4px);
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-accent-border) 92%, transparent);
+  box-shadow:
+    0 16px 30px rgba(34, 60, 91, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  background: color-mix(in srgb, var(--color-bg-alt) 86%, var(--blue-100) 14%);
 }
 
 .interest-entry-meta {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 0.8rem;
+  align-items: center;
+  font-size: 0.84rem;
   color: var(--color-fg-light);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.7rem;
 }
 
 .interest-entry-type {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 0.6rem;
-  font-weight: 750;
-  padding: 0.16rem 0.5rem;
-  border-radius: 4px;
-  background: rgba(67, 99, 140, 0.12);
-  color: var(--color-accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.34rem 0.72rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--blue-400) 20%, transparent);
+  color: var(--blue-500);
 }
 
 .interest-entry-title {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.36rem;
   color: var(--color-fg-bold);
-  font-size: 0.96rem;
-  font-weight: 650;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.34;
 }
 
 .interest-entry-description {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.9rem;
   color: var(--color-fg-light);
-  line-height: 1.62;
-  font-size: 0.88rem;
+  line-height: 1.7;
+  font-size: 0.96rem;
 }
 
 .interest-entry-tags {
@@ -450,11 +432,12 @@
 
 .interest-entry-tags span {
   display: inline-flex;
-  padding: 0.16rem 0.42rem;
-  border-radius: 4px;
-  background: var(--color-accent-subtle);
-  color: var(--color-fg-light);
-  font-size: 0.66rem;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blue-100) 48%, white);
+  color: var(--color-fg);
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 /* ========================================
@@ -463,11 +446,11 @@
 
 @media (max-width: 900px) {
   .gantt-layout {
-    grid-template-columns: 168px minmax(0, 1fr) 48px;
+    grid-template-columns: 184px minmax(0, 1fr) 52px;
   }
 
   .gantt-label {
-    font-size: 0.74rem;
+    font-size: 0.8rem;
   }
 
   .interest-detail-header {
@@ -477,11 +460,11 @@
 
 @media (max-width: 600px) {
   .gantt-layout {
-    grid-template-columns: 146px minmax(0, 1fr) 42px;
+    grid-template-columns: 154px minmax(0, 1fr) 44px;
   }
 
   .gantt-label {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     gap: 0.35rem;
   }
 

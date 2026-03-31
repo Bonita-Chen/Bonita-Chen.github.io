@@ -26,6 +26,59 @@ function monthLabel(date: Date) {
   return date.toLocaleDateString('en-US', { month: 'short' });
 }
 
+function getBarPalette(accent?: string) {
+  const normalizedAccent = (accent || '#43638C').trim().toUpperCase();
+
+  switch (normalizedAccent) {
+    case '#DDE7F3':
+      return {
+        color: '#DDE7F3',
+        start: '#F3F8FD',
+        end: '#C6D6E8',
+        border: 'rgba(221, 231, 243, 0.95)',
+        shadow: 'rgba(173, 209, 243, 0.24)',
+        text: 'var(--blue-500)',
+      };
+    case '#ADD1F3':
+      return {
+        color: '#ADD1F3',
+        start: '#D8EBFB',
+        end: '#82A9CF',
+        border: 'rgba(173, 209, 243, 0.8)',
+        shadow: 'rgba(173, 209, 243, 0.24)',
+        text: 'var(--blue-500)',
+      };
+    case '#7189A5':
+      return {
+        color: '#7189A5',
+        start: '#95ACC6',
+        end: '#5E7897',
+        border: 'rgba(173, 209, 243, 0.32)',
+        shadow: 'rgba(67, 99, 140, 0.18)',
+        text: 'var(--color-white)',
+      };
+    case '#223C5B':
+      return {
+        color: '#223C5B',
+        start: '#425F86',
+        end: '#16283D',
+        border: 'rgba(67, 99, 140, 0.46)',
+        shadow: 'rgba(34, 60, 91, 0.28)',
+        text: 'var(--color-white)',
+      };
+    case '#43638C':
+    default:
+      return {
+        color: '#43638C',
+        start: '#6785AA',
+        end: '#2E496D',
+        border: 'rgba(67, 99, 140, 0.52)',
+        shadow: 'rgba(67, 99, 140, 0.22)',
+        text: 'var(--color-white)',
+      };
+  }
+}
+
 function getProgress(
   interestStart: string,
   now: Date,
@@ -42,8 +95,6 @@ function getProgress(
 interface InterestTimelineProps {
   interests: Interest[];
 }
-
-const BAR_CLASSES = ['c1', 'c2', 'c4', 'c3'] as const;
 
 export default function InterestTimeline({ interests }: InterestTimelineProps) {
   const [hoveredRange, setHoveredRange] = useState<{
@@ -92,6 +143,7 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     interestStart: string,
     targetMonths?: number,
     ongoing?: boolean,
+    accent?: string,
   ) {
     const start = startOfMonth(interestStart);
     const left = (monthDiff(timelineStart, start) / monthTotal) * 100;
@@ -99,10 +151,17 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
       ? monthDiff(start, timelineEnd) + 1
       : Math.max(targetMonths || 1, 1);
     const width = (span / monthTotal) * 100;
+    const palette = getBarPalette(accent);
 
     return {
       '--interest-left': `${left}%`,
       '--interest-width': `${width}%`,
+      '--interest-bar-color': palette.color,
+      '--interest-bar-start': palette.start,
+      '--interest-bar-end': palette.end,
+      '--interest-bar-border': palette.border,
+      '--interest-bar-shadow': palette.shadow,
+      '--interest-bar-text': palette.text,
     } as CSSProperties;
   }
 
@@ -200,13 +259,12 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
           </div>
 
           {/* Track rows */}
-          {interests.map((interest, index) => {
+          {interests.map((interest) => {
             const range = getBarRange(
               interest.start,
               interest.targetMonths,
               interest.ongoing,
             );
-            const barClass = BAR_CLASSES[index % BAR_CLASSES.length];
             return (
               <div
                 className="gantt-track"
@@ -215,13 +273,12 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
                   interest.start,
                   interest.targetMonths,
                   interest.ongoing,
+                  interest.accent,
                 )}
                 onMouseEnter={() => setHoveredRange(range)}
                 onMouseLeave={() => setHoveredRange(null)}
               >
-                <span className={`gantt-bar ${barClass}`}>
-                  {interest.trackLabel}
-                </span>
+                <span className="gantt-bar">{interest.trackLabel}</span>
               </div>
             );
           })}

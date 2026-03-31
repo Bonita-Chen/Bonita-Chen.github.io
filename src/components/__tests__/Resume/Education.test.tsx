@@ -63,6 +63,7 @@ describe('Degree', () => {
     endDate: '2020-06-01',
     subtitleSuffix: 'GPA: 4.0 / 4.0',
     description: 'Research focus in systems and machine learning.',
+    achievements: ['Dean’s List', 'Graduate Fellowship'],
   };
 
   it('renders degree title', () => {
@@ -99,6 +100,13 @@ describe('Degree', () => {
     expect(
       screen.getByText(/research focus in systems and machine learning/i),
     ).toBeInTheDocument();
+  });
+
+  it('renders achievements as bullet items when present', () => {
+    render(<Degree data={mockDegree} />);
+
+    expect(screen.getByText('Dean’s List')).toBeInTheDocument();
+    expect(screen.getByText('Graduate Fellowship')).toBeInTheDocument();
   });
 
   it('renders as article element', () => {

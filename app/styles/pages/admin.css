@@ -141,6 +141,12 @@
   box-shadow: 0 2px 12px rgba(67, 99, 140, 0.22);
 }
 
+.admin-action-button:disabled {
+  cursor: progress;
+  opacity: 0.72;
+  transform: none;
+}
+
 .admin-action-button:hover,
 .admin-mini-button:hover,
 .admin-tab:hover,

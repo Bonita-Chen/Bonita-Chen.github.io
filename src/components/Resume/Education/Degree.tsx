@@ -39,6 +39,15 @@ export default function Degree({ data }: DegreeProps) {
           {data.description}
         </p>
       ) : null}
+      {data.achievements?.length ? (
+        <div className="resume-item-desc">
+          <ul className="degree-achievements">
+            {data.achievements.map((achievement) => (
+              <li key={achievement}>{achievement}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </article>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 
 import type { BlogCollection } from '@/data/blogs';
@@ -101,6 +102,7 @@ interface AdminStudioProps {
   initialInterests: Interest[];
   editableFiles: readonly EditableFileLink[];
   githubRepoSlug: string;
+  onlineSaveConfigured: boolean;
   repoBranch: string;
 }
 
@@ -313,6 +315,7 @@ export default function AdminStudio({
   initialInterests,
   editableFiles,
   githubRepoSlug,
+  onlineSaveConfigured,
   repoBranch,
 }: AdminStudioProps) {
   const initialParagraphs = splitAboutIntro(initialAboutMarkdown);
@@ -331,6 +334,8 @@ export default function AdminStudio({
   }));
   const initialPostsDraft = toSeedPosts(initialPosts);
   const initialInterestsDraft = toSeedInterests(initialInterests);
+  const originalPostSlugs = initialPostsDraft.map((post) => post.slug);
+  const { data: session, status } = useSession();
 
   const [activeTab, setActiveTab] = useState<
     'about' | 'blogs' | 'interests' | 'handoff'
@@ -361,6 +366,8 @@ export default function AdminStudio({
     offsetY: 0,
   });
   const [flashMessage, setFlashMessage] = useState('');
+  const [isSavingOnline, setIsSavingOnline] = useState(false);
+  const [lastCommitUrl, setLastCommitUrl] = useState('');
 
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
@@ -1036,6 +1043,74 @@ export default function AdminStudio({
     );
   }
 
+  async function saveOnline() {
+    if (!onlineSaveConfigured) {
+      setFlashMessage(
+        'Online save is not configured yet. Add the GitHub auth and repository secrets first.',
+      );
+      return;
+    }
+
+    if (status !== 'authenticated') {
+      await signIn('github', { callbackUrl: '/admin/' });
+      return;
+    }
+
+    if (!session?.user?.isAdmin) {
+      setFlashMessage(
+        'This GitHub account is signed in, but it is not allowed to save this site.',
+      );
+      return;
+    }
+
+    setIsSavingOnline(true);
+    setLastCommitUrl('');
+
+    try {
+      const response = await fetch('/api/admin/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          aboutParagraphs,
+          aboutCards,
+          collections,
+          tags,
+          posts,
+          interests,
+          avatarDraft,
+          avatarPath: avatarDraft.output
+            ? '/images/portrait-baojia.png'
+            : PORTRAIT_IMAGE,
+          originalPostSlugs,
+        }),
+      });
+
+      const data = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+        commitUrl?: string;
+        changedCount?: number;
+      };
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Saving to GitHub failed.');
+      }
+
+      setLastCommitUrl(data.commitUrl || '');
+      setFlashMessage(
+        `Saved online${data.changedCount ? ` (${data.changedCount} files updated)` : ''}.`,
+      );
+    } catch (error) {
+      setFlashMessage(
+        error instanceof Error ? error.message : 'Saving to GitHub failed.',
+      );
+    } finally {
+      setIsSavingOnline(false);
+    }
+  }
+
   return (
     <div className="admin-studio">
       <div className="admin-studio-header">
@@ -1047,6 +1122,35 @@ export default function AdminStudio({
           </p>
         </div>
         <div className="admin-studio-actions">
+          {onlineSaveConfigured ? (
+            status === 'authenticated' ? (
+              <>
+                <button
+                  type="button"
+                  className="admin-action-button"
+                  onClick={saveOnline}
+                  disabled={isSavingOnline}
+                >
+                  {isSavingOnline ? 'Saving…' : 'Save to GitHub'}
+                </button>
+                <button
+                  type="button"
+                  className="admin-action-button admin-action-button--ghost"
+                  onClick={() => signOut({ callbackUrl: '/admin/' })}
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="admin-action-button"
+                onClick={() => signIn('github', { callbackUrl: '/admin/' })}
+              >
+                Sign In with GitHub
+              </button>
+            )
+          ) : null}
           <button
             type="button"
             className="admin-action-button admin-action-button--ghost"
@@ -1066,9 +1170,24 @@ export default function AdminStudio({
 
       <div className="admin-status-row">
         <p className="admin-status-pill">
-          Static mode: you can add, delete, and edit here first, then export the
-          real files back into the repository.
+          {onlineSaveConfigured
+            ? status === 'authenticated'
+              ? session?.user?.isAdmin
+                ? `Online save ready for @${session.user.login || 'admin'}.`
+                : `Signed in as @${session?.user?.login || 'github-user'}, but this account is not on the admin allowlist.`
+              : 'Sign in with GitHub to save directly into the repository.'
+            : 'Draft mode only right now. Without server auth and repo secrets, this page can still export files but cannot save online.'}
         </p>
+        {lastCommitUrl ? (
+          <a
+            className="admin-text-button"
+            href={lastCommitUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Latest Commit
+          </a>
+        ) : null}
         {flashMessage ? <p className="admin-flash">{flashMessage}</p> : null}
       </div>
 
@@ -2622,9 +2741,8 @@ export default function AdminStudio({
               <div>
                 <h3>GitHub Handoff</h3>
                 <p>
-                  Use these links after exporting files or images. Text files
-                  can open directly in GitHub; images should be uploaded through
-                  the repository web UI.
+                  Use these links if you want to edit directly in GitHub or if
+                  online save is not configured yet.
                 </p>
               </div>
             </div>
