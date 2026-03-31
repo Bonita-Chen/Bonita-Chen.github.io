@@ -8,8 +8,8 @@ Personal website for Baojia "Bonita" Chen, adapted from [`mldangelo/personal-sit
 ## What This Site Includes
 
 - About page with profile chips and narrative sections
-- Resume page with experience, education, skills, courses, and references
-- Blogs with markdown posts, tags, collections, and cover images
+- Resume page with experience, education, skills, and jump navigation
+- Blogs with markdown posts, simplified tags, and cover images
 - Interests page with a timeline and linked detail cards
 - Projects page
 - Contact page
@@ -67,11 +67,10 @@ npm test
 - Resume experience: `src/data/resume/work.ts`
 - Resume education: `src/data/resume/degrees.ts`
 - Resume skills: `src/data/resume/skills.ts`
-- Resume courses: `src/data/resume/courses.ts`
 - Interests timeline: `src/data/interests.ts`
 - Projects: `src/data/projects.ts`
 - Contact links: `src/data/contact.ts`
-- Blog collections and tag labels: `src/data/blogs.ts`
+- Blog tag labels: `src/data/blogs.ts`
 - Blog markdown: `content/blogs/*.md`
 - Hero content: `src/components/Template/Hero.tsx`
 - Footer / copyright: `src/components/Template/Footer.tsx`
@@ -83,6 +82,7 @@ npm test
 What it does:
 
 - edits About, Blogs, and Interests in the browser
+- supports avatar replacement, blog covers, inline blog images, tag editing, and interest entry editing
 - stores draft state in local storage
 - exports snapshot JSON and generated source snippets
 - links you to the matching GitHub files for final handoff
