@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import type { Interest } from '@/data/interests';
 
@@ -48,6 +48,10 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     start: number;
     end: number;
   } | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const scrollStartLeft = useRef(0);
 
   const now = startOfMonth(new Date());
 
@@ -82,20 +86,7 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     addMonths(timelineStart, index),
   );
 
-  function getBarRange(
-    interestStart: string,
-    targetMonths?: number,
-    ongoing?: boolean,
-  ) {
-    const start = startOfMonth(interestStart);
-    const startIndex = monthDiff(timelineStart, start);
-    const span = ongoing
-      ? monthDiff(start, timelineEnd) + 1
-      : Math.max(targetMonths || 1, 1);
-    return { start: startIndex, end: startIndex + span - 1 };
-  }
-
-  function getTrackStyle(
+  function getBarStyle(
     interestStart: string,
     accent: string,
     targetMonths?: number,
@@ -115,66 +106,111 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     } as CSSProperties;
   }
 
+  function getBarRange(
+    interestStart: string,
+    targetMonths?: number,
+    ongoing?: boolean,
+  ) {
+    const start = startOfMonth(interestStart);
+    const startIndex = monthDiff(timelineStart, start);
+    const span = ongoing
+      ? monthDiff(start, timelineEnd) + 1
+      : Math.max(targetMonths || 1, 1);
+    return { start: startIndex, end: startIndex + span - 1 };
+  }
+
+  /* Drag-to-scroll handlers for the middle timeline */
+  function handlePointerDown(e: React.PointerEvent) {
+    const el = scrollRef.current;
+    if (!el) return;
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    scrollStartLeft.current = el.scrollLeft;
+    el.setPointerCapture(e.pointerId);
+  }
+
+  function handlePointerMove(e: React.PointerEvent) {
+    if (!isDragging || !scrollRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    scrollRef.current.scrollLeft = scrollStartLeft.current - dx;
+  }
+
+  function handlePointerUp(e: React.PointerEvent) {
+    setIsDragging(false);
+    scrollRef.current?.releasePointerCapture(e.pointerId);
+  }
+
   return (
     <section
-      className="interests-timeline"
+      className="gantt-layout"
       aria-label="Interest progress timeline"
       style={{ '--month-count': monthTotal } as CSSProperties}
     >
-      <div className="interests-timeline-header">
-        <div className="interests-timeline-label">Interest</div>
-        <div className="interests-timeline-months">
-          {timelineMonths.map((month, index) => {
-            const isHighlighted =
-              hoveredRange !== null &&
-              index >= hoveredRange.start &&
-              index <= hoveredRange.end;
-            const isJanuary = month.getMonth() === 0;
-            // Show full label for Jan or every 3rd month when there are many columns
-            const showLabel = monthTotal <= 18 || isJanuary || index % 3 === 0;
-            return (
-              <div
-                className={`interests-month${isHighlighted ? ' interests-month--active' : ''}${isJanuary ? ' interests-month--jan' : ''}`}
-                key={month.toISOString()}
-              >
-                <span>{showLabel ? monthLabel(month) : ''}</span>
-                <small>
-                  {isJanuary || index === 0
-                    ? String(month.getFullYear())
-                    : showLabel
-                      ? `'${String(month.getFullYear()).slice(-2)}`
-                      : ''}
-                </small>
-              </div>
-            );
-          })}
-        </div>
-        <div className="interests-timeline-progress">Progress</div>
+      {/* LEFT COLUMN — labels */}
+      <div className="gantt-col gantt-col-left">
+        <div className="gantt-col-header">Interest</div>
+        {interests.map((interest) => (
+          <a
+            key={interest.slug}
+            href={`#${interest.slug}`}
+            className="gantt-label"
+          >
+            <span aria-hidden="true">{interest.icon}</span>
+            {interest.name}
+          </a>
+        ))}
       </div>
 
-      <div className="interests-timeline-rows">
-        {interests.map((interest) => {
-          const progress = getProgress(
-            interest.start,
-            now,
-            interest.targetMonths,
-            interest.ongoing,
-          );
-          const range = getBarRange(
-            interest.start,
-            interest.targetMonths,
-            interest.ongoing,
-          );
+      {/* MIDDLE COLUMN — scrollable timeline */}
+      <div
+        ref={scrollRef}
+        className={`gantt-col gantt-col-timeline${isDragging ? ' gantt-col-timeline--dragging' : ''}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        <div className="gantt-timeline-inner">
+          {/* Month header */}
+          <div className="gantt-months">
+            {timelineMonths.map((month, index) => {
+              const isHighlighted =
+                hoveredRange !== null &&
+                index >= hoveredRange.start &&
+                index <= hoveredRange.end;
+              const isJanuary = month.getMonth() === 0;
+              const showLabel =
+                monthTotal <= 18 || isJanuary || index % 3 === 0;
+              return (
+                <div
+                  className={`gantt-month${isHighlighted ? ' gantt-month--active' : ''}${isJanuary ? ' gantt-month--jan' : ''}`}
+                  key={month.toISOString()}
+                >
+                  <span>{showLabel ? monthLabel(month) : ''}</span>
+                  <small>
+                    {isJanuary || index === 0
+                      ? String(month.getFullYear())
+                      : showLabel
+                        ? `'${String(month.getFullYear()).slice(-2)}`
+                        : ''}
+                  </small>
+                </div>
+              );
+            })}
+          </div>
 
-          return (
-            <div className="interests-row" key={interest.slug}>
-              <a href={`#${interest.slug}`} className="interests-row-link">
-                <span aria-hidden="true">{interest.icon}</span>
-                {interest.name}
-              </a>
+          {/* Track rows */}
+          {interests.map((interest) => {
+            const range = getBarRange(
+              interest.start,
+              interest.targetMonths,
+              interest.ongoing,
+            );
+            return (
               <div
-                className="interests-track"
-                style={getTrackStyle(
+                className="gantt-track"
+                key={interest.slug}
+                style={getBarStyle(
                   interest.start,
                   interest.accent,
                   interest.targetMonths,
@@ -183,11 +219,26 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
                 onMouseEnter={() => setHoveredRange(range)}
                 onMouseLeave={() => setHoveredRange(null)}
               >
-                <span className="interests-bar">{interest.trackLabel}</span>
+                <span className="gantt-bar">{interest.trackLabel}</span>
               </div>
-              <div className="interests-progress">
-                {interest.ongoing ? 'Ongoing' : `${progress}%`}
-              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* RIGHT COLUMN — progress */}
+      <div className="gantt-col gantt-col-right">
+        <div className="gantt-col-header">Done</div>
+        {interests.map((interest) => {
+          const progress = getProgress(
+            interest.start,
+            now,
+            interest.targetMonths,
+            interest.ongoing,
+          );
+          return (
+            <div className="gantt-progress" key={interest.slug}>
+              {interest.ongoing ? '∞' : `${progress}%`}
             </div>
           );
         })}

@@ -18,56 +18,128 @@
   line-height: 1.72;
 }
 
-.interests-timeline {
-  overflow-x: auto;
-  padding-bottom: 0.75rem;
-}
+/* ========================================
+   GANTT CHART — 3-panel layout
+   Left (labels) and right (progress) are fixed;
+   middle timeline scrolls horizontally.
+   ======================================== */
 
-.interests-timeline-header,
-.interests-row {
+.gantt-layout {
   display: grid;
-  grid-template-columns: 175px minmax(0, 1fr) 52px;
+  grid-template-columns: 175px minmax(0, 1fr) 56px;
   gap: 0;
-  align-items: center;
-  padding: 0.5rem 0;
+  align-items: start;
 }
 
-.interests-timeline-header {
-  border-bottom: none;
+/* Shared column styling */
+.gantt-col {
+  display: flex;
+  flex-direction: column;
 }
 
-.interests-timeline-label,
-.interests-timeline-progress {
+/* Row height tokens — keep all 3 columns aligned */
+.gantt-col-header {
+  height: 40px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.4rem;
   font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-fg-light);
-  font-weight: 700;
 }
 
-.interests-timeline-months {
+.gantt-label,
+.gantt-track,
+.gantt-progress {
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+/* — Left column: labels — */
+.gantt-col-left {
+  position: relative;
+  z-index: 2;
+}
+
+.gantt-label {
+  gap: 0.5rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 0.82rem;
+  padding-right: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gantt-label:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* — Middle column: scrollable timeline — */
+.gantt-col-timeline {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.gantt-col-timeline::-webkit-scrollbar {
+  height: 5px;
+}
+
+.gantt-col-timeline::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.gantt-col-timeline--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.gantt-timeline-inner {
+  /* Each month column has a minimum width so they're not cramped */
+  min-width: calc(var(--month-count, 15) * 48px);
+}
+
+/* Month header row */
+.gantt-months {
+  height: 40px;
   display: grid;
   grid-template-columns: repeat(var(--month-count, 15), 1fr);
+  align-items: flex-end;
 }
 
-.interests-month {
+.gantt-month {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-bottom: 0.3rem;
   color: var(--color-fg-light);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   font-weight: 600;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.02em;
-  padding: 0.3rem 0;
   border-left: 1px solid var(--color-border);
   min-width: 0;
   overflow: hidden;
 }
 
-.interests-month > span {
+.gantt-month:last-child {
+  border-right: 1px solid var(--color-border);
+}
+
+.gantt-month > span {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,74 +147,58 @@
   max-width: 100%;
 }
 
-.interests-month small {
+.gantt-month small {
   display: block;
-  margin-top: 1px;
-  font-size: 0.48rem;
+  font-size: 0.5rem;
   font-weight: 600;
-  opacity: 0.5;
+  opacity: 0.65;
+  margin-top: 1px;
 }
 
-.interests-month--jan {
+.gantt-month--jan {
   border-left: 2px solid var(--color-accent-border);
 }
 
-.interests-month--jan small {
+.gantt-month--jan small {
   font-weight: 700;
   opacity: 0.8;
 }
 
-.interests-month--active {
+.gantt-month--active {
   color: var(--color-accent);
   background: var(--color-accent-light);
   border-radius: 4px;
   transition: background-color var(--duration-fast) var(--ease-out);
 }
 
-.interests-month--active small {
+.gantt-month--active small {
   opacity: 1;
 }
 
-.interests-row {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.interests-row:last-child {
-  border-bottom: 0;
-}
-
-.interests-row-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-accent);
-  text-decoration: none;
-  font-weight: 650;
-  font-size: 0.82rem;
-  padding-right: 0.5rem;
-}
-
-.interests-row-link:hover {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.interests-track {
+/* Track rows */
+.gantt-track {
   position: relative;
-  height: 24px;
-  border-radius: 5px;
-  overflow: hidden;
-  background: var(--color-bg-alt);
-  cursor: pointer;
+  height: 38px;
+  padding: 5px 0;
 }
 
-.interests-bar {
+.gantt-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  bottom: 5px;
+  background: var(--color-bg-alt);
+  border-radius: 5px;
+}
+
+.gantt-bar {
   position: absolute;
   left: var(--interest-left);
   width: var(--interest-width);
-  top: 3px;
-  bottom: 3px;
+  top: 7px;
+  bottom: 7px;
   display: inline-flex;
   align-items: center;
   border-radius: 3px;
@@ -157,20 +213,35 @@
   padding: 0 0.45rem;
   white-space: nowrap;
   overflow: hidden;
-  animation: interest-grow 0.8s var(--ease-out) forwards;
+  z-index: 1;
+  animation: gantt-grow 0.8s var(--ease-out) forwards;
 }
 
-.interests-bar:hover {
+.gantt-bar:hover {
   filter: brightness(1.1);
   transform: scaleY(1.12);
 }
 
-.interests-progress {
-  text-align: center;
+/* — Right column: progress — */
+.gantt-col-right {
+  position: relative;
+  z-index: 2;
+}
+
+.gantt-col-right .gantt-col-header {
+  justify-content: center;
+}
+
+.gantt-progress {
+  justify-content: center;
   color: var(--color-accent);
   font-size: 0.76rem;
   font-weight: 700;
 }
+
+/* ========================================
+   INTEREST DETAIL CARDS
+   ======================================== */
 
 .interests-details {
   display: flex;
@@ -321,19 +392,17 @@
   font-size: 0.66rem;
 }
 
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
 @media (max-width: 900px) {
-  .interests-timeline-header,
-  .interests-row {
-    grid-template-columns: 1fr;
+  .gantt-layout {
+    grid-template-columns: 130px minmax(0, 1fr) 48px;
   }
 
-  .interests-timeline-months {
-    grid-template-columns: repeat(var(--month-count, 15), minmax(42px, 1fr));
-    overflow-x: auto;
-  }
-
-  .interests-progress {
-    text-align: left;
+  .gantt-label {
+    font-size: 0.74rem;
   }
 
   .interest-detail-header {
@@ -342,17 +411,21 @@
 }
 
 @media (max-width: 600px) {
-  .interests-timeline-header,
-  .interests-row {
-    grid-template-columns: 125px 1fr 44px;
+  .gantt-layout {
+    grid-template-columns: 110px minmax(0, 1fr) 42px;
   }
 
-  .interests-row-link {
-    font-size: 0.72rem;
+  .gantt-label {
+    font-size: 0.68rem;
+    gap: 0.35rem;
+  }
+
+  .gantt-progress {
+    font-size: 0.68rem;
   }
 }
 
-@keyframes interest-grow {
+@keyframes gantt-grow {
   from {
     transform: scaleX(0);
     transform-origin: left;

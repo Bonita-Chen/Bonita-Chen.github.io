@@ -152,7 +152,7 @@
 [data-theme='dark'] .post-cover,
 [data-theme='dark'] .project-card,
 [data-theme='dark'] .interest-detail,
-[data-theme='dark'] .interests-timeline,
+[data-theme='dark'] .gantt-layout,
 [data-theme='dark'] .admin-panel-card {
   background: rgba(22, 34, 49, 0.78);
 }
