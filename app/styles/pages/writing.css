@@ -337,6 +337,40 @@
   box-shadow: var(--shadow-md);
 }
 
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.prose th,
+.prose td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.prose th {
+  font-weight: 700;
+  color: var(--color-fg-bold);
+  background: rgba(109, 142, 178, 0.1);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tr:hover td {
+  background: rgba(109, 142, 178, 0.05);
+}
+
 /* Post prev/next navigation */
 .post-nav {
   display: grid;
