@@ -13,7 +13,7 @@ describe('Footer', () => {
   it('renders the copyright line with Bonita Chen', () => {
     render(<Footer />);
 
-    expect(screen.getByText(/© 2026 Bonita Chen/i)).toBeInTheDocument();
+    expect(screen.getByText(/© 2026 Baojia Chen/i)).toBeInTheDocument();
     expect(screen.getByText(/All rights reserved/i)).toBeInTheDocument();
   });
 

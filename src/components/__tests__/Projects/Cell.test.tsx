@@ -5,6 +5,7 @@ import Cell from '../../Projects/Cell';
 
 describe('Cell', () => {
   const mockProject = {
+    slug: 'test-project',
     title: 'Test Project',
     subtitle: 'A test subtitle',
     image: '/images/test.jpg',
