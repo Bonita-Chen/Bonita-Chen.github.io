@@ -10,7 +10,7 @@ const mockPost: Post = {
   title: 'Test Article Title',
   date: '2024-01-15',
   description: 'This is a test article description',
-  tags: ['tech'],
+  tags: ['other'],
   content: 'Article content here',
 };
 
@@ -88,9 +88,7 @@ describe('ArticleSchema', () => {
     expect(data.publisher.name).toBe(AUTHOR_NAME);
     expect(data.publisher.url).toBe(SITE_URL);
     expect(data.publisher.logo['@type']).toBe('ImageObject');
-    expect(data.publisher.logo.url).toBe(
-      `${SITE_URL}/images/portrait-baojia.svg`,
-    );
+    expect(data.publisher.logo.url).toBe(`${SITE_URL}/images/me.jpg`);
   });
 
   it('includes image for rich search results', () => {
@@ -101,7 +99,7 @@ describe('ArticleSchema', () => {
     );
     const data = JSON.parse(script?.innerHTML || '{}');
 
-    expect(data.image).toBe(`${SITE_URL}/images/portrait-baojia.svg`);
+    expect(data.image).toBe(`${SITE_URL}/images/me.jpg`);
   });
 
   it('includes mainEntityOfPage WebPage reference', () => {

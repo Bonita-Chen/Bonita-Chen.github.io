@@ -14,10 +14,9 @@ describe('ResumeNav', () => {
   it('renders links to all resume sections', () => {
     render(<ResumeNav />);
 
-    expect(screen.getByRole('link', { name: /experience/i })).toHaveAttribute(
-      'href',
-      '#experience',
-    );
+    expect(
+      screen.getByRole('link', { name: /professional experience/i }),
+    ).toHaveAttribute('href', '#experience');
     expect(screen.getByRole('link', { name: /education/i })).toHaveAttribute(
       'href',
       '#education',
@@ -26,21 +25,13 @@ describe('ResumeNav', () => {
       'href',
       '#skills',
     );
-    expect(screen.getByRole('link', { name: /courses/i })).toHaveAttribute(
-      'href',
-      '#courses',
-    );
-    expect(screen.getByRole('link', { name: /references/i })).toHaveAttribute(
-      'href',
-      '#references',
-    );
   });
 
-  it('renders 5 navigation links', () => {
+  it('renders 3 navigation links', () => {
     render(<ResumeNav />);
 
     const links = screen.getAllByRole('link');
-    expect(links.length).toBe(5);
+    expect(links.length).toBe(3);
   });
 
   it('has correct CSS class', () => {
@@ -53,7 +44,9 @@ describe('ResumeNav', () => {
   it('experience link is active by default', () => {
     render(<ResumeNav />);
 
-    const experienceLink = screen.getByRole('link', { name: /experience/i });
+    const experienceLink = screen.getByRole('link', {
+      name: /professional experience/i,
+    });
     expect(experienceLink).toHaveClass('active');
   });
 });

@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 
-import Courses from '@/components/Resume/Courses';
 import Education from '@/components/Resume/Education';
 import Experience from '@/components/Resume/Experience';
-import References from '@/components/Resume/References';
+import ResumeNav from '@/components/Resume/ResumeNav';
 import Skills from '@/components/Resume/Skills';
 import PageWrapper from '@/components/Template/PageWrapper';
-import courses from '@/data/resume/courses';
 import degrees from '@/data/resume/degrees';
 import { categories, skills } from '@/data/resume/skills';
 import work from '@/data/resume/work';
@@ -28,6 +26,8 @@ export default function ResumePage() {
           <p className="resume-summary">Experience, education, and skills.</p>
         </header>
 
+        <ResumeNav />
+
         <div className="resume-content">
           <section id="experience" className="resume-section fade-in stagger-2">
             <Experience data={work} />
@@ -39,14 +39,6 @@ export default function ResumePage() {
 
           <section id="skills" className="resume-section fade-in stagger-4">
             <Skills skills={skills} categories={categories} />
-          </section>
-
-          <section id="courses" className="resume-section fade-in stagger-5">
-            <Courses data={courses} />
-          </section>
-
-          <section id="references" className="resume-section fade-in stagger-6">
-            <References />
           </section>
         </div>
       </section>

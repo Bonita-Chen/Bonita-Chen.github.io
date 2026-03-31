@@ -208,16 +208,26 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
       {/* LEFT COLUMN — labels */}
       <div className="gantt-col gantt-col-left">
         <div className="gantt-col-header">Interest</div>
-        {interests.map((interest) => (
-          <a
-            key={interest.slug}
-            href={`#${interest.slug}`}
-            className="gantt-label"
-          >
-            <span aria-hidden="true">{interest.icon}</span>
-            {interest.name}
-          </a>
-        ))}
+        {interests.map((interest) => {
+          const range = getBarRange(
+            interest.start,
+            interest.targetMonths,
+            interest.ongoing,
+          );
+
+          return (
+            <a
+              key={interest.slug}
+              href={`#${interest.slug}`}
+              className="gantt-label"
+              onMouseEnter={() => setHoveredRange(range)}
+              onMouseLeave={() => setHoveredRange(null)}
+            >
+              <span aria-hidden="true">{interest.icon}</span>
+              {interest.name}
+            </a>
+          );
+        })}
       </div>
 
       {/* MIDDLE COLUMN — scrollable timeline */}

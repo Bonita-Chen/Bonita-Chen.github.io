@@ -4,7 +4,6 @@ date: '2026-02-10'
 description: 'A few honest notes on juggling research, internships, deadlines, and the version of life that happens between them.'
 tags:
   - life
-  - reflection
 collection: 'living-notes'
 image: '/images/blogs/blueberry-balance.svg'
 icon: '🫐'

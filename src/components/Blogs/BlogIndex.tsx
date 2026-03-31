@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { startTransition, useState } from 'react';
 
-import { blogCollections, blogTagLabels } from '@/data/blogs';
+import { blogTagLabels } from '@/data/blogs';
 import type { Post } from '@/lib/posts';
 import { formatDate } from '@/lib/utils';
 
@@ -13,61 +13,19 @@ interface BlogIndexProps {
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
-  const [activeCollection, setActiveCollection] = useState('all');
   const [activeTag, setActiveTag] = useState('all');
-
-  const collectionCounts = Object.fromEntries(
-    blogCollections.map((collection) => [
-      collection.slug,
-      posts.filter((post) => post.collection === collection.slug).length,
-    ]),
-  );
 
   const availableTags = Object.keys(blogTagLabels).filter((tag) =>
     posts.some((post) => post.tags.includes(tag)),
   );
 
   const filteredPosts = posts.filter((post) => {
-    const collectionMatch =
-      activeCollection === 'all' || post.collection === activeCollection;
     const tagMatch = activeTag === 'all' || post.tags.includes(activeTag);
-    return collectionMatch && tagMatch;
+    return tagMatch;
   });
 
   return (
     <div className="blogs-shell">
-      <div
-        className="blogs-collections"
-        role="tablist"
-        aria-label="Blog collections"
-      >
-        <button
-          type="button"
-          className={`blogs-chip ${activeCollection === 'all' ? 'active' : ''}`}
-          onClick={() => startTransition(() => setActiveCollection('all'))}
-        >
-          All Posts
-          <span className="blogs-chip-count">{posts.length}</span>
-        </button>
-        {blogCollections.map((collection) => (
-          <button
-            type="button"
-            key={collection.slug}
-            className={`blogs-chip ${activeCollection === collection.slug ? 'active' : ''}`}
-            onClick={() =>
-              startTransition(() => setActiveCollection(collection.slug))
-            }
-            title={collection.description}
-          >
-            <span aria-hidden="true">{collection.emoji}</span>
-            {collection.label}
-            <span className="blogs-chip-count">
-              {collectionCounts[collection.slug] || 0}
-            </span>
-          </button>
-        ))}
-      </div>
-
       <div className="blogs-tags" role="tablist" aria-label="Blog tags">
         <button
           type="button"
@@ -90,10 +48,6 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
 
       <div className="blogs-list">
         {filteredPosts.map((post) => {
-          const collection = blogCollections.find(
-            (item) => item.slug === post.collection,
-          );
-
           return (
             <Link
               href={`/blogs/${post.slug}`}
@@ -126,11 +80,6 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
                           tag}
                       </span>
                     ))}
-                    {collection ? (
-                      <span className="blog-collection-badge">
-                        {collection.label}
-                      </span>
-                    ) : null}
                   </div>
 
                   <h2 className="blog-title">{post.title}</h2>

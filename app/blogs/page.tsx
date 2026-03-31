@@ -8,7 +8,7 @@ import { getAllPosts } from '@/lib/posts';
 export const metadata: Metadata = createPageMetadata({
   title: 'Blogs',
   description:
-    'Blogs by Baojia Chen on career, life, academics, and data-driven work.',
+    'Blogs by Baojia Chen on work, academics, life, and everything around them.',
   path: '/blogs/',
 });
 
@@ -21,7 +21,7 @@ export default function BlogsPage() {
         <header className="blogs-header fade-in">
           <h1 className="page-title">Blogs</h1>
           <p className="page-subtitle">
-            Writing on career, life, academics, and the systems behind the work.
+            Writing on work, academics, life, and the ideas around them.
           </p>
         </header>
 

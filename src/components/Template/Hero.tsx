@@ -1,15 +1,17 @@
 import Link from 'next/link';
 
+import ThemePortrait from './ThemePortrait';
+
 export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <div
-          className="hero-avatar hero-avatar--emoji fade-in"
-          aria-hidden="true"
-        >
-          <span className="hero-avatar-emoji">🫐</span>
-        </div>
+        <ThemePortrait
+          width={140}
+          height={140}
+          priority
+          className="hero-avatar fade-in"
+        />
 
         <h1 className="hero-title fade-in stagger-1">
           <span className="hero-name">
@@ -18,27 +20,28 @@ export default function Hero() {
         </h1>
 
         <p className="hero-tagline fade-in stagger-2">
-          Economics &amp; Statistics at the{' '}
-          <span className="hero-highlight">University of Minnesota</span>.
-          Passionate about data, research, and bridging analytics with
-          real-world impact.
+          Economics B.S. &amp; Statistics minor at the{' '}
+          <span className="hero-highlight">
+            University of Minnesota, Twin Cities
+          </span>
+          .
         </p>
 
         <div className="hero-chips fade-in stagger-3">
           <span className="hero-chip">
             🎓 UMN Twin Cities
             <span className="hero-chip-tooltip">
-              B.S. Economics &amp; Minor in Statistics
+              Economics B.S. &amp; Statistics minor
               <br />
-              GPA: 3.85 / 4.0 · Expected May 2026
+              Graduating in May, 2026
             </span>
           </span>
           <span className="hero-chip">
-            📊 Data &amp; Research
+            📊 Research &amp; Internship
             <span className="hero-chip-tooltip">
-              Research Assistant @ Heller-Hurwicz Institute
+              Research at Heller-Hurwicz
               <br />
-              Python · Stata · R · Power BI pipelines
+              Internships at Goat Consulting &amp; Bio-Techne
             </span>
           </span>
           <span className="hero-chip">

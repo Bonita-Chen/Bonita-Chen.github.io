@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 
 import { ArticleSchema } from '@/components/Schema';
 import PageWrapper from '@/components/Template/PageWrapper';
-import { blogCollections, blogTagLabels } from '@/data/blogs';
+import { blogTagLabels } from '@/data/blogs';
 import { getPostBySlug, getPostSlugs } from '@/lib/posts';
 import { AUTHOR_NAME, formatDate, PORTRAIT_IMAGE, SITE_URL } from '@/lib/utils';
 
@@ -69,10 +69,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const collection = blogCollections.find(
-    (item) => item.slug === post.collection,
-  );
-
   return (
     <PageWrapper>
       <ArticleSchema post={post} />
@@ -85,11 +81,6 @@ export default async function BlogPostPage({ params }: PageProps) {
             <time className="post-date" dateTime={post.date}>
               {formatDate(post.date)}
             </time>
-            {collection ? (
-              <span className="blog-badge blog-badge--collection">
-                {collection.emoji} {collection.label}
-              </span>
-            ) : null}
           </div>
           <h1 className="post-title">{post.title}</h1>
           <p className="post-description">{post.description}</p>

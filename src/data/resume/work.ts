@@ -56,7 +56,7 @@ const work: Position[] = [
     url: 'https://www.bio-techne.com/',
     startDate: '2025-06-01',
     endDate: '2025-08-01',
-    subtitleSuffix: 'Global HQ · Minneapolis, MN',
+    subtitleSuffix: 'Global Headquarters · Minneapolis, MN',
     highlights: [
       'Cleaned and standardized customer master data for more than 48,000 customers across 17 entities to improve reporting consistency.',
       'Designed Power BI dashboards that scaled from U.S. coverage to EMEA, tracking credit balance and aging KPIs across more than 70,000 invoices.',

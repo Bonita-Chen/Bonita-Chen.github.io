@@ -24,11 +24,18 @@ describe('ContactIcons', () => {
     const emailLink = screen.getByRole('link', { name: /email/i });
     expect(emailLink).toBeInTheDocument();
     expect(emailLink).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
+
+    const instagramLink = screen.getByRole('link', { name: /instagram/i });
+    expect(instagramLink).toBeInTheDocument();
+    expect(instagramLink).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/bonita_chen_?igsh=MTJrcTV1ZTE4ZTR6dQ%3D%3D&utm_source=qr',
+    );
   });
 
   it('has correct number of contact links', () => {
     render(<ContactIcons />);
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(3);
+    expect(links).toHaveLength(4);
   });
 });

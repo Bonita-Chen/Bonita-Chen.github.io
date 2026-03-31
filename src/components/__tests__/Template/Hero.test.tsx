@@ -22,19 +22,27 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(
-      screen.getByText(/Economics & Statistics at the/i),
+      screen.getByText(/Economics B\.S\. & Statistics minor at the/i),
     ).toBeInTheDocument();
-    expect(screen.getByText('University of Minnesota')).toHaveClass(
-      'hero-highlight',
-    );
+    expect(
+      screen.getByText('University of Minnesota, Twin Cities'),
+    ).toHaveClass('hero-highlight');
   });
 
   it('displays hero chips for credentials', () => {
     render(<Hero />);
 
     expect(screen.getByText(/UMN Twin Cities/)).toBeInTheDocument();
-    expect(screen.getByText(/Data & Research/)).toBeInTheDocument();
+    expect(screen.getByText(/Research & Internship/)).toBeInTheDocument();
     expect(screen.getByText(/Minneapolis, MN/)).toBeInTheDocument();
+  });
+
+  it('renders a circular portrait image', () => {
+    render(<Hero />);
+
+    const portrait = screen.getByAltText(/baojia chen/i);
+    expect(portrait).toBeInTheDocument();
+    expect(portrait).toHaveAttribute('src', '/images/me.jpg');
   });
 
   it('renders CTA buttons with correct links', () => {

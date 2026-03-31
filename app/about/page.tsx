@@ -25,16 +25,18 @@ export default function AboutPage() {
         <div className="fade-in stagger-1">
           <AboutContent markdown={aboutMarkdown} />
         </div>
-        <div className="about-grid fade-in stagger-2">
-          {aboutCards.map((card) => (
-            <article className="about-card" key={card.title}>
-              <h3>
-                {card.emoji} {card.title}
-              </h3>
-              <p>{card.description}</p>
-            </article>
-          ))}
-        </div>
+        {aboutCards.length > 0 ? (
+          <div className="about-grid fade-in stagger-2">
+            {aboutCards.map((card) => (
+              <article className="about-card" key={card.title}>
+                <h3>
+                  {card.emoji} {card.title}
+                </h3>
+                <p>{card.description}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
       </section>
     </PageWrapper>
   );

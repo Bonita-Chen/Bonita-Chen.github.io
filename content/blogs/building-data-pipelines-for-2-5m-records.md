@@ -4,7 +4,7 @@ date: '2026-02-28'
 description: 'What it actually looks like to clean, standardize, and document large administrative datasets for research.'
 tags:
   - academics
-  - tech
+  - other
 collection: 'data-notes'
 image: '/images/blogs/data-pipelines.svg'
 icon: '📊'

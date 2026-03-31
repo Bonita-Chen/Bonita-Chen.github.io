@@ -46,7 +46,7 @@ describe('PersonSchema', () => {
     const data = JSON.parse(script?.innerHTML || '{}');
 
     expect(data.url).toBe(SITE_URL);
-    expect(data.image).toBe(`${SITE_URL}/images/portrait-baojia.svg`);
+    expect(data.image).toBe(`${SITE_URL}/images/me.jpg`);
   });
 
   it('includes social links in sameAs', () => {

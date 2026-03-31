@@ -4,7 +4,7 @@ date: '2025-11-15'
 description: 'How our public health data challenge project used R and logistic regression to question one-size-fits-all BMI thresholds.'
 tags:
   - academics
-  - reflection
+  - other
 collection: 'public-health-equity'
 image: '/images/blogs/bmi-equity.svg'
 icon: '📖'

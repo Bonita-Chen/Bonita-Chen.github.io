@@ -19,8 +19,10 @@ export default function ContactPage() {
         <header className="contact-header fade-in">
           <h1 className="page-title">Let&apos;s Connect</h1>
           <p className="page-subtitle">
-            Whether it&apos;s about research, internships, collaborations, or
-            just a thoughtful hello — I&apos;d love to hear from you.
+            If you come across a role that feels like a fit, a research
+            opportunity worth exploring, or a project you&apos;d want to build
+            together, please reach out. I&apos;m always happy to connect with
+            thoughtful people and new friends too.
           </p>
         </header>
 
@@ -40,10 +42,6 @@ export default function ContactPage() {
             <ContactIcons />
           </div>
         </div>
-
-        <p className="contact-footer-note fade-in stagger-2">
-          Based in Minneapolis, MN — open to remote and hybrid opportunities.
-        </p>
       </section>
     </PageWrapper>
   );

@@ -6,7 +6,6 @@ import Navigation from '@/components/Template/Navigation';
 import ScrollToTop from '@/components/Template/ScrollToTop';
 import {
   AUTHOR_NAME,
-  PORTRAIT_IMAGE,
   SITE_URL,
   SOCIAL_IMAGE,
   TWITTER_HANDLE,
@@ -14,7 +13,7 @@ import {
 import './tailwind.css';
 
 const siteDescription =
-  'Baojia Chen is an economics student at the University of Minnesota, Twin Cities, focused on data research, analytics, and thoughtful writing about career, life, and learning.';
+  'Baojia Chen is an Economics major with a Statistics minor at the University of Minnesota, Twin Cities, sharing work across research, internships, projects, and writing.';
 
 export const metadata: Metadata = {
   title: {
@@ -98,7 +97,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href={PORTRAIT_IMAGE} type="image/svg+xml" />
+        <link
+          rel="icon"
+          href="/images/favicon/favicon.svg"
+          type="image/svg+xml"
+        />
       </head>
       <body>
         <ScrollToTop />
