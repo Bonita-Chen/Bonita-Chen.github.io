@@ -58,9 +58,11 @@ describe('Hero', () => {
     expect(resumeButton).toHaveClass('button-secondary');
   });
 
-  it('renders social icons below the CTA buttons', () => {
+  it('renders inline social icons beside the name', () => {
     render(<Hero />);
 
+    const inlineSocial = document.querySelector('.hero-inline-social');
+    expect(inlineSocial).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
     expect(

@@ -1,6 +1,6 @@
 # Baojia Chen Personal Site
 
-Personal website for Baojia "Bonita" Chen, adapted from [`mldangelo/personal-site`](https://github.com/mldangelo/personal-site) and visually aligned to the local [`index.html`](./index.html) reference.
+Personal website for Baojia "Bonita" Chen, adapted from [`mldangelo/personal-site`](https://github.com/mldangelo/personal-site) and maintained as a Next.js source repository.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Bonita-Chen/Bonita-Chen.github.io/node.js.yml?branch=main&label=ci&style=flat-square)](https://github.com/Bonita-Chen/Bonita-Chen.github.io/actions)
 [![License](https://img.shields.io/badge/license-MIT-43638C?style=flat-square)](./LICENSE)
@@ -24,7 +24,7 @@ Personal website for Baojia "Bonita" Chen, adapted from [`mldangelo/personal-sit
 
 ## Visual Direction
 
-The visual source of truth is the local [`index.html`](./index.html).
+The visual direction follows the refined blue theme and template-inspired layout that power the live site.
 
 Theme palette:
 
@@ -96,7 +96,7 @@ It does not save directly to the live site. The publish flow is still:
 
 ## Deployment
 
-This project is configured for GitHub Pages static export.
+This project is configured for GitHub Pages static export through GitHub Actions.
 
 Recommended setup:
 

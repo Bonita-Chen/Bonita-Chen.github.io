@@ -4,23 +4,18 @@ import { describe, expect, it } from 'vitest';
 import EmailLink from '../../Contact/EmailLink';
 
 describe('EmailLink', () => {
-  it('renders the email domain', () => {
+  it('renders as an icon link', () => {
     render(<EmailLink />);
 
-    expect(screen.getByText('@gmail.com')).toBeInTheDocument();
-  });
-
-  it('renders as a link element', () => {
-    render(<EmailLink />);
-
-    const link = screen.getByRole('link');
+    const link = screen.getByRole('link', { name: /send an email/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
   });
 
-  it('renders the mailbox prefix as visible text', () => {
+  it('renders an svg icon inside the link', () => {
     render(<EmailLink />);
 
-    expect(screen.getByText('bonitachen910')).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: /send an email/i });
+    expect(link.querySelector('svg')).toBeInTheDocument();
   });
 });

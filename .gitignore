@@ -58,3 +58,6 @@ nohup.out
 personal-site-main/
 personal-site-main.zip
 index.html
+
+# Local-only original photos
+images/source/

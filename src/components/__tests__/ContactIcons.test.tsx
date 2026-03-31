@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
+import { emailContact } from '@/data/contact';
 import ContactIcons from '../Contact/ContactIcons';
 
 describe('ContactIcons', () => {
@@ -33,5 +34,14 @@ describe('ContactIcons', () => {
     render(<ContactIcons />);
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(3);
+  });
+
+  it('can render the email contact when explicitly provided', () => {
+    expect(emailContact).toBeDefined();
+    render(<ContactIcons items={emailContact ? [emailContact] : []} />);
+
+    expect(
+      screen.getByRole('link', { name: /send an email/i }),
+    ).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
   });
 });

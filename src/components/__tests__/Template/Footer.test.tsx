@@ -14,27 +14,35 @@ describe('Footer', () => {
     render(<Footer />);
 
     expect(screen.getByText(/© 2026 Baojia Chen/i)).toBeInTheDocument();
-    expect(screen.getByText(/All rights reserved/i)).toBeInTheDocument();
   });
 
-  it('links to the upstream personal-site template', () => {
+  it('renders mirrored footer navigation', () => {
     render(<Footer />);
 
-    expect(screen.getByRole('link', { name: 'personal-site' })).toHaveAttribute(
+    expect(screen.getByText('Explore')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'About' })).toHaveAttribute(
       'href',
-      'https://github.com/mldangelo/personal-site',
+      '/about',
+    );
+    expect(screen.getByRole('link', { name: 'Resume' })).toHaveAttribute(
+      'href',
+      '/resume',
     );
   });
 
-  it('mentions the design adaptation credit', () => {
+  it('renders footer connect icons including email', () => {
     render(<Footer />);
 
-    expect(screen.getByText(/Visual design adapted by/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /linkedin/i })).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/baojia-bonita-chen',
+    );
+    expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute(
+      'href',
+      'https://github.com/Bonita-Chen',
+    );
     expect(
-      screen.getByRole('link', { name: 'Jingcheng Liang' }),
-    ).toHaveAttribute(
-      'href',
-      'https://github.com/leo-leung04/leo-leung04.github.io',
-    );
+      screen.getByRole('link', { name: /send an email/i }),
+    ).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
   });
 });

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
+import { heroContacts } from '@/data/contact';
 
 import ThemePortrait from './ThemePortrait';
 
@@ -19,6 +20,11 @@ export default function Hero() {
           <span className="hero-name">
             Bonita <em>Chen</em>
           </span>
+          <ContactIcons
+            items={heroContacts}
+            className="hero-inline-social"
+            ariaLabel="Hero social links"
+          />
         </h1>
 
         <p className="hero-tagline fade-in stagger-2">
@@ -26,7 +32,10 @@ export default function Hero() {
           <span className="hero-highlight">
             University of Minnesota, Twin Cities
           </span>
-          . Passionate about bridging analytics with real-world impact.
+          .
+          <span className="hero-tagline-break">
+            Passionate about bridging analytics with real-world impact.
+          </span>
         </p>
 
         <div className="hero-chips fade-in stagger-3">
@@ -72,10 +81,6 @@ export default function Hero() {
           <Link href="/resume" className="button button-secondary">
             View Resume
           </Link>
-        </div>
-
-        <div className="hero-social fade-in stagger-5">
-          <ContactIcons />
         </div>
       </div>
 

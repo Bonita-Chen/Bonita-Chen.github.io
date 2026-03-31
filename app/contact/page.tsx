@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
 import EmailLink from '@/components/Contact/EmailLink';
-
 import PageWrapper from '@/components/Template/PageWrapper';
+import { socialContacts } from '@/data/contact';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -33,7 +33,11 @@ export default function ContactPage() {
               <span>or find me on</span>
             </div>
 
-            <ContactIcons />
+            <ContactIcons
+              items={socialContacts}
+              className="contact-social-icons"
+              ariaLabel="Social links"
+            />
           </div>
         </div>
       </section>
