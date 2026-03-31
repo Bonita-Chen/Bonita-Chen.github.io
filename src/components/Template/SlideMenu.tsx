@@ -12,6 +12,7 @@ interface SlideMenuProps {
   onClose: () => void;
   children: ReactNode;
   position?: 'left' | 'right';
+  variant?: 'drawer' | 'dropdown';
 }
 
 /**
@@ -25,13 +26,14 @@ export default function SlideMenu({
   onClose,
   children,
   position = 'right',
+  variant = 'drawer',
 }: SlideMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
   // Save scroll position and lock body scroll (iOS-safe)
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || variant !== 'drawer') return;
 
     const scrollY = window.scrollY;
     const { body } = document;
@@ -48,7 +50,7 @@ export default function SlideMenu({
       body.style.right = '';
       window.scrollTo(0, scrollY);
     };
-  }, [isOpen]);
+  }, [isOpen, variant]);
 
   // Handle escape key
   useEffect(() => {
@@ -109,7 +111,7 @@ export default function SlideMenu({
     <>
       {/* Overlay - click to close */}
       <div
-        className={`slide-menu-overlay${isOpen ? ' slide-menu-overlay--open' : ''}`}
+        className={`slide-menu-overlay slide-menu-overlay--${variant}${isOpen ? ' slide-menu-overlay--open' : ''}`}
         onClick={onClose}
         aria-hidden="true"
       />
@@ -120,7 +122,7 @@ export default function SlideMenu({
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
-        className={`slide-menu slide-menu--${position}${isOpen ? ' slide-menu--open' : ''}`}
+        className={`slide-menu ${variant === 'dropdown' ? 'slide-menu--dropdown' : `slide-menu--${position}`}${isOpen ? ' slide-menu--open' : ''}`}
         aria-hidden={!isOpen}
         inert={!isOpen}
         onKeyDown={handleKeyDown}

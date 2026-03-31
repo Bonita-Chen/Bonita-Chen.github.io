@@ -34,6 +34,24 @@
   line-height: 1.75;
 }
 
+.footer-credit {
+  max-width: 28rem;
+  margin: 0.5rem 0 0;
+  color: var(--color-text-dim);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-credit a:hover {
+  color: var(--color-accent);
+}
+
 .footer-heading {
   margin: 0 0 1rem;
   color: var(--color-text-dim);

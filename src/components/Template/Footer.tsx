@@ -11,7 +11,28 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-column footer-column--copyright">
-          <p className="footer-copy">&copy; 2026 Baojia Chen</p>
+          <p className="footer-copy">
+            &copy; 2026 Baojia Chen. All rights reserved.
+          </p>
+          <p className="footer-credit">
+            Built on{' '}
+            <a
+              href="https://github.com/mldangelo/personal-site"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Michael D&apos;Angelo&apos;s personal-site
+            </a>{' '}
+            open-source framework, with visual direction informed by{' '}
+            <a
+              href="https://github.com/leo-leung04/leo-leung04.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Leo Leung&apos;s leo-leung04.github.io
+            </a>
+            .
+          </p>
         </div>
 
         <div className="footer-column">

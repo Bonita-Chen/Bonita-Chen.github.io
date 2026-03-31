@@ -148,9 +148,9 @@
   line-height: 1.5;
   text-align: left;
   white-space: nowrap;
-  min-width: 22rem;
   width: max-content;
-  max-width: min(24rem, calc(100vw - 2rem));
+  min-width: 0;
+  max-width: none;
   opacity: 0;
   pointer-events: none;
   transform: translateX(-50%) translateY(6px);
@@ -269,7 +269,7 @@
 
   .hero-chip-tooltip {
     min-width: auto;
-    width: min(19rem, calc(100vw - 2rem));
+    width: min(22rem, calc(100vw - 2rem));
     white-space: normal;
   }
 

@@ -53,6 +53,13 @@ describe('SlideMenu', () => {
     expect(menu).toHaveClass('slide-menu--left');
   });
 
+  it('applies dropdown variant when specified', () => {
+    render(<SlideMenu {...defaultProps} isOpen variant="dropdown" />);
+
+    const menu = screen.getByRole('dialog');
+    expect(menu).toHaveClass('slide-menu--dropdown');
+  });
+
   it('sets aria-hidden based on isOpen', () => {
     const { rerender } = render(<SlideMenu {...defaultProps} isOpen={false} />);
 

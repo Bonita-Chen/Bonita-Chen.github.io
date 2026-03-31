@@ -21,7 +21,13 @@ export default function Hamburger() {
   const closeMenu = useCallback(() => setOpen(false), []);
 
   const slideMenu = (
-    <SlideMenu id={MENU_ID} isOpen={open} onClose={closeMenu} position="right">
+    <SlideMenu
+      id={MENU_ID}
+      isOpen={open}
+      onClose={closeMenu}
+      position="right"
+      variant="dropdown"
+    >
       <ul className="hamburger-ul">
         {routes.map((l) => (
           <li key={l.label}>
