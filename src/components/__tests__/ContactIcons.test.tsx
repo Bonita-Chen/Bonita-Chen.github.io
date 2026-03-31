@@ -14,6 +14,13 @@ describe('ContactIcons', () => {
       'https://www.linkedin.com/in/baojia-bonita-chen',
     );
 
+    const githubLink = screen.getByRole('link', { name: /github/i });
+    expect(githubLink).toBeInTheDocument();
+    expect(githubLink).toHaveAttribute(
+      'href',
+      'https://github.com/Bonita-Chen',
+    );
+
     const emailLink = screen.getByRole('link', { name: /email/i });
     expect(emailLink).toBeInTheDocument();
     expect(emailLink).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
@@ -22,6 +29,6 @@ describe('ContactIcons', () => {
   it('has correct number of contact links', () => {
     render(<ContactIcons />);
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(2);
+    expect(links).toHaveLength(3);
   });
 });
