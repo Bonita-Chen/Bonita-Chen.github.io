@@ -12,7 +12,7 @@ import { getAllPosts } from '@/lib/posts';
 export const metadata: Metadata = createPageMetadata({
   title: 'Admin',
   description:
-    'Visual admin studio for Baojia Chen’s personal site, including avatar crop, blog editing, and interests timeline updates.',
+    'Visual admin studio for Bonita Chen’s personal site, including avatar crop, blog editing, and interests timeline updates.',
   path: '/admin/',
 });
 

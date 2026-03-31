@@ -11,9 +11,9 @@ import work from '@/data/resume/work';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Resume',
+  title: 'R\u00e9sum\u00e9',
   description:
-    'Baojia Chen’s resume covering research, analytics, education, and selected technical skills.',
+    "Bonita Chen's r\u00e9sum\u00e9 covering research, analytics, education, and selected technical skills.",
   path: '/resume/',
 });
 
@@ -22,7 +22,7 @@ export default function ResumePage() {
     <PageWrapper>
       <section className="resume-page">
         <header className="resume-header fade-in">
-          <h1 className="resume-title">Resume</h1>
+          <h1 className="resume-title">R&#233;sum&#233;</h1>
         </header>
 
         <ResumeNav />

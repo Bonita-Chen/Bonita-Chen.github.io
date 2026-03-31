@@ -8,7 +8,7 @@ import { createPageMetadata } from '@/lib/metadata';
 export const metadata: Metadata = createPageMetadata({
   title: 'About',
   description:
-    'Learn more about Baojia Chen, an economics and statistics student working across research, analytics, and reflective writing.',
+    'Learn more about Bonita Chen, an economics and statistics student working across research, analytics, and reflective writing.',
   path: '/about/',
 });
 
@@ -17,7 +17,9 @@ export default function AboutPage() {
     <PageWrapper>
       <section className="about-page">
         <header className="about-header fade-in">
-          <h1 className="page-title">About</h1>
+          <h1 className="page-title">
+            <em>About</em>
+          </h1>
         </header>
         <div className="fade-in stagger-1">
           <AboutContent markdown={aboutMarkdown} />

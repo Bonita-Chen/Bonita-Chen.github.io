@@ -8,7 +8,7 @@ import { getAllPosts } from '@/lib/posts';
 export const metadata: Metadata = createPageMetadata({
   title: 'Blogs',
   description:
-    'Blogs by Baojia Chen on work, academics, life, and everything around them.',
+    'Blogs by Bonita Chen on work, academics, life, and everything around them.',
   path: '/blogs/',
 });
 

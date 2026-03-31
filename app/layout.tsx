@@ -13,7 +13,7 @@ import {
 import './tailwind.css';
 
 const siteDescription =
-  'Baojia Chen is an Economics major with a Statistics minor at the University of Minnesota, Twin Cities, sharing work across research, internships, projects, and writing.';
+  'Bonita Chen is an Economics major with a Statistics minor at the University of Minnesota, Twin Cities, sharing work across research, internships, projects, and writing.';
 
 export const metadata: Metadata = {
   title: {

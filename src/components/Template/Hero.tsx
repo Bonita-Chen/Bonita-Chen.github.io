@@ -52,7 +52,7 @@ export default function Hero() {
             About Me
           </Link>
           <Link href="/resume" className="button button-secondary">
-            View Resume
+            View Résumé
           </Link>
         </div>
       </div>

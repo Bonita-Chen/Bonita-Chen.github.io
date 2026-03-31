@@ -9,7 +9,7 @@ import { createPageMetadata } from '@/lib/metadata';
 export const metadata: Metadata = createPageMetadata({
   title: 'Interests',
   description:
-    'Recent interests, progress timelines, and related projects by Baojia Chen.',
+    'Recent interests, progress timelines, and related projects by Bonita Chen.',
   path: '/interests/',
 });
 
@@ -75,9 +75,6 @@ export default function InterestsPage() {
       <section className="interests-page">
         <header className="interests-header fade-in">
           <h1 className="page-title">Interests</h1>
-          <p className="page-subtitle">
-            A timeline of what I&apos;ve been investing attention in lately.
-          </p>
           <p className="interests-note">
             The percentages below are estimated from elapsed months versus the
             planned duration for each interest area. Ongoing interests stay

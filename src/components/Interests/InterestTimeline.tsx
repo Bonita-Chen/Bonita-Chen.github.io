@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Interest } from '@/data/interests';
 
@@ -105,6 +105,54 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
   const scrollStartLeft = useRef(0);
+
+  /* Resizable left column */
+  const DEFAULT_LEFT_WIDTH = 238;
+  const MIN_LEFT_WIDTH = 120;
+  const MAX_LEFT_WIDTH = 400;
+  const [leftWidth, setLeftWidth] = useState(DEFAULT_LEFT_WIDTH);
+  const [isResizing, setIsResizing] = useState(false);
+  const resizeStartX = useRef(0);
+  const resizeStartWidth = useRef(DEFAULT_LEFT_WIDTH);
+
+  const handleResizeMove = useCallback((e: PointerEvent) => {
+    const dx = e.clientX - resizeStartX.current;
+    const newWidth = Math.min(
+      MAX_LEFT_WIDTH,
+      Math.max(MIN_LEFT_WIDTH, resizeStartWidth.current + dx),
+    );
+    setLeftWidth(newWidth);
+  }, []);
+
+  const handleResizeEnd = useCallback(
+    (e: PointerEvent) => {
+      setIsResizing(false);
+      (e.target as Element)?.releasePointerCapture?.(e.pointerId);
+      document.removeEventListener('pointermove', handleResizeMove);
+      document.removeEventListener('pointerup', handleResizeEnd);
+    },
+    [handleResizeMove],
+  );
+
+  const handleResizeStart = useCallback(
+    (e: React.PointerEvent) => {
+      e.preventDefault();
+      setIsResizing(true);
+      resizeStartX.current = e.clientX;
+      resizeStartWidth.current = leftWidth;
+      (e.target as Element).setPointerCapture(e.pointerId);
+      document.addEventListener('pointermove', handleResizeMove);
+      document.addEventListener('pointerup', handleResizeEnd);
+    },
+    [leftWidth, handleResizeMove, handleResizeEnd],
+  );
+
+  useEffect(() => {
+    return () => {
+      document.removeEventListener('pointermove', handleResizeMove);
+      document.removeEventListener('pointerup', handleResizeEnd);
+    };
+  }, [handleResizeMove, handleResizeEnd]);
 
   const now = startOfMonth(new Date());
 
@@ -214,9 +262,14 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
 
   return (
     <section
-      className="gantt-layout"
+      className={`gantt-layout${isResizing ? ' gantt-layout--resizing' : ''}`}
       aria-label="Interest progress timeline"
-      style={{ '--month-count': monthTotal } as CSSProperties}
+      style={
+        {
+          '--month-count': monthTotal,
+          '--gantt-left-width': `${leftWidth}px`,
+        } as CSSProperties
+      }
     >
       {/* LEFT COLUMN — labels */}
       <div className="gantt-col gantt-col-left">
@@ -243,6 +296,31 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
             </a>
           );
         })}
+      </div>
+
+      {/* RESIZE HANDLE */}
+      <div
+        className="gantt-resize-handle"
+        onPointerDown={handleResizeStart}
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize interest labels column"
+        aria-valuenow={leftWidth}
+        aria-valuemin={MIN_LEFT_WIDTH}
+        aria-valuemax={MAX_LEFT_WIDTH}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          const step = 20;
+          if (e.key === 'ArrowLeft') {
+            setLeftWidth((w) => Math.max(MIN_LEFT_WIDTH, w - step));
+            e.preventDefault();
+          } else if (e.key === 'ArrowRight') {
+            setLeftWidth((w) => Math.min(MAX_LEFT_WIDTH, w + step));
+            e.preventDefault();
+          }
+        }}
+      >
+        <span className="gantt-resize-grip" aria-hidden="true" />
       </div>
 
       {/* MIDDLE COLUMN — scrollable timeline */}

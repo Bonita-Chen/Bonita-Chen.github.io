@@ -29,8 +29,12 @@ export default function Hamburger() {
       variant="dropdown"
     >
       <ul className="hamburger-ul">
-        {routes.map((l) => (
-          <li key={l.label}>
+        {routes.map((l, i) => (
+          <li
+            key={l.label}
+            className={open ? 'hamburger-li--visible' : ''}
+            style={{ '--item-index': i } as React.CSSProperties}
+          >
             <Link href={l.path} onClick={closeMenu}>
               <h3 className={l.index ? 'index-li' : undefined}>{l.label}</h3>
             </Link>

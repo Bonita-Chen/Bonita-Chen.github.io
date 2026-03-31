@@ -252,6 +252,17 @@ body.is-menu-visible .site-wrapper {
 
 .hamburger-ul li {
   display: block;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+  transition-delay: calc(var(--item-index, 0) * 50ms);
+}
+
+.hamburger-ul li.hamburger-li--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hamburger-ul li a {
@@ -309,7 +320,13 @@ body.is-menu-visible .site-wrapper {
 @media (prefers-reduced-motion: reduce) {
   .slide-menu-overlay,
   .slide-menu,
-  .hamburger-icon span {
+  .hamburger-icon span,
+  .hamburger-ul li {
     transition: none;
+  }
+
+  .hamburger-ul li {
+    opacity: 1;
+    transform: none;
   }
 }

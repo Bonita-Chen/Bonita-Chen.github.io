@@ -41,7 +41,7 @@ describe('Hero', () => {
   it('renders a circular portrait image', () => {
     render(<Hero />);
 
-    const portrait = screen.getByAltText(/baojia chen/i);
+    const portrait = screen.getByAltText(/bonita chen/i);
     expect(portrait).toBeInTheDocument();
     expect(portrait).toHaveAttribute('src', '/images/me.jpg');
   });
@@ -53,7 +53,7 @@ describe('Hero', () => {
     expect(aboutButton).toHaveAttribute('href', '/about');
     expect(aboutButton).toHaveClass('button-primary');
 
-    const resumeButton = screen.getByRole('link', { name: /view resume/i });
+    const resumeButton = screen.getByRole('link', { name: /view r.sum./i });
     expect(resumeButton).toHaveAttribute('href', '/resume');
     expect(resumeButton).toHaveClass('button-secondary');
   });

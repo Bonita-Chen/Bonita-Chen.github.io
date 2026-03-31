@@ -5,7 +5,7 @@ import PageWrapper from '@/components/Template/PageWrapper';
 
 export const metadata: Metadata = {
   description:
-    'Baojia Chen is an Economics B.S. student with a Statistics minor at the University of Minnesota, Twin Cities, sharing research, internships, projects, and writing.',
+    'Bonita Chen is an Economics B.S. student with a Statistics minor at the University of Minnesota, Twin Cities, sharing research, internships, projects, and writing.',
 };
 
 export default function HomePage() {

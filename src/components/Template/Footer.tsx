@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-column footer-column--copyright">
           <p className="footer-copy">
-            &copy; 2026 Baojia Chen. All rights reserved.
+            &copy; 2026 Bonita Chen. All rights reserved.
           </p>
           <p className="footer-credit">
             Built on{' '}
