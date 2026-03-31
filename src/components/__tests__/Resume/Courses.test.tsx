@@ -92,11 +92,10 @@ describe('Course', () => {
     expect(screen.getByText('Machine Learning')).toBeInTheDocument();
   });
 
-  it('renders course as link', () => {
+  it('renders course as static content', () => {
     render(<Course data={mockCourse} />);
 
-    const link = screen.getByRole('link');
-    expect(link).toHaveAttribute('href', mockCourse.link);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('renders as list item', () => {

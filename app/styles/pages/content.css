@@ -190,7 +190,7 @@
 
 .contact-label {
   margin: 0 0 0.25rem;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-fg-light);
   text-transform: uppercase;
@@ -210,7 +210,7 @@
   display: inline-block;
   position: relative;
   font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
   color: var(--color-accent);
   white-space: nowrap;
 }
@@ -238,7 +238,7 @@
 
 .contact-hint {
   margin: 0.5rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--color-fg-light);
 }
 

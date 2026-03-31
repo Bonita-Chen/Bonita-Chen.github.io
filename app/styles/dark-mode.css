@@ -98,14 +98,9 @@
 }
 
 /* Course cards */
-[data-theme='dark'] .course-container a {
+[data-theme='dark'] .course-card {
   background: var(--color-surface-subtle);
   border-color: var(--color-border);
-}
-
-[data-theme='dark'] .course-container a:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-border-alt);
 }
 
 /* Skill buttons/tags — default state */

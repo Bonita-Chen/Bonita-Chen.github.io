@@ -200,8 +200,8 @@
 .blog-desc,
 .post-description {
   margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.55;
+  font-size: 0.89rem;
+  line-height: 1.62;
   color: var(--color-fg-light);
 }
 
@@ -253,7 +253,7 @@
 }
 
 .prose {
-  font-size: 1rem;
+  font-size: 1.04rem;
   line-height: 1.9;
   color: var(--color-fg);
 }

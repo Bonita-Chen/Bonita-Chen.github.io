@@ -7,10 +7,10 @@ interface CourseProps {
 export default function Course({ data }: CourseProps) {
   return (
     <li className="course-container">
-      <a href={data.link}>
+      <div className="course-card">
         <h4 className="course-number">{data.number}:</h4>
         <p className="course-name">{data.title}</p>
-      </a>
+      </div>
     </li>
   );
 }
