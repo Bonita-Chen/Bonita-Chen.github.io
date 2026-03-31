@@ -6,7 +6,6 @@ import type {
   EditableCard,
   EditableCollection,
   EditableInterest,
-  EditableInterestEntry,
   EditablePost,
   EditableTag,
 } from './types';

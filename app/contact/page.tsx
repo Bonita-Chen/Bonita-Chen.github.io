@@ -17,7 +17,9 @@ export default function ContactPage() {
     <PageWrapper>
       <section className="contact-page">
         <header className="contact-header fade-in">
-          <h1 className="page-title">Let&apos;s Connect</h1>
+          <h1 className="page-title">
+            <em>Let&apos;s Connect</em>
+          </h1>
         </header>
 
         <div className="contact-card fade-in stagger-1">

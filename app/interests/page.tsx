@@ -74,7 +74,9 @@ export default function InterestsPage() {
     <PageWrapper mainClassName="page-main--wide">
       <section className="interests-page">
         <header className="interests-header fade-in">
-          <h1 className="page-title">Interests</h1>
+          <h1 className="page-title">
+            <em>Interests</em>
+          </h1>
           <p className="interests-note">
             The percentages below are estimated from elapsed months versus the
             planned duration for each interest area. Ongoing interests stay

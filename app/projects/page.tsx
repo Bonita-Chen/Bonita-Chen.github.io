@@ -20,7 +20,9 @@ export default function ProjectsPage() {
     <PageWrapper mainClassName="page-main--wide">
       <section className="projects-page">
         <header className="projects-header fade-in">
-          <h1 className="page-title">Projects</h1>
+          <h1 className="page-title">
+            <em>Projects</em>
+          </h1>
         </header>
 
         {featuredProjects.length > 0 && (

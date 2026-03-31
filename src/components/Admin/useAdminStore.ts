@@ -17,13 +17,13 @@ import type {
   EditableTag,
 } from './types';
 import {
-  STORAGE_KEY,
   buildAboutModuleSource,
   buildBlogsDataSource,
   buildInterestsDataSource,
   createId,
   extractExtension,
   readFileAsDataUrl,
+  STORAGE_KEY,
   slugify,
   splitAboutIntro,
   toSeedCards,

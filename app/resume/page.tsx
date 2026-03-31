@@ -22,7 +22,9 @@ export default function ResumePage() {
     <PageWrapper>
       <section className="resume-page">
         <header className="resume-header fade-in">
-          <h1 className="resume-title">R&#233;sum&#233;</h1>
+          <h1 className="resume-title">
+            <em>R&#233;sum&#233;</em>
+          </h1>
         </header>
 
         <ResumeNav />

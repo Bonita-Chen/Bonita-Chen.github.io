@@ -19,7 +19,9 @@ export default function BlogsPage() {
     <PageWrapper mainClassName="page-main--wide">
       <article className="blogs-page">
         <header className="blogs-header fade-in">
-          <h1 className="page-title">Blogs</h1>
+          <h1 className="page-title">
+            <em>Blogs</em>
+          </h1>
         </header>
 
         <div className="fade-in stagger-1">

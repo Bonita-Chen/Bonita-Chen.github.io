@@ -23,7 +23,9 @@ export default function AdminPage() {
     <PageWrapper mainClassName="page-main--wide">
       <section className="admin-page">
         <header className="admin-header">
-          <h1 className="page-title">Admin</h1>
+          <h1 className="page-title">
+            <em>Admin</em>
+          </h1>
           <p className="page-subtitle">
             A visual editing studio that stays faithful to the site design while
             keeping the workflow safe for static GitHub Pages.
