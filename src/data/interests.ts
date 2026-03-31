@@ -176,7 +176,7 @@ const interests: Interest[] = [
     trackLabel: 'Ongoing',
     start: '2025-01-01',
     ongoing: true,
-    accent: '#5A7DA5',
+    accent: '#7189A5',
     entries: [
       {
         type: 'Event',

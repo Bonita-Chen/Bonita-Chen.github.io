@@ -127,11 +127,11 @@ const CATEGORY_CONFIG: Record<
 
 // Fallback colors for categories beyond the predefined set (with pre-computed contrast)
 const FALLBACK_COLORS: { color: string; textColor: 'dark' | 'light' }[] = [
-  { color: '#88a6c8', textColor: 'dark' },
-  { color: '#5d7797', textColor: 'light' },
-  { color: '#9bb6d3', textColor: 'dark' },
-  { color: '#43638c', textColor: 'light' },
-  { color: '#223c5b', textColor: 'light' },
+  { color: 'var(--blue-200)', textColor: 'dark' },
+  { color: 'var(--blue-300)', textColor: 'light' },
+  { color: 'var(--blue-100)', textColor: 'dark' },
+  { color: 'var(--blue-400)', textColor: 'light' },
+  { color: 'var(--blue-500)', textColor: 'light' },
 ];
 
 /**
@@ -159,7 +159,7 @@ function buildCategories(skillsList: Skill[]): Category[] {
   return uniqueCategories.map((category) => {
     const colorConfig = CATEGORY_CONFIG[category] ??
       FALLBACK_COLORS[fallbackIndex++] ?? {
-        color: '#5d7797',
+        color: 'var(--blue-300)',
         textColor: 'light' as const,
       };
     return {
