@@ -171,14 +171,25 @@
 }
 
 .gantt-month--active {
-  color: var(--color-accent);
+  color: color-mix(in srgb, var(--color-accent) 84%, var(--color-fg-bold));
   background: transparent;
   border-radius: 0;
-  transition: color var(--duration-fast) var(--ease-out);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-shadow var(--duration-fast) var(--ease-out);
+}
+
+.gantt-month--active > span,
+.gantt-month--active small {
+  font-weight: 800;
+  text-shadow:
+    0 0 8px color-mix(in srgb, var(--color-accent) 24%, transparent),
+    0 0 16px color-mix(in srgb, var(--color-accent) 12%, transparent);
 }
 
 .gantt-month--active small {
   opacity: 1;
+  color: color-mix(in srgb, var(--color-accent) 72%, var(--color-fg-bold));
 }
 
 .gantt-col-left .gantt-label:first-of-type,
@@ -230,15 +241,17 @@
   background: linear-gradient(
     90deg,
     var(--blue-400) 0%,
-    color-mix(in srgb, var(--blue-400) 72%, var(--blue-300)) 100%
+    color-mix(in srgb, var(--blue-400) 82%, var(--blue-300)) 62%,
+    var(--blue-300) 100%
   );
 }
 
 .gantt-bar.c2 {
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--blue-300) 86%, var(--blue-400)) 0%,
-    color-mix(in srgb, var(--blue-300) 70%, var(--blue-200)) 100%
+    color-mix(in srgb, var(--blue-300) 84%, var(--blue-400)) 0%,
+    var(--blue-300) 55%,
+    color-mix(in srgb, var(--blue-300) 68%, var(--blue-200)) 100%
   );
 }
 
@@ -246,15 +259,17 @@
   background: linear-gradient(
     90deg,
     var(--blue-500) 0%,
-    color-mix(in srgb, var(--blue-500) 72%, var(--blue-400)) 100%
+    color-mix(in srgb, var(--blue-500) 84%, var(--blue-400)) 60%,
+    var(--blue-400) 100%
   );
 }
 
 .gantt-bar.c4 {
   background: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--blue-100) 92%, white) 0%,
-    var(--blue-200) 100%
+    color-mix(in srgb, var(--blue-100) 95%, white) 0%,
+    var(--blue-200) 60%,
+    color-mix(in srgb, var(--blue-200) 82%, var(--blue-100)) 100%
   );
   color: var(--blue-500);
 }
