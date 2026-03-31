@@ -7,16 +7,18 @@ interface CoursesProps {
 }
 
 function getRows(courses: CourseType[]) {
-  return courses
+  return [...courses]
     .sort((a, b) => {
-      let ret = 0;
-      if (a.university > b.university) ret = -1;
-      else if (a.university < b.university) ret = 1;
-      else if (a.number > b.number) ret = 1;
-      else if (a.number < b.number) ret = -1;
-      return ret;
+      const uni = a.university.localeCompare(b.university);
+      if (uni !== 0) return uni;
+      return a.number.localeCompare(b.number);
     })
-    .map((course) => <Course data={course} key={course.title} />);
+    .map((course) => (
+      <Course
+        data={course}
+        key={`${course.university}-${course.number}-${course.title}`}
+      />
+    ));
 }
 
 export default function Courses({ data }: CoursesProps) {

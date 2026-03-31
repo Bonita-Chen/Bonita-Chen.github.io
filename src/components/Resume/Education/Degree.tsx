@@ -1,24 +1,8 @@
-import dayjs from 'dayjs';
-
 import type { Degree as DegreeType } from '@/data/resume/degrees';
+import { formatDateRange } from '@/lib/dates';
 
 interface DegreeProps {
   data: DegreeType;
-}
-
-function formatDateRange(startDate?: string, endDate?: string, year?: number) {
-  if (!startDate || !endDate) {
-    return String(year ?? '');
-  }
-
-  const start = dayjs(startDate);
-  const end = dayjs(endDate);
-
-  if (start.year() === end.year()) {
-    return `${start.format('MMM')} – ${end.format('MMM YYYY')}`;
-  }
-
-  return `${start.format('MMM YYYY')} – ${end.format('MMM YYYY')}`;
 }
 
 export default function Degree({ data }: DegreeProps) {

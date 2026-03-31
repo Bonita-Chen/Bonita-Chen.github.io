@@ -8,6 +8,8 @@ export interface Position {
   startDate: string;
   endDate?: string;
   subtitleSuffix?: string;
+  supervisorName?: string;
+  supervisorUrl?: string;
   summary?: string;
   highlights?: string[];
 }
@@ -30,7 +32,9 @@ const work: Position[] = [
     position: 'Research Assistant',
     url: 'https://cla.umn.edu/heller-hurwicz',
     startDate: '2025-06-01',
-    subtitleSuffix: 'Minneapolis, MN · Supervisor: Anran Li, Ph.D.',
+    subtitleSuffix: 'Minneapolis, MN',
+    supervisorName: 'Anran Li, Ph.D.',
+    supervisorUrl: 'https://sites.google.com/view/anranli/home',
     highlights: [
       'Built reproducible Python and Stata pipelines for approximately 2.5 million administrative records, including string standardization, entity resolution, and quality diagnostics.',
       'Compiled AI adoption panel data for roughly 900 hospital systems with structured source validation and timing variables for downstream analysis.',

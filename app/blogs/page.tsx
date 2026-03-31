@@ -20,9 +20,6 @@ export default function BlogsPage() {
       <article className="blogs-page">
         <header className="blogs-header fade-in">
           <h1 className="page-title">Blogs</h1>
-          <p className="page-subtitle">
-            Writing on work, academics, life, and the ideas around them.
-          </p>
         </header>
 
         <div className="fade-in stagger-1">

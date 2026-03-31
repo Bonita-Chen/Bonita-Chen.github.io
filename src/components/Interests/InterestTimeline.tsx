@@ -199,6 +199,19 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
     scrollRef.current?.releasePointerCapture(e.pointerId);
   }
 
+  function handleKeyDown(e: React.KeyboardEvent) {
+    const el = scrollRef.current;
+    if (!el) return;
+    const step = 80;
+    if (e.key === 'ArrowLeft') {
+      el.scrollLeft -= step;
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+      el.scrollLeft += step;
+      e.preventDefault();
+    }
+  }
+
   return (
     <section
       className="gantt-layout"
@@ -222,6 +235,8 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
               className="gantt-label"
               onMouseEnter={() => setHoveredRange(range)}
               onMouseLeave={() => setHoveredRange(null)}
+              onFocus={() => setHoveredRange(range)}
+              onBlur={() => setHoveredRange(null)}
             >
               <span aria-hidden="true">{interest.icon}</span>
               {interest.name}
@@ -238,6 +253,10 @@ export default function InterestTimeline({ interests }: InterestTimelineProps) {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="region"
+        aria-label="Timeline — use arrow keys to scroll"
       >
         <div className="gantt-timeline-inner">
           {/* Month header */}

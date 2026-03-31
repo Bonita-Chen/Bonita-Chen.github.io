@@ -243,7 +243,7 @@
 
 .post-cover {
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
 }
 

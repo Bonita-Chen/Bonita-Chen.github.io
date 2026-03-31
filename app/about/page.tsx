@@ -18,9 +18,6 @@ export default function AboutPage() {
       <section className="about-page">
         <header className="about-header fade-in">
           <h1 className="page-title">About</h1>
-          <p className="page-subtitle">
-            A bit more about me beyond the resume.
-          </p>
         </header>
         <div className="fade-in stagger-1">
           <AboutContent markdown={aboutMarkdown} />

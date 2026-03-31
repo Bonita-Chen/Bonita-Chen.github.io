@@ -156,14 +156,14 @@
 /* Floating card with subtle glow */
 .contact-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   overflow: visible;
 }
 
 .contact-card-glow {
   position: absolute;
   inset: -2px;
-  border-radius: 18px;
+  border-radius: calc(var(--radius-lg) + 2px);
   background: linear-gradient(
     135deg,
     var(--color-accent) 0%,
@@ -184,7 +184,7 @@
   position: relative;
   z-index: 1;
   background: var(--color-bg-alt);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
   text-align: center;
 }
@@ -214,7 +214,7 @@
   width: 2.9rem;
   height: 2.9rem;
   border: 1px solid var(--color-border);
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: var(--color-bg-alt);
   color: var(--color-fg-light);
   transition:
@@ -285,7 +285,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--color-bg);
   color: var(--color-fg);
   font-size: 1.1rem;
@@ -299,7 +299,7 @@
 
 .contact-card-inner .icons li a:hover {
   border-color: var(--color-accent);
-  color: #fff;
+  color: var(--color-white);
   background: var(--color-accent);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);

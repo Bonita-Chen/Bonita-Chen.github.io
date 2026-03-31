@@ -184,7 +184,7 @@
 }
 
 .admin-text-button--danger:hover {
-  color: #b64d5f;
+  color: var(--color-danger);
 }
 
 .admin-workspace {

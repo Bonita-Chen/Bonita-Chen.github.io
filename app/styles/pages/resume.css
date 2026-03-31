@@ -132,11 +132,21 @@
   margin: 0;
 }
 
-.resume-page .references p {
+.references-text {
   color: var(--color-fg-light);
   font-size: 0.875rem;
   line-height: 1.6;
   text-align: left;
+}
+
+.references-link {
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.references-link:hover {
+  color: var(--color-fg-bold);
 }
 
 @supports (color: color-mix(in srgb, white 50%, transparent)) {

@@ -32,47 +32,20 @@ export default function Hero() {
           <span className="hero-highlight">
             University of Minnesota, Twin Cities
           </span>
-          .
-          <span className="hero-tagline-break">
-            Passionate about bridging analytics with real-world impact.
-          </span>
+          . Passionate about bridging analytics with real-world impact.
         </p>
 
-        <div className="hero-chips fade-in stagger-3">
-          <span className="hero-chip">
-            🎓 UMN Twin Cities
-            <span className="hero-chip-tooltip">
-              <span className="hero-chip-tooltip-item">
-                • Economics B.S. &amp; Statistics minor
-              </span>
-              <span className="hero-chip-tooltip-item">
-                • Graduating in May, 2026
-              </span>
-            </span>
+        <p className="hero-facts fade-in stagger-3">
+          <span>🎓 UMN Twin Cities</span>
+          <span className="hero-facts-dot" aria-hidden="true">
+            ·
           </span>
-          <span className="hero-chip">
-            📊 Research &amp; Internship
-            <span className="hero-chip-tooltip">
-              <span className="hero-chip-tooltip-item">
-                • Research @ Heller-Hurwicz Economics Institute
-              </span>
-              <span className="hero-chip-tooltip-item">
-                • Internships @ Goat Consulting &amp; Bio-Techne
-              </span>
-            </span>
+          <span>📊 Research &amp; Internship</span>
+          <span className="hero-facts-dot" aria-hidden="true">
+            ·
           </span>
-          <span className="hero-chip">
-            📍 Minneapolis, MN
-            <span className="hero-chip-tooltip">
-              <span className="hero-chip-tooltip-item">
-                • Based in Minneapolis since 2024
-              </span>
-              <span className="hero-chip-tooltip-item">
-                • Open to opportunities nationwide
-              </span>
-            </span>
-          </span>
-        </div>
+          <span>📍 Minneapolis, MN</span>
+        </p>
 
         <div className="hero-cta fade-in stagger-4">
           <Link href="/about" className="button button-primary">

@@ -98,7 +98,7 @@
   width: 2.85rem;
   height: 2.85rem;
   border: 1px solid var(--color-border);
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: var(--color-bg-alt);
   color: var(--color-fg-light);
   transition:

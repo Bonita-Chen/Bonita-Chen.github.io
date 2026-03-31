@@ -21,9 +21,6 @@ export default function ProjectsPage() {
       <section className="projects-page">
         <header className="projects-header fade-in">
           <h1 className="page-title">Projects</h1>
-          <p className="page-subtitle">
-            Research, dashboards, strategy work, and student-led experiments
-          </p>
         </header>
 
         {featuredProjects.length > 0 && (

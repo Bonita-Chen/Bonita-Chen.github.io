@@ -1,27 +1,10 @@
-import dayjs from 'dayjs';
-
 import type { Position } from '@/data/resume/work';
+import { formatDateRange } from '@/lib/dates';
 
 import JobSummary from './JobSummary';
 
 interface JobProps {
   data: Position;
-}
-
-function formatDateRange(startDate: string, endDate?: string) {
-  const start = dayjs(startDate);
-
-  if (!endDate) {
-    return `${start.format('MMM YYYY')} – Present`;
-  }
-
-  const end = dayjs(endDate);
-
-  if (start.year() === end.year()) {
-    return `${start.format('MMM')} – ${end.format('MMM YYYY')}`;
-  }
-
-  return `${start.format('MMM YYYY')} – ${end.format('MMM YYYY')}`;
 }
 
 export default function Job({ data }: JobProps) {
@@ -32,6 +15,8 @@ export default function Job({ data }: JobProps) {
     startDate,
     endDate,
     subtitleSuffix,
+    supervisorName,
+    supervisorUrl,
     summary,
     highlights,
   } = data;
@@ -45,6 +30,16 @@ export default function Job({ data }: JobProps) {
       <p className="resume-item-subtitle role">
         <a href={url}>{name}</a>
         {subtitleSuffix ? <> · {subtitleSuffix}</> : null}
+        {supervisorName ? (
+          <>
+            {' · Supervisor: '}
+            {supervisorUrl ? (
+              <a href={supervisorUrl}>{supervisorName}</a>
+            ) : (
+              supervisorName
+            )}
+          </>
+        ) : null}
       </p>
       {summary && !highlights?.length ? <JobSummary summary={summary} /> : null}
       {highlights?.length ? (

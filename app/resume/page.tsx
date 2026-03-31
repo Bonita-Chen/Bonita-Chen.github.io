@@ -23,7 +23,6 @@ export default function ResumePage() {
       <section className="resume-page">
         <header className="resume-header fade-in">
           <h1 className="resume-title">Resume</h1>
-          <p className="resume-summary">Experience, education, and skills.</p>
         </header>
 
         <ResumeNav />

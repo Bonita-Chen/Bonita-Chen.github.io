@@ -63,6 +63,8 @@
   /* ===================
      SEMANTIC COLORS
      =================== */
+  --color-danger: #b64d5f;
+  --color-danger-hover: #9e3a4c;
   --color-white: #fff;
   --color-black: #000;
   --color-overlay-light: rgba(255, 255, 255, 0.15);
