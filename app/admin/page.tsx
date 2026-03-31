@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
 
-import { auth } from '@/auth';
-import AdminSessionProvider from '@/components/Admin/AdminSessionProvider';
 import AdminStudio from '@/components/Admin/AdminStudio';
 import PageWrapper from '@/components/Template/PageWrapper';
 import { aboutCards, aboutMarkdown } from '@/data/about';
-import {
-  editableFiles,
-  githubRepoSlug,
-  onlineAdminSaveConfigured,
-  repoBranch,
-} from '@/data/admin';
+import { editableFiles, githubRepoSlug, repoBranch } from '@/data/admin';
 import { blogCollections, blogTagLabels } from '@/data/blogs';
 import interests from '@/data/interests';
 import { createPageMetadata } from '@/lib/metadata';
@@ -23,8 +16,7 @@ export const metadata: Metadata = createPageMetadata({
   path: '/admin/',
 });
 
-export default async function AdminPage() {
-  const session = await auth();
+export default function AdminPage() {
   const posts = getAllPosts();
 
   return (
@@ -38,20 +30,17 @@ export default async function AdminPage() {
           </p>
         </header>
 
-        <AdminSessionProvider session={session}>
-          <AdminStudio
-            initialAboutMarkdown={aboutMarkdown}
-            initialAboutCards={aboutCards}
-            initialPosts={posts}
-            initialCollections={blogCollections}
-            initialTagLabels={blogTagLabels}
-            initialInterests={interests}
-            editableFiles={editableFiles}
-            githubRepoSlug={githubRepoSlug}
-            onlineSaveConfigured={onlineAdminSaveConfigured}
-            repoBranch={repoBranch}
-          />
-        </AdminSessionProvider>
+        <AdminStudio
+          initialAboutMarkdown={aboutMarkdown}
+          initialAboutCards={aboutCards}
+          initialPosts={posts}
+          initialCollections={blogCollections}
+          initialTagLabels={blogTagLabels}
+          initialInterests={interests}
+          editableFiles={editableFiles}
+          githubRepoSlug={githubRepoSlug}
+          repoBranch={repoBranch}
+        />
       </section>
     </PageWrapper>
   );

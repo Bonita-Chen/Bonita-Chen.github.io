@@ -21,8 +21,6 @@ Personal website for Baojia "Bonita" Chen, adapted from [`mldangelo/personal-sit
 - React
 - TypeScript
 - Tailwind CSS v4
-- NextAuth (GitHub login for `/admin`)
-- GitHub Git Data API for server-side content saves
 
 ## Visual Direction
 
@@ -80,44 +78,33 @@ npm test
 
 ## Admin Studio
 
-`/admin` now supports authenticated online saves.
+`/admin` is a static visual editor designed for GitHub Pages.
 
 What it does:
 
-- sign in with GitHub
-- restrict writes to allowlisted GitHub usernames
-- save About, Blogs, Interests, markdown, and uploaded assets back to the repository
-- create a real Git commit through the GitHub API
+- edits About, Blogs, and Interests in the browser
+- stores draft state in local storage
+- exports snapshot JSON and generated source snippets
+- links you to the matching GitHub files for final handoff
 
-What it needs:
+It does not save directly to the live site. The publish flow is still:
 
-- `AUTH_SECRET`
-- `AUTH_GITHUB_ID`
-- `AUTH_GITHUB_SECRET`
-- `GITHUB_REPO_WRITE_TOKEN`
-- `GITHUB_ADMIN_LOGINS`
-- `NEXT_PUBLIC_GITHUB_REPO_SLUG`
-- `NEXT_PUBLIC_GITHUB_REPO_BRANCH`
-
-See [`.env.example`](./.env.example).
+1. edit in `/admin`
+2. copy or download the generated content
+3. update the repository files
+4. push to `main`
 
 ## Deployment
 
-Because `/admin` now depends on auth and server routes, this project is no longer a pure static GitHub Pages export.
+This project is configured for GitHub Pages static export.
 
-Use a server-capable host such as:
+Recommended setup:
 
-- Vercel
-- a Node server
-- any platform that can run Next.js route handlers
-
-Recommended production setup:
-
-1. Deploy the Next.js app to Vercel
-2. Add the environment variables from `.env.example`
-3. Configure a GitHub OAuth app with the deployed `/api/auth/callback/github` URL
-4. Set `GITHUB_REPO_WRITE_TOKEN` to a token with repository write access
-5. Sign in through `/admin` and save changes directly to the repo
+1. Keep the repository name as `Bonita-Chen.github.io`
+2. Set GitHub Pages source to `GitHub Actions`
+3. Push to `main`
+4. Wait for the `CI` and `Deploy to GitHub Pages` workflows to pass
+5. Open `https://bonita-chen.github.io/`
 
 ## Repository Metadata
 

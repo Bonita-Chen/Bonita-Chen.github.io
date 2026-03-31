@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   // Allow dev server access from local network (mobile testing, etc.)
   allowedDevOrigins: ['http://192.168.*.*:3000'],
 
+  output: 'export',
+
   images: {
     unoptimized: true,
   },

@@ -27,23 +27,6 @@ export const githubRepoSlug =
   process.env.GITHUB_REPOSITORY?.trim() ||
   extractRepoSlug(repositoryUrl);
 
-export const githubRepoWriteToken =
-  process.env.GITHUB_REPO_WRITE_TOKEN?.trim() || '';
-
-export const adminAllowedLogins = (
-  process.env.GITHUB_ADMIN_LOGINS?.split(',') || []
-)
-  .map((login) => login.trim().toLowerCase())
-  .filter(Boolean);
-
-export const onlineAdminSaveConfigured = Boolean(
-  githubRepoSlug &&
-    githubRepoWriteToken &&
-    process.env.AUTH_SECRET?.trim() &&
-    process.env.AUTH_GITHUB_ID?.trim() &&
-    process.env.AUTH_GITHUB_SECRET?.trim(),
-);
-
 export const editableFiles = [
   {
     title: 'Homepage Hero',
