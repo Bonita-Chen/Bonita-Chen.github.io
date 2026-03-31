@@ -15,7 +15,7 @@ const routes: Route[] = [
     path: '/about',
   },
   {
-    label: 'Resume',
+    label: 'R\u00e9sum\u00e9',
     path: '/resume',
   },
   {

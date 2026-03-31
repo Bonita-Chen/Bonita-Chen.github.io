@@ -37,6 +37,7 @@
 @import './styles/pages/writing.css';
 @import './styles/pages/interests.css';
 @import './styles/pages/content.css';
+@import './styles/pages/projects.css';
 @import './styles/pages/admin.css';
 
 /* Utilities & Animations */

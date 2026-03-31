@@ -46,12 +46,23 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.28);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.34);
   --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.42);
+
+  /* Glass / frosted */
+  --glass-bg: rgba(15, 25, 35, 0.58);
+  --glass-blur: 16px;
+  --glass-border: rgba(173, 209, 243, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+
+  /* Gradient blobs - toned down for dark */
+  --color-blob-blue: rgba(67, 99, 140, 0.18);
+  --color-blob-lavender: rgba(140, 120, 200, 0.12);
+  --color-blob-mint: rgba(100, 180, 170, 0.1);
 }
 
 /* Dark mode component overrides */
 [data-theme='dark'] .site-header {
-  background-color: color-mix(in srgb, var(--color-bg-alt) 90%, transparent);
-  border-bottom-color: var(--color-border);
+  background-color: var(--glass-bg);
+  border-bottom-color: var(--glass-border);
 }
 
 [data-theme='dark'] .nav-link:hover {
@@ -72,9 +83,9 @@
 }
 
 [data-theme='dark'] .resume-nav {
-  background: rgba(22, 34, 49, 0.8);
-  border-color: var(--color-border);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 [data-theme='dark'] .resume-nav-link {
@@ -162,7 +173,7 @@
 [data-theme='dark'] .post-cover,
 [data-theme='dark'] .project-card,
 [data-theme='dark'] .admin-panel-card {
-  background: rgba(22, 34, 49, 0.78);
+  background: var(--glass-bg);
 }
 
 [data-theme='dark'] .interest-detail,

@@ -70,4 +70,11 @@
   --color-overlay-light: rgba(255, 255, 255, 0.15);
   --color-overlay-dark: rgba(0, 0, 0, 0.15);
   --color-overlay-darker: rgba(0, 0, 0, 0.3);
+
+  /* ===================
+     GRADIENT BLOB COLORS
+     =================== */
+  --color-blob-blue: rgba(173, 209, 243, 0.28);
+  --color-blob-lavender: rgba(192, 176, 240, 0.2);
+  --color-blob-mint: rgba(170, 225, 215, 0.18);
 }

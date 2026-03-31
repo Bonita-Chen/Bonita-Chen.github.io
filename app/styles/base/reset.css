@@ -77,16 +77,15 @@
     contain: strict;
   }
 
-  /* Subtle radial gradient for depth - GPU-accelerated layer */
+  /* Diffused gradient blobs for acetic-acid aesthetic - GPU-accelerated */
   body::after {
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(
-      ellipse 80% 52% at 50% 0%,
-      color-mix(in srgb, var(--color-accent-secondary) 10%, transparent) 0%,
-      transparent 58%
-    );
+    background:
+      radial-gradient(ellipse 60% 45% at 15% 8%, var(--color-blob-lavender) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 50% at 85% 20%, var(--color-blob-mint) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 52% at 50% 0%, var(--color-blob-blue) 0%, transparent 58%);
     pointer-events: none;
     z-index: -1;
     transform: translateZ(0);

@@ -39,7 +39,7 @@ describe('Navigation', () => {
     const { container } = render(<Navigation />);
 
     expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /resume/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /r.sum./i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /blogs/i })).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /interests/i }),
@@ -53,7 +53,7 @@ describe('Navigation', () => {
     );
     expect(labels).toEqual([
       'About',
-      'Resume',
+      'R\u00e9sum\u00e9',
       'Projects',
       'Blogs',
       'Interests',
@@ -83,7 +83,7 @@ describe('Navigation', () => {
     mockPathname.mockReturnValue('/resume/skills');
     render(<Navigation />);
 
-    const resumeLink = screen.getByRole('link', { name: /resume/i });
+    const resumeLink = screen.getByRole('link', { name: /r.sum./i });
     expect(resumeLink).toHaveClass('active');
   });
 

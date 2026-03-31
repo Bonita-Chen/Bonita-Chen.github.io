@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string;
   title: string;
   subtitle?: string;
   link?: string;
@@ -12,6 +13,7 @@ export interface Project {
 
 const data: Project[] = [
   {
+    slug: 'ai-adoption-healthcare-panel',
     title: 'AI Adoption in Healthcare Panel',
     subtitle: 'Research infrastructure for hospital-system analysis',
     emoji: '🧬',
@@ -21,6 +23,7 @@ const data: Project[] = [
     featured: true,
   },
   {
+    slug: 'power-bi-ar-dashboards',
     title: 'Power BI AR Dashboards',
     subtitle: 'Bio-Techne internship project',
     emoji: '📊',
@@ -30,6 +33,7 @@ const data: Project[] = [
     featured: true,
   },
   {
+    slug: 'reevaluating-bmi-standards',
     title: 'Reevaluating BMI Standards',
     subtitle: 'UMN Public Health Equity Data Challenge',
     emoji: '🏥',
@@ -39,6 +43,7 @@ const data: Project[] = [
     featured: true,
   },
   {
+    slug: 'college-fed-challenge-gdp-projections',
     title: 'College Fed Challenge GDP Projections',
     subtitle: 'Team presentation and policy defense',
     emoji: '🏦',
@@ -47,6 +52,7 @@ const data: Project[] = [
     tech: ['Time Series', 'FRED', 'Presentation'],
   },
   {
+    slug: 'ai-hardware-vc-strategy',
     title: 'AI Hardware VC Strategy',
     subtitle: 'Carlson Ventures Enterprise',
     emoji: '🤖',
@@ -55,6 +61,7 @@ const data: Project[] = [
     tech: ['Market Research', 'Strategy', 'Venture Analysis'],
   },
   {
+    slug: 'vr-self-defense-training-proposal',
     title: 'VR Self-Defense Training Proposal',
     subtitle: 'Girls Who Code at UMN',
     emoji: '🕶️',

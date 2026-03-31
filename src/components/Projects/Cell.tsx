@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { Project } from '@/data/projects';
 import { PROJECT_IMAGE } from '@/lib/utils';
@@ -9,11 +10,21 @@ interface CellProps {
 }
 
 export default function Cell({ data }: CellProps) {
-  const { title, subtitle, link, image, emoji, date, desc, tech, featured } =
-    data;
+  const {
+    slug,
+    title,
+    subtitle,
+    link,
+    image,
+    emoji,
+    date,
+    desc,
+    tech,
+    featured,
+  } = data;
 
-  const hasLink = Boolean(link);
   const hasImage = Boolean(image);
+  const detailHref = `/projects/${slug}`;
 
   const cardContent = (
     <>
@@ -60,17 +71,30 @@ export default function Cell({ data }: CellProps) {
     </>
   );
 
-  return (
-    <article
-      className={`project-card ${featured ? 'project-card--featured' : ''} ${!hasLink ? 'project-card--static' : ''}`}
-    >
-      {hasLink ? (
-        <a href={link} className="project-card-link">
+  if (link) {
+    return (
+      <article
+        className={`project-card ${featured ? 'project-card--featured' : ''}`}
+      >
+        <a
+          href={link}
+          className="project-card-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {cardContent}
         </a>
-      ) : (
-        <div className="project-card-static">{cardContent}</div>
-      )}
+      </article>
+    );
+  }
+
+  return (
+    <article
+      className={`project-card ${featured ? 'project-card--featured' : ''}`}
+    >
+      <Link href={detailHref} className="project-card-link">
+        {cardContent}
+      </Link>
     </article>
   );
 }
