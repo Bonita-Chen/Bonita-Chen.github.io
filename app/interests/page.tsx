@@ -43,6 +43,12 @@ function getProgress(
   return Math.min(100, Math.round((elapsed / targetMonths) * 100));
 }
 
+function appendFrom(url: string): string {
+  if (!url.startsWith('/')) return url;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}from=interests`;
+}
+
 function InterestEntryCard({
   href,
   children,
@@ -56,7 +62,10 @@ function InterestEntryCard({
 
   if (href.startsWith('/')) {
     return (
-      <Link href={href} className="interest-entry interest-entry--link">
+      <Link
+        href={appendFrom(href)}
+        className="interest-entry interest-entry--link"
+      >
         {children}
       </Link>
     );

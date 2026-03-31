@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ArticleSchema } from '@/components/Schema';
+import BackLink from '@/components/Template/BackLink';
 import PageWrapper from '@/components/Template/PageWrapper';
 import { blogTagLabels } from '@/data/blogs';
-import { getPostBySlug, getPostSlugs } from '@/lib/posts';
+import { getAllPosts, getPostBySlug, getPostSlugs } from '@/lib/posts';
 import { AUTHOR_NAME, formatDate, PORTRAIT_IMAGE, SITE_URL } from '@/lib/utils';
 
 interface PageProps {
@@ -69,14 +70,22 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const allPosts = getAllPosts();
+  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const nextPost =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
   return (
     <PageWrapper>
       <ArticleSchema post={post} />
       <article className="post-page">
         <header className="post-header">
-          <Link href="/blogs" className="post-back-link">
-            ← Back to Blogs
-          </Link>
+          <BackLink
+            defaultHref="/blogs"
+            defaultLabel={'\u2190 Back to Blogs'}
+            className="post-back-link"
+          />
           <div className="post-date-row">
             <time className="post-date" dateTime={post.date}>
               {formatDate(post.date)}
@@ -130,6 +139,31 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.content}
           </Markdown>
         </div>
+
+        <nav className="post-nav" aria-label="Post navigation">
+          {prevPost ? (
+            <Link
+              href={`/blogs/${prevPost.slug}`}
+              className="post-nav-link post-nav-link--prev"
+            >
+              <span className="post-nav-label">&larr; Previous</span>
+              <span className="post-nav-title">{prevPost.title}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {nextPost ? (
+            <Link
+              href={`/blogs/${nextPost.slug}`}
+              className="post-nav-link post-nav-link--next"
+            >
+              <span className="post-nav-label">Next &rarr;</span>
+              <span className="post-nav-title">{nextPost.title}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+        </nav>
       </article>
     </PageWrapper>
   );

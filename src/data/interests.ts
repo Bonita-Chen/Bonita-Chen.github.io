@@ -76,7 +76,7 @@ const interests: Interest[] = [
           'Designed AR dashboards that scaled from U.S. reporting to EMEA coverage and made self-serve monitoring easier.',
         date: '2025-08-01',
         tags: ['Power BI', 'DAX', 'Reporting'],
-        href: '/projects/',
+        href: '/projects/power-bi-ar-dashboards/',
       },
       {
         type: 'Project',

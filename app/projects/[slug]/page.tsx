@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import BackLink from '@/components/Template/BackLink';
 import PageWrapper from '@/components/Template/PageWrapper';
 import {
   getAllProjects,
@@ -80,9 +81,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <PageWrapper>
       <article className="project-detail">
         <header className="project-detail-header">
-          <Link href="/projects" className="project-detail-back">
-            &larr; Back to Projects
-          </Link>
+          <BackLink
+            defaultHref="/projects"
+            defaultLabel={'\u2190 Back to Projects'}
+            className="project-detail-back"
+          />
 
           <div className="project-detail-meta">
             <time className="project-detail-date" dateTime={project.date}>
