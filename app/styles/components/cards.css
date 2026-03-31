@@ -148,9 +148,9 @@
 .project-card-art-label {
   max-width: 9rem;
   text-align: right;
-  font-family: var(--font-sans);
-  font-size: 1.05rem;
-  font-weight: 650;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
   line-height: 1.1;
   color: var(--color-fg-bold);
 }
@@ -254,7 +254,7 @@
 }
 
 .jobs-container header h4 {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 650;
   margin: 0;
   line-height: 1.4;
@@ -305,7 +305,7 @@
 
 .resume-item-title {
   color: var(--color-fg-bold);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 650;
 }
 
@@ -362,7 +362,7 @@
 .degree-container .degree {
   margin-bottom: 0;
   color: var(--color-fg-bold);
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 650;
   letter-spacing: 0;
   text-transform: none;

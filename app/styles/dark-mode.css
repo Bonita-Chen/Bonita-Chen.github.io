@@ -1,6 +1,6 @@
 /* ========================================
    DARK MODE
-   Supports both system preference and manual toggle
+   Matches the index.html dark theme exactly
    ======================================== */
 
 /* Manual dark mode toggle - token overrides */
@@ -20,20 +20,20 @@
   --color-overlay-dark: rgba(0, 0, 0, 0.3);
   --color-overlay-darker: rgba(0, 0, 0, 0.5);
 
-  /* Accent colors — use a deeper blue so accent-as-bg + white text stays readable */
-  --color-accent: #6ba3d6;
-  --color-accent-hover: #add1f3;
-  --color-accent-light: rgba(107, 163, 214, 0.12);
-  --color-accent-subtle: rgba(107, 163, 214, 0.07);
-  --color-accent-border: rgba(107, 163, 214, 0.25);
-  --color-accent-underline: rgba(107, 163, 214, 0.35);
+  /* Accent colors — matching index.html */
+  --color-accent: #add1f3;
+  --color-accent-hover: #dde7f3;
+  --color-accent-light: rgba(173, 209, 243, 0.1);
+  --color-accent-subtle: rgba(173, 209, 243, 0.05);
+  --color-accent-border: rgba(173, 209, 243, 0.2);
+  --color-accent-underline: rgba(173, 209, 243, 0.3);
 
   /* Borders */
   --color-border: rgba(173, 209, 243, 0.1);
   --color-border-bg: rgba(173, 209, 243, 0.06);
   --color-border-alt: rgba(173, 209, 243, 0.18);
 
-  /* Semantic surface tokens (eliminates hardcoded rgba in component overrides) */
+  /* Semantic surface tokens */
   --color-surface-subtle: rgba(173, 209, 243, 0.05);
   --color-surface-hover: rgba(173, 209, 243, 0.04);
   --color-surface-active: rgba(173, 209, 243, 0.14);
@@ -48,7 +48,7 @@
   --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.42);
 }
 
-/* Dark mode component overrides using semantic tokens */
+/* Dark mode component overrides */
 [data-theme='dark'] .site-header {
   background-color: color-mix(in srgb, var(--color-bg-alt) 90%, transparent);
   border-bottom-color: var(--color-border);
@@ -86,8 +86,6 @@
   filter: brightness(0.85);
 }
 
-/* Resume nav - dark mode uses same styles, just inherits dark tokens */
-
 /* Job cards in dark mode */
 [data-theme='dark'] .jobs-container {
   background: transparent;
@@ -110,7 +108,7 @@
   border-color: var(--color-border-alt);
 }
 
-/* Skill buttons/tags */
+/* Skill buttons/tags — default state */
 [data-theme='dark'] .skillbutton,
 [data-theme='dark'] .skill-tag {
   background: var(--color-bg-alt);
@@ -118,11 +116,17 @@
   color: var(--color-accent);
 }
 
+/*
+  CONTRAST FIX: #ADD1F3 is a LIGHT blue, so when it's used as a
+  background (hover / active states), text must be DARK, not white.
+  Use var(--color-bg) (#0f1923) for maximum contrast.
+*/
 [data-theme='dark'] .skillbutton:hover,
+[data-theme='dark'] .skill-tag:hover,
 [data-theme='dark'] .skillbutton-active {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-bg);
 }
 
 [data-theme='dark'] .daterange,
@@ -153,7 +157,10 @@
   background: rgba(22, 34, 49, 0.78);
 }
 
-/* Active / solid-fill states: deeper accent (#6ba3d6) as bg pairs with white text */
+/*
+  All elements that use accent (#ADD1F3) as solid background
+  need dark text (--color-bg) for contrast.
+*/
 [data-theme='dark'] .blogs-filter.active,
 [data-theme='dark'] .blogs-chip.active,
 [data-theme='dark'] .resume-nav-link.active,
@@ -163,25 +170,20 @@
 [data-theme='dark'] .admin-mini-button:hover,
 [data-theme='dark'] .admin-tag-pill--active,
 [data-theme='dark'] .admin-tag-pill:hover {
-  color: var(--color-white);
+  color: var(--color-bg);
 }
 
-/* Skill tags/buttons hover: white text on deeper accent */
-[data-theme='dark'] .skill-tag:hover {
-  color: var(--color-white);
-}
-
-/* Interest entry type badges and tags: ensure readable in dark mode */
+/* Interest entry badges and tags in dark mode */
 [data-theme='dark'] .interest-entry-type {
-  background: rgba(107, 163, 214, 0.15);
+  background: rgba(173, 209, 243, 0.12);
 }
 
 [data-theme='dark'] .interest-entry-tags span {
-  background: rgba(107, 163, 214, 0.12);
+  background: rgba(173, 209, 243, 0.08);
   color: var(--color-accent);
 }
 
 [data-theme='dark'] .tech-tag {
-  background: rgba(107, 163, 214, 0.1);
+  background: rgba(173, 209, 243, 0.08);
   color: var(--color-accent);
 }

@@ -36,18 +36,18 @@
 .admin-studio-header h2,
 .admin-panel-card h3 {
   margin: 0 0 0.25rem;
-  font-family: var(--font-sans);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 500;
   line-height: 1.2;
   color: var(--color-fg-bold);
 }
 
 .admin-studio-header h2 {
-  font-size: 1.4rem;
+  font-size: 1.75rem;
 }
 
 .admin-panel-card h3 {
-  font-size: 1.1rem;
+  font-size: 1.35rem;
 }
 
 .admin-studio-header p,
@@ -399,9 +399,9 @@
 
 .admin-about-preview-card h4 {
   margin: 0 0 0.35rem;
-  font-family: var(--font-sans);
-  font-size: 1.05rem;
-  font-weight: 650;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--color-fg-bold);
 }
 

@@ -233,10 +233,10 @@
 
 .post-title {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  font-weight: 750;
-  line-height: 1.12;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 500;
+  line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--color-fg-bold);
 }
@@ -262,18 +262,18 @@
 .prose h3,
 .prose h4 {
   margin: 1.75rem 0 0.65rem;
-  font-family: var(--font-sans);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 500;
   line-height: 1.15;
   color: var(--color-fg-bold);
 }
 
 .prose h2 {
-  font-size: 1.35rem;
+  font-size: 1.65rem;
 }
 
 .prose h3 {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
 }
 
 .prose h4 {
