@@ -126,15 +126,6 @@ const interests: Interest[] = [
         tags: ['Blogs', 'Data Notes', 'Research'],
         href: '/blogs/building-data-pipelines-for-2-5m-records/',
       },
-      {
-        type: 'Blog',
-        title: 'Finding Balance: School, Work, and Self',
-        description:
-          'Used personal writing to think more honestly about pace, ambition, and sustainability.',
-        date: '2026-02-10',
-        tags: ['Reflection', 'Life', 'Writing'],
-        href: '/blogs/finding-balance-school-work-self/',
-      },
     ],
   },
   {
@@ -148,15 +139,6 @@ const interests: Interest[] = [
     targetMonths: 12,
     accent: '#ADD1F3',
     entries: [
-      {
-        type: 'Blog',
-        title: 'Minneapolis in Autumn — A Photo Diary',
-        description:
-          'Collected a few favorite views from around campus and the city during peak fall color.',
-        date: '2025-10-30',
-        tags: ['Photo Diary', 'Life', 'Minneapolis'],
-        href: '/blogs/minneapolis-autumn-photo-diary/',
-      },
       {
         type: 'Course',
         title: 'Composition and Lighting Self-Study',

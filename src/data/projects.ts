@@ -34,12 +34,18 @@ const data: Project[] = [
   },
   {
     slug: 'reevaluating-bmi-standards',
-    title: 'Reevaluating BMI Standards',
+    title: 'Reevaluating BMI Standards for Health Equity',
     subtitle: 'UMN Public Health Equity Data Challenge',
     emoji: '🏥',
     date: '2024-11-01',
-    desc: 'Led a team using R, logistic regression, and visualization to show BMI thresholds vary across racial groups.',
-    tech: ['R', 'Logistic Regression', 'Public Health'],
+    desc: 'Led a team using R, logistic regression, and Chi-Square analysis to demonstrate that BMI thresholds for hypertension and diabetes screening vary significantly across racial groups.',
+    tech: [
+      'R',
+      'Logistic Regression',
+      'Chi-Square Test',
+      'ggplot2',
+      'Public Health',
+    ],
     featured: true,
   },
   {

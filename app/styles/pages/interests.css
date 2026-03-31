@@ -100,12 +100,7 @@
 .interest-progress-fill {
   height: 100%;
   border-radius: 99px;
-  background: linear-gradient(
-    90deg,
-    var(--bar-start) 0%,
-    var(--bar-mid) 50%,
-    var(--bar-end) 100%
-  );
+  background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-mid) 50%, var(--bar-end) 100%);
   transition: width 0.6s var(--ease-out);
   box-shadow: 0 2px 8px rgba(67, 99, 140, 0.18);
 }
