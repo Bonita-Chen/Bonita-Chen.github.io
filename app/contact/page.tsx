@@ -17,24 +17,33 @@ export default function ContactPage() {
     <PageWrapper>
       <section className="contact-page">
         <header className="contact-header fade-in">
-          <h1 className="page-title">Contact</h1>
+          <h1 className="page-title">Let&apos;s Connect</h1>
           <p className="page-subtitle">
-            For research, internships, collaborations, or a thoughtful hello.
+            Whether it&apos;s about research, internships, collaborations, or
+            just a thoughtful hello — I&apos;d love to hear from you.
           </p>
         </header>
 
-        <div className="contact-content fade-in stagger-1">
-          <div className="contact-email-block">
-            <EmailLink />
-            <p className="contact-hint">Usually respond within 24 hours</p>
-          </div>
+        <div className="contact-card fade-in stagger-1">
+          <div className="contact-card-glow" aria-hidden="true" />
+          <div className="contact-card-inner">
+            <div className="contact-email-block">
+              <p className="contact-label">Send me an email</p>
+              <EmailLink />
+              <p className="contact-hint">Usually respond within 24 hours</p>
+            </div>
 
-          <div className="contact-divider">
-            <span>or find me on</span>
-          </div>
+            <div className="contact-divider">
+              <span>or find me on</span>
+            </div>
 
-          <ContactIcons />
+            <ContactIcons />
+          </div>
         </div>
+
+        <p className="contact-footer-note fade-in stagger-2">
+          Based in Minneapolis, MN — open to remote and hybrid opportunities.
+        </p>
       </section>
     </PageWrapper>
   );

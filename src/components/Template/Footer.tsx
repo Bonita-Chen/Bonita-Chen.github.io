@@ -2,7 +2,8 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <p className="footer-copy">
-        &copy; 2026 Baojia Chen. All rights reserved. Built on the{' '}
+        &copy; {new Date().getFullYear()} Baojia Chen. All rights reserved.
+        Based on the{' '}
         <a
           href="https://github.com/mldangelo/personal-site"
           target="_blank"
@@ -10,8 +11,15 @@ export default function Footer() {
         >
           personal-site
         </a>{' '}
-        template by Michael D&apos;Angelo, with visual adaptation by Jingcheng
-        Liang.
+        template by Michael D&apos;Angelo. Visual design adapted by{' '}
+        <a
+          href="https://github.com/leo-leung04/leo-leung04.github.io"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Jingcheng Liang
+        </a>
+        .
       </p>
     </footer>
   );

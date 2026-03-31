@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 import type { Degree as DegreeType } from '@/data/resume/degrees';
 
 interface DegreeProps {
@@ -5,13 +7,16 @@ interface DegreeProps {
 }
 
 export default function Degree({ data }: DegreeProps) {
+  const dateLabel =
+    data.startDate && data.endDate
+      ? `${dayjs(data.startDate).format('MMMM YYYY')} – ${dayjs(data.endDate).format('MMMM YYYY')}`
+      : String(data.year);
+
   return (
     <article className="degree-container">
       <header className="resume-item-header">
         <h4 className="degree resume-item-title">{data.degree}</h4>
-        <p className="resume-item-date">
-          <time dateTime={String(data.year)}>{data.year}</time>
-        </p>
+        <p className="daterange">{dateLabel}</p>
       </header>
       <p className="school resume-item-subtitle">
         <a href={data.link}>{data.school}</a>

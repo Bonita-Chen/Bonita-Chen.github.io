@@ -3,6 +3,8 @@ export interface Degree {
   degree: string;
   link: string;
   year: number;
+  startDate?: string;
+  endDate?: string;
 }
 
 const degrees: Degree[] = [
@@ -11,6 +13,8 @@ const degrees: Degree[] = [
     degree: 'B.S. Economics, Minor in Statistics (GPA: 3.85 / 4.0)',
     link: 'https://twin-cities.umn.edu/',
     year: 2026,
+    startDate: '2024-09-01',
+    endDate: '2026-05-01',
   },
 ];
 

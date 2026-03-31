@@ -20,13 +20,13 @@
   --color-overlay-dark: rgba(0, 0, 0, 0.3);
   --color-overlay-darker: rgba(0, 0, 0, 0.5);
 
-  /* Accent colors */
-  --color-accent: #add1f3;
-  --color-accent-hover: #dde7f3;
-  --color-accent-light: rgba(173, 209, 243, 0.1);
-  --color-accent-subtle: rgba(173, 209, 243, 0.05);
-  --color-accent-border: rgba(173, 209, 243, 0.2);
-  --color-accent-underline: rgba(173, 209, 243, 0.3);
+  /* Accent colors — use a deeper blue so accent-as-bg + white text stays readable */
+  --color-accent: #6ba3d6;
+  --color-accent-hover: #add1f3;
+  --color-accent-light: rgba(107, 163, 214, 0.12);
+  --color-accent-subtle: rgba(107, 163, 214, 0.07);
+  --color-accent-border: rgba(107, 163, 214, 0.25);
+  --color-accent-underline: rgba(107, 163, 214, 0.35);
 
   /* Borders */
   --color-border: rgba(173, 209, 243, 0.1);
@@ -119,10 +119,10 @@
 }
 
 [data-theme='dark'] .skillbutton:hover,
-[data-theme='dark'] .skill-tag:hover {
+[data-theme='dark'] .skillbutton-active {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-white);
 }
 
 [data-theme='dark'] .daterange,
@@ -151,4 +151,37 @@
 [data-theme='dark'] .interests-timeline,
 [data-theme='dark'] .admin-panel-card {
   background: rgba(22, 34, 49, 0.78);
+}
+
+/* Active / solid-fill states: deeper accent (#6ba3d6) as bg pairs with white text */
+[data-theme='dark'] .blogs-filter.active,
+[data-theme='dark'] .blogs-chip.active,
+[data-theme='dark'] .resume-nav-link.active,
+[data-theme='dark'] .admin-action-button,
+[data-theme='dark'] .admin-tab.active,
+[data-theme='dark'] .admin-tab:hover,
+[data-theme='dark'] .admin-mini-button:hover,
+[data-theme='dark'] .admin-tag-pill--active,
+[data-theme='dark'] .admin-tag-pill:hover {
+  color: var(--color-white);
+}
+
+/* Skill tags/buttons hover: white text on deeper accent */
+[data-theme='dark'] .skill-tag:hover {
+  color: var(--color-white);
+}
+
+/* Interest entry type badges and tags: ensure readable in dark mode */
+[data-theme='dark'] .interest-entry-type {
+  background: rgba(107, 163, 214, 0.15);
+}
+
+[data-theme='dark'] .interest-entry-tags span {
+  background: rgba(107, 163, 214, 0.12);
+  color: var(--color-accent);
+}
+
+[data-theme='dark'] .tech-tag {
+  background: rgba(107, 163, 214, 0.1);
+  color: var(--color-accent);
 }

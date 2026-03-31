@@ -2337,6 +2337,38 @@ export default function AdminStudio({
                       {getEstimatedInterestProgress(selectedInterest)}
                     </p>
                   </div>
+
+                  <div className="admin-stack">
+                    <p className="admin-helper-text">
+                      <strong>Gantt range:</strong> {selectedInterest.start}
+                      {' → '}
+                      {selectedInterest.ongoing
+                        ? 'Open-ended'
+                        : selectedInterest.targetMonths
+                          ? new Date(
+                              new Date(
+                                `${selectedInterest.start}T12:00:00`,
+                              ).getFullYear(),
+                              new Date(
+                                `${selectedInterest.start}T12:00:00`,
+                              ).getMonth() +
+                                selectedInterest.targetMonths -
+                                1,
+                              1,
+                            )
+                              .toISOString()
+                              .slice(0, 7)
+                          : selectedInterest.start}
+                    </p>
+                    <div
+                      style={{
+                        height: '18px',
+                        borderRadius: '4px',
+                        background: `linear-gradient(135deg, ${selectedInterest.accent}, color-mix(in srgb, ${selectedInterest.accent} 54%, white))`,
+                        width: `${Math.min(100, Math.max(15, ((selectedInterest.targetMonths || 12) / 24) * 100))}%`,
+                      }}
+                    />
+                  </div>
                 </section>
 
                 <section className="admin-panel-card">

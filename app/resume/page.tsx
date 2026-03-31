@@ -24,7 +24,7 @@ export default function ResumePage() {
   return (
     <PageWrapper>
       <section className="resume-page">
-        <header className="resume-header">
+        <header className="resume-header fade-in">
           <h1 className="resume-title">Resume</h1>
           <p className="resume-summary">
             Economics student with hands-on experience in research pipelines,
@@ -34,26 +34,28 @@ export default function ResumePage() {
           </p>
         </header>
 
-        <ResumeNav />
+        <div className="fade-in stagger-1">
+          <ResumeNav />
+        </div>
 
         <div className="resume-content">
-          <section id="experience" className="resume-section">
+          <section id="experience" className="resume-section fade-in stagger-2">
             <Experience data={work} />
           </section>
 
-          <section id="education" className="resume-section">
+          <section id="education" className="resume-section fade-in stagger-3">
             <Education data={degrees} />
           </section>
 
-          <section id="skills" className="resume-section">
+          <section id="skills" className="resume-section fade-in stagger-4">
             <Skills skills={skills} categories={categories} />
           </section>
 
-          <section id="courses" className="resume-section">
+          <section id="courses" className="resume-section fade-in stagger-5">
             <Courses data={courses} />
           </section>
 
-          <section id="references" className="resume-section">
+          <section id="references" className="resume-section fade-in stagger-6">
             <References />
           </section>
         </div>

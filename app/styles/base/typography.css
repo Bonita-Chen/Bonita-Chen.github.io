@@ -22,7 +22,7 @@
   h5,
   h6 {
     color: var(--color-fg-bold);
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--tracking-tight);
     line-height: var(--leading-tight);

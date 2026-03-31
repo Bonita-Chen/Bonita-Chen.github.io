@@ -20,7 +20,10 @@
 
 .interests-timeline {
   overflow-x: auto;
-  padding-bottom: 0.75rem;
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
 }
 
 .interests-timeline-header,
@@ -47,27 +50,60 @@
 
 .interests-timeline-months {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(var(--month-count, 15), 1fr);
 }
 
 .interests-month {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: var(--color-fg-light);
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-size: 0.58rem;
+  font-weight: 600;
   text-transform: uppercase;
   text-align: center;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0;
   border-left: 1px solid var(--color-border);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.interests-month > span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .interests-month small {
   display: block;
   margin-top: 1px;
-  font-size: 0.52rem;
+  font-size: 0.48rem;
   font-weight: 600;
-  opacity: 0.65;
+  opacity: 0.5;
+}
+
+.interests-month--jan {
+  border-left: 2px solid var(--color-accent-border);
+}
+
+.interests-month--jan small {
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.interests-month--active {
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+  border-radius: 4px;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.interests-month--active small {
+  opacity: 1;
 }
 
 .interests-row {
@@ -97,18 +133,16 @@
 
 .interests-track {
   position: relative;
-  height: 24px;
-  border-radius: 5px;
+  height: 26px;
+  border-radius: 8px;
   overflow: hidden;
-  background:
-    repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc(100% / 15 - 1px),
-      rgba(34, 60, 91, 0.08) calc(100% / 15 - 1px),
-      rgba(34, 60, 91, 0.08) calc(100% / 15)
-    ),
-    var(--color-bg-alt);
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.interests-track:hover {
+  box-shadow: var(--shadow-sm);
 }
 
 .interests-bar {
@@ -119,7 +153,7 @@
   bottom: 3px;
   display: inline-flex;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 5px;
   background: linear-gradient(
     135deg,
     var(--interest-accent),
@@ -148,14 +182,22 @@
 }
 
 .interest-detail {
-  padding: 0;
-  border-radius: 0;
+  padding: 1.75rem;
+  border-radius: 16px;
   border: 1px solid var(--color-border);
-  background: transparent;
-  box-shadow: none;
-  border-left: none;
-  border-right: none;
+  background: var(--color-bg-alt);
+  box-shadow: var(--shadow-sm);
   scroll-margin-top: calc(var(--header-height) + 2rem);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+.interest-detail:hover {
+  border-color: var(--color-accent-border);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .interest-detail-header {
@@ -163,7 +205,6 @@
   justify-content: space-between;
   gap: 1.5rem;
   margin-bottom: 1.2rem;
-  padding: 1.3rem 0 0;
 }
 
 .interest-detail-kicker {
@@ -179,8 +220,9 @@
   align-items: center;
   gap: 0.6rem;
   margin: 0 0 0.45rem;
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--color-fg-bold);
 }
 
@@ -222,7 +264,7 @@
   padding: 0.95rem 1.1rem;
   border-radius: 10px;
   border: 1px solid var(--color-border);
-  background: var(--color-bg-alt);
+  background: var(--color-bg);
   text-decoration: none;
   transition:
     border-color var(--duration-fast) var(--ease-out),
@@ -292,7 +334,7 @@
   }
 
   .interests-timeline-months {
-    grid-template-columns: repeat(15, minmax(42px, 1fr));
+    grid-template-columns: repeat(var(--month-count, 15), minmax(42px, 1fr));
     overflow-x: auto;
   }
 

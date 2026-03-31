@@ -29,8 +29,12 @@ describe('Footer', () => {
   it('mentions the design adaptation credit', () => {
     render(<Footer />);
 
+    expect(screen.getByText(/Visual design adapted by/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/visual adaptation by Jingcheng Liang/i),
-    ).toBeInTheDocument();
+      screen.getByRole('link', { name: 'Jingcheng Liang' }),
+    ).toHaveAttribute(
+      'href',
+      'https://github.com/leo-leung04/leo-leung04.github.io',
+    );
   });
 });
