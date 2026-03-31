@@ -54,9 +54,9 @@ describe('Navigation', () => {
     expect(labels).toEqual([
       'About',
       'Resume',
+      'Projects',
       'Blogs',
       'Interests',
-      'Projects',
       'Contact',
     ]);
   });

@@ -24,7 +24,7 @@ export default function Hero() {
           <span className="hero-highlight">
             University of Minnesota, Twin Cities
           </span>
-          .
+          . Passionate about bridging analytics with real-world impact.
         </p>
 
         <div className="hero-chips fade-in stagger-3">
@@ -39,9 +39,9 @@ export default function Hero() {
           <span className="hero-chip">
             📊 Research &amp; Internship
             <span className="hero-chip-tooltip">
-              Research at Heller-Hurwicz
+              Research @ Heller-Hurwicz Economics Institute
               <br />
-              Internships at Goat Consulting &amp; Bio-Techne
+              Internships @ Goat Consulting &amp; Bio-Techne
             </span>
           </span>
           <span className="hero-chip">

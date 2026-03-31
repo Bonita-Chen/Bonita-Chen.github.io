@@ -27,6 +27,7 @@ describe('Hero', () => {
     expect(
       screen.getByText('University of Minnesota, Twin Cities'),
     ).toHaveClass('hero-highlight');
+    expect(screen.getByText(/real-world impact/i)).toBeInTheDocument();
   });
 
   it('displays hero chips for credentials', () => {

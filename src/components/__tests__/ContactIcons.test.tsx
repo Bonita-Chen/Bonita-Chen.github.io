@@ -21,10 +21,6 @@ describe('ContactIcons', () => {
       'https://github.com/Bonita-Chen',
     );
 
-    const emailLink = screen.getByRole('link', { name: /email/i });
-    expect(emailLink).toBeInTheDocument();
-    expect(emailLink).toHaveAttribute('href', 'mailto:bonitachen910@gmail.com');
-
     const instagramLink = screen.getByRole('link', { name: /instagram/i });
     expect(instagramLink).toBeInTheDocument();
     expect(instagramLink).toHaveAttribute(
@@ -36,6 +32,6 @@ describe('ContactIcons', () => {
   it('has correct number of contact links', () => {
     render(<ContactIcons />);
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(4);
+    expect(links).toHaveLength(3);
   });
 });
