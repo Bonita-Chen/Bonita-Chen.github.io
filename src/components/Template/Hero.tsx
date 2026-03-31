@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import ContactIcons from '@/components/Contact/ContactIcons';
+
 import ThemePortrait from './ThemePortrait';
 
 export default function Hero() {
@@ -31,25 +33,34 @@ export default function Hero() {
           <span className="hero-chip">
             🎓 UMN Twin Cities
             <span className="hero-chip-tooltip">
-              Economics B.S. &amp; Statistics minor
-              <br />
-              Graduating in May, 2026
+              <span className="hero-chip-tooltip-item">
+                • Economics B.S. &amp; Statistics minor
+              </span>
+              <span className="hero-chip-tooltip-item">
+                • Graduating in May, 2026
+              </span>
             </span>
           </span>
           <span className="hero-chip">
             📊 Research &amp; Internship
             <span className="hero-chip-tooltip">
-              Research @ Heller-Hurwicz Economics Institute
-              <br />
-              Internships @ Goat Consulting &amp; Bio-Techne
+              <span className="hero-chip-tooltip-item">
+                • Research @ Heller-Hurwicz Economics Institute
+              </span>
+              <span className="hero-chip-tooltip-item">
+                • Internships @ Goat Consulting &amp; Bio-Techne
+              </span>
             </span>
           </span>
           <span className="hero-chip">
             📍 Minneapolis, MN
             <span className="hero-chip-tooltip">
-              Based in Minneapolis since 2024
-              <br />
-              Open to opportunities nationwide
+              <span className="hero-chip-tooltip-item">
+                • Based in Minneapolis since 2024
+              </span>
+              <span className="hero-chip-tooltip-item">
+                • Open to opportunities nationwide
+              </span>
             </span>
           </span>
         </div>
@@ -61,6 +72,10 @@ export default function Hero() {
           <Link href="/resume" className="button button-secondary">
             View Resume
           </Link>
+        </div>
+
+        <div className="hero-social fade-in stagger-5">
+          <ContactIcons />
         </div>
       </div>
 

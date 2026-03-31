@@ -24,7 +24,7 @@ export default function ContactPage() {
           <div className="contact-card-glow" aria-hidden="true" />
           <div className="contact-card-inner">
             <div className="contact-email-block">
-              <p className="contact-label">Send me an email via</p>
+              <p className="contact-label">Send me an email</p>
               <EmailLink />
               <p className="contact-hint">Usually respond within 24 hours</p>
             </div>

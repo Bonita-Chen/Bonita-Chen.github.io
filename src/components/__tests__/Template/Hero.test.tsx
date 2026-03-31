@@ -58,6 +58,16 @@ describe('Hero', () => {
     expect(resumeButton).toHaveClass('button-secondary');
   });
 
+  it('renders social icons below the CTA buttons', () => {
+    render(<Hero />);
+
+    expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /instagram/i }),
+    ).toBeInTheDocument();
+  });
+
   it('has decorative background elements', () => {
     render(<Hero />);
 
