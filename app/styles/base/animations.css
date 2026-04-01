@@ -1,0 +1,117 @@
+/* ========================================
+   ENTRANCE ANIMATIONS
+   Lightweight, GPU-accelerated fade-in-up
+   ======================================== */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to page-level sections for a subtle staggered entrance */
+.page-main > * {
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+}
+
+.page-main > *:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.page-main > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.page-main > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.page-main > *:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.page-main > *:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+/* Cards in grids get staggered entrance */
+.projects-grid > *,
+.interest-progress-grid > *,
+.about-grid > *,
+.interest-entry-list > * {
+  animation: fade-in-up var(--duration-normal) var(--ease-out) both;
+}
+
+.projects-grid > *:nth-child(1),
+.interest-progress-grid > *:nth-child(1),
+.about-grid > *:nth-child(1),
+.interest-entry-list > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.projects-grid > *:nth-child(2),
+.interest-progress-grid > *:nth-child(2),
+.about-grid > *:nth-child(2),
+.interest-entry-list > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.projects-grid > *:nth-child(3),
+.interest-progress-grid > *:nth-child(3),
+.about-grid > *:nth-child(3),
+.interest-entry-list > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.projects-grid > *:nth-child(4),
+.interest-progress-grid > *:nth-child(4),
+.about-grid > *:nth-child(4),
+.interest-entry-list > *:nth-child(4) {
+  animation-delay: 0.16s;
+}
+
+.projects-grid > *:nth-child(n + 5),
+.interest-progress-grid > *:nth-child(n + 5),
+.about-grid > *:nth-child(n + 5),
+.interest-entry-list > *:nth-child(n + 5) {
+  animation-delay: 0.2s;
+}
+
+/* Blog list items get a subtle staggered fade */
+.blogs-list > * {
+  animation: fade-in-up var(--duration-normal) var(--ease-out) both;
+}
+
+.blogs-list > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.blogs-list > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.blogs-list > *:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.blogs-list > *:nth-child(n + 4) {
+  animation-delay: 0.16s;
+}
+
+/* Reduced motion: skip all entrance animations */
+@media (prefers-reduced-motion: reduce) {
+  .page-main > *,
+  .projects-grid > *,
+  .interest-progress-grid > *,
+  .about-grid > *,
+  .interest-entry-list > *,
+  .blogs-list > * {
+    animation: none;
+  }
+}

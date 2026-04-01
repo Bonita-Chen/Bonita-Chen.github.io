@@ -119,8 +119,11 @@
 }
 
 [data-theme='dark'] .jobs-container:hover {
-  background: transparent;
-  border-color: var(--color-border);
+  background: rgba(173, 209, 243, 0.04);
+}
+
+[data-theme='dark'] .degree-container:hover {
+  background: rgba(173, 209, 243, 0.04);
 }
 
 /* Course cards */

@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { startTransition, useState } from 'react';
 
 import { blogTagLabels } from '@/data/blogs';
+import { useFilterToggle } from '@/hooks/useFilterToggle';
 import type { Post } from '@/lib/posts';
 import { formatDate } from '@/lib/utils';
 
@@ -13,7 +13,7 @@ interface BlogIndexProps {
 }
 
 export default function BlogIndex({ posts }: BlogIndexProps) {
-  const [activeTag, setActiveTag] = useState('all');
+  const { active: activeTag, toggle, isActive } = useFilterToggle('all');
 
   const availableTags = Object.keys(blogTagLabels).filter((tag) =>
     posts.some((post) => post.tags.includes(tag)),
@@ -29,8 +29,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
       <div className="blogs-tags" role="tablist" aria-label="Blog tags">
         <button
           type="button"
-          className={`blogs-filter ${activeTag === 'all' ? 'active' : ''}`}
-          onClick={() => startTransition(() => setActiveTag('all'))}
+          className={`blogs-filter ${isActive('all') ? 'active' : ''}`}
+          onClick={() => toggle('all')}
         >
           All
         </button>
@@ -38,8 +38,8 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
           <button
             type="button"
             key={tag}
-            className={`blogs-filter ${activeTag === tag ? 'active' : ''}`}
-            onClick={() => startTransition(() => setActiveTag(tag))}
+            className={`blogs-filter ${isActive(tag) ? 'active' : ''}`}
+            onClick={() => toggle(tag)}
           >
             {blogTagLabels[tag as keyof typeof blogTagLabels]}
           </button>

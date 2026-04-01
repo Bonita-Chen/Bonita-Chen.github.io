@@ -1,8 +1,9 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import type { Category, Skill } from '@/data/resume/skills';
+import { useFilterToggle } from '@/hooks/useFilterToggle';
 
 import CategoryButton from './Skills/CategoryButton';
 import SkillTag from './Skills/SkillTag';
@@ -23,15 +24,15 @@ function sortSkills(list: Skill[]) {
 }
 
 export default function Skills({ skills, categories }: SkillsProps) {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const { active, toggle, isActive } = useFilterToggle('All');
 
   const groupedSkills = useMemo(() => {
-    if (activeCategory !== 'All') {
+    if (active !== 'All') {
       return [
         {
-          name: activeCategory,
+          name: active,
           skills: sortSkills(
-            skills.filter((skill) => skill.category.includes(activeCategory)),
+            skills.filter((skill) => skill.category.includes(active)),
           ),
         },
       ];
@@ -45,15 +46,7 @@ export default function Skills({ skills, categories }: SkillsProps) {
         ),
       }))
       .filter((group) => group.skills.length > 0);
-  }, [activeCategory, categories, skills]);
-
-  function handleCategoryClick(label: string) {
-    setActiveCategory((current) =>
-      current === label || (label === 'All' && current === 'All')
-        ? 'All'
-        : label,
-    );
-  }
+  }, [active, categories, skills]);
 
   return (
     <div className="skills">
@@ -65,15 +58,15 @@ export default function Skills({ skills, categories }: SkillsProps) {
       <div className="skill-button-container" aria-label="Skill categories">
         <CategoryButton
           label="All"
-          isActive={activeCategory === 'All'}
-          handleClick={handleCategoryClick}
+          isActive={isActive('All')}
+          handleClick={toggle}
         />
         {categories.map((category) => (
           <CategoryButton
             key={category.name}
             label={category.name}
-            isActive={activeCategory === category.name}
-            handleClick={handleCategoryClick}
+            isActive={isActive(category.name)}
+            handleClick={toggle}
           />
         ))}
       </div>

@@ -72,6 +72,10 @@
   color: var(--color-accent);
 }
 
+.resume-nav-link:active {
+  transform: translateY(0);
+}
+
 .resume-nav-link.active {
   border-color: var(--color-accent-border);
   background: var(--color-accent);

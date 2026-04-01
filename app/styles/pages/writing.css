@@ -75,6 +75,11 @@
   color: var(--color-accent);
 }
 
+.blogs-filter:active,
+.blogs-chip:active {
+  transform: translateY(0);
+}
+
 .blogs-filter.active,
 .blogs-chip.active {
   background: var(--color-accent);
@@ -401,6 +406,11 @@
   border-color: var(--color-accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.post-nav-link:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .post-nav-link--next {
