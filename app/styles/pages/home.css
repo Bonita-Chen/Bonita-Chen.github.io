@@ -38,9 +38,9 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 15%;
   border-radius: 50%;
-  transform: scale(1.75);
+  transform: scale(1.85);
 }
 
 .hero-avatar:hover {
