@@ -8,6 +8,7 @@ tech:
   - FRED
   - Presentation
 emoji: "\uD83C\uDFE6"
+pdf: '/docs/projects/college-fed-challenge.pdf'
 ---
 
 ## Overview

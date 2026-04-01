@@ -38,6 +38,15 @@ const interests: Interest[] = [
         tags: ['Capstone', 'Economics', 'Award'],
       },
       {
+        type: 'Event',
+        title: 'College Fed Challenge 2025',
+        description:
+          'Connected GDP trend analysis, time-series reasoning, and policy communication in a judged presentation setting.',
+        date: '2025-10-01',
+        tags: ['Macroeconomics', 'Presentation', 'Forecasting'],
+        href: '/projects/college-fed-challenge-gdp-projections/',
+      },
+      {
         type: 'Blog',
         title: 'Building Data Pipelines for 2.5M Records',
         description:
