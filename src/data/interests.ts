@@ -38,7 +38,7 @@ const interests: Interest[] = [
         tags: ['Capstone', 'Economics', 'Award'],
       },
       {
-        type: 'Event',
+        type: 'Project',
         title: 'College Fed Challenge 2025',
         description:
           'Connected GDP trend analysis, time-series reasoning, and policy communication in a judged presentation setting.',
