@@ -11,7 +11,6 @@ export interface Position {
   subtitleUrl?: string;
   supervisorName?: string;
   supervisorUrl?: string;
-  subtitleUrl?: string;
   summary?: string;
   highlights?: string[];
 }
