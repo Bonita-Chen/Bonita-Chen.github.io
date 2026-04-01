@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import Education from '../../Resume/Education';
-import Degree from '../../Resume/Education/Degree';
 
 const mockDegrees = [
   {
@@ -10,6 +9,11 @@ const mockDegrees = [
     degree: 'M.S. Computer Science',
     link: 'https://stanford.edu',
     year: 2020,
+    startDate: '2018-09-01',
+    endDate: '2020-06-01',
+    subtitleSuffix: 'GPA: 4.0 / 4.0',
+    description: 'Research focus in systems and machine learning.',
+    achievements: ['\u2018Dean\u2019s List', 'Graduate Fellowship'],
   },
   {
     school: 'MIT',
@@ -51,68 +55,31 @@ describe('Education', () => {
     const anchor = document.getElementById('education');
     expect(anchor).toBeInTheDocument();
   });
-});
 
-describe('Degree', () => {
-  const mockDegree = {
-    school: 'Stanford University',
-    degree: 'M.S. Computer Science',
-    link: 'https://stanford.edu',
-    year: 2020,
-    startDate: '2018-09-01',
-    endDate: '2020-06-01',
-    subtitleSuffix: 'GPA: 4.0 / 4.0',
-    description: 'Research focus in systems and machine learning.',
-    achievements: ['Dean’s List', 'Graduate Fellowship'],
-  };
-
-  it('renders degree title', () => {
-    render(<Degree data={mockDegree} />);
-
-    expect(screen.getByRole('heading', { level: 4 })).toHaveTextContent(
-      'M.S. Computer Science',
-    );
-  });
-
-  it('renders school name with link', () => {
-    render(<Degree data={mockDegree} />);
-
-    const link = screen.getByRole('link', { name: /stanford/i });
-    expect(link).toHaveAttribute('href', 'https://stanford.edu');
-  });
-
-  it('renders subtitle suffix text outside the school link', () => {
-    render(<Degree data={mockDegree} />);
+  it('renders subtitle suffix', () => {
+    render(<Education data={mockDegrees} />);
 
     expect(screen.getByText(/gpa: 4.0 \/ 4.0/i)).toBeInTheDocument();
   });
 
-  it('displays the formatted date range', () => {
-    render(<Degree data={mockDegree} />);
-
-    expect(screen.getByText(/sep/i)).toBeInTheDocument();
-    expect(screen.getByText(/jun 2020/i)).toBeInTheDocument();
-  });
-
-  it('renders the description when present', () => {
-    render(<Degree data={mockDegree} />);
+  it('renders description when present', () => {
+    render(<Education data={mockDegrees} />);
 
     expect(
       screen.getByText(/research focus in systems and machine learning/i),
     ).toBeInTheDocument();
   });
 
-  it('renders achievements as bullet items when present', () => {
-    render(<Degree data={mockDegree} />);
+  it('renders achievements as bullet items', () => {
+    render(<Education data={mockDegrees} />);
 
-    expect(screen.getByText('Dean’s List')).toBeInTheDocument();
+    expect(screen.getByText(/Dean\u2019s List/)).toBeInTheDocument();
     expect(screen.getByText('Graduate Fellowship')).toBeInTheDocument();
   });
 
-  it('renders as article element', () => {
-    render(<Degree data={mockDegree} />);
+  it('renders date range', () => {
+    render(<Education data={mockDegrees} />);
 
-    const article = document.querySelector('article.degree-container');
-    expect(article).toBeInTheDocument();
+    expect(screen.getByText(/Sep 2018 – Jun 2020/)).toBeInTheDocument();
   });
 });

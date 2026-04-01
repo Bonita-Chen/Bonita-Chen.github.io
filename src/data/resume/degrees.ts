@@ -26,6 +26,14 @@ const degrees: Degree[] = [
       'Department of Economics Paper Competition — 2nd Place, Senior Capstone Award ($500)',
     ],
   },
+  {
+    school: 'Jinan University',
+    degree: 'Bachelor, Business Administration and Management',
+    link: 'https://english.jnu.edu.cn/',
+    year: 2024,
+    startDate: '2021-09-01',
+    endDate: '2024-05-01',
+  },
 ];
 
 export default degrees;

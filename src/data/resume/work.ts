@@ -67,6 +67,56 @@ const work: Position[] = [
       'Consolidated recurring AR outputs into self-serve visualizations that sped up cross-region reporting and decision-making.',
     ],
   },
+  {
+    name: 'The Gunnar Laboratory for Developmental Psychobiology Research, UMN',
+    position: 'Research Assistant',
+    url: 'https://cla.umn.edu/child-development/research/labs/gunnar-lab',
+    startDate: '2025-02-01',
+    endDate: '2025-03-01',
+    subtitleSuffix: 'Remote',
+    highlights: [
+      'Accurately transcribed Cantonese-language parent-child interactions from video recordings.',
+      'Maintained transcription accuracy and adhered to research protocols for studying early life experiences and stress.',
+      'Assisted in preparing transcription data for analysis while handling sensitive data responsibly and following ethical guidelines.',
+    ],
+  },
+  {
+    name: 'Superpowers',
+    position: 'Research Intern — Startup, Venture Capital, AI',
+    url: 'https://www.linkedin.com/company/superpowers-ai/',
+    startDate: '2024-12-01',
+    endDate: '2025-01-01',
+    subtitleSuffix: 'Minneapolis, MN · Remote',
+    highlights: [
+      'Conducted in-depth research on digital marketing, data management, and artificial intelligence for a startup focused on innovative technologies.',
+      'Developed content benchmarks, identified target markets, and sourced data to support AI development projects.',
+      'Explored AI models, tools, and trends to drive business growth and innovation.',
+    ],
+  },
+  {
+    name: 'Deloitte',
+    position: 'Financial Advisory Department Intern',
+    url: 'https://www.deloitte.com/',
+    startDate: '2023-07-01',
+    endDate: '2023-09-01',
+    subtitleSuffix: 'Guangzhou, China',
+    highlights: [
+      'Conducted financial analysis for over six A-listed companies by reviewing annual reports and bank statements to assess financial health and identify discrepancies critical for restructuring decisions.',
+      'Streamlined financial advisory processes by compiling essential data into Factsheets, auditing company credits, and preparing for the first creditors\u2019 meeting to facilitate informed discussions on restructuring plans.',
+    ],
+  },
+  {
+    name: 'Founder Securities Research Institute',
+    position: 'Industry Research Department Intern',
+    url: 'https://www.foundersc.com/',
+    startDate: '2023-01-01',
+    endDate: '2023-05-01',
+    subtitleSuffix: 'Guangzhou, China · Remote',
+    highlights: [
+      'Wrote reports and literature reviews on the cultural significance, commercialization, and social impact of foreign festivals in the context of Chinese youth.',
+      'Developed and synthesized research on the growing popularity of foreign festival celebrations among Chinese high school students.',
+    ],
+  },
 ];
 
 export default work;
