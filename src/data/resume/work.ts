@@ -4,7 +4,7 @@
 export interface Position {
   name: string;
   position: string;
-  url: string;
+  url?: string;
   startDate: string;
   endDate?: string;
   subtitleSuffix?: string;
@@ -70,7 +70,7 @@ const work: Position[] = [
   {
     name: 'The Gunnar Laboratory for Developmental Psychobiology Research, UMN',
     position: 'Research Assistant',
-    url: 'https://cla.umn.edu/child-development/research/labs/gunnar-lab',
+    url: 'https://innovation.umn.edu/gunnar-lab',
     startDate: '2025-02-01',
     endDate: '2025-03-01',
     subtitleSuffix: 'Remote',
@@ -83,7 +83,7 @@ const work: Position[] = [
   {
     name: 'Superpowers',
     position: 'Research Intern — Startup, Venture Capital, AI',
-    url: 'https://www.linkedin.com/company/superpowers-ai/',
+    url: '',
     startDate: '2024-12-01',
     endDate: '2025-01-01',
     subtitleSuffix: 'Minneapolis, MN · Remote',
@@ -103,18 +103,6 @@ const work: Position[] = [
     highlights: [
       'Conducted financial analysis for over six A-listed companies by reviewing annual reports and bank statements to assess financial health and identify discrepancies critical for restructuring decisions.',
       'Streamlined financial advisory processes by compiling essential data into Factsheets, auditing company credits, and preparing for the first creditors\u2019 meeting to facilitate informed discussions on restructuring plans.',
-    ],
-  },
-  {
-    name: 'Founder Securities Research Institute',
-    position: 'Industry Research Department Intern',
-    url: 'https://www.foundersc.com/',
-    startDate: '2023-01-01',
-    endDate: '2023-05-01',
-    subtitleSuffix: 'Guangzhou, China · Remote',
-    highlights: [
-      'Wrote reports and literature reviews on the cultural significance, commercialization, and social impact of foreign festivals in the context of Chinese youth.',
-      'Developed and synthesized research on the growing popularity of foreign festival celebrations among Chinese high school students.',
     ],
   },
 ];
