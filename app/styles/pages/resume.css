@@ -155,152 +155,183 @@
 
 /* ========================================
    EXPERIENCE TIMELINE
-   Vertical Gantt-style grid. Top = present, bottom = earliest.
-   Cards span grid rows proportional to their duration.
+   Classic vertical timeline: date/location left, line + dots, details right.
    ======================================== */
 
 .exp-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual entry row */
+.exp-entry {
   display: grid;
-  grid-template-columns: 1fr 48px 1fr;
-  grid-template-rows: repeat(var(--exp-rows), minmax(60px, auto));
-  gap: 0;
+  grid-template-columns: 140px 24px 1fr;
+  gap: 0 1rem;
   position: relative;
 }
 
-/* Center axis line */
-.exp-axis {
-  grid-column: 2;
-  position: relative;
-  z-index: 0;
+/* Left column: date + location */
+.exp-date-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 1.25rem 0;
+  text-align: right;
 }
 
-.exp-axis::before {
+.exp-date {
+  color: var(--color-fg-bold);
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.exp-location {
+  color: var(--color-fg-light);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  margin-top: 0.15rem;
+}
+
+/* Center column: vertical line + dot */
+.exp-dot-col {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* Vertical line through the dots */
+.exp-dot-col::before {
   content: '';
   position: absolute;
-  left: 50%;
   top: 0;
   bottom: 0;
+  left: 50%;
   width: 2px;
   background: var(--color-border);
   transform: translateX(-50%);
 }
 
-/* Year / Now markers on the axis */
-.exp-marker {
-  grid-column: 2;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+/* First entry: line starts at the dot */
+.exp-entry:first-child .exp-dot-col::before {
+  top: 1.55rem;
+}
+
+/* Last entry: line ends at the dot */
+.exp-entry:last-child .exp-dot-col::before {
+  bottom: calc(100% - 1.55rem);
+}
+
+/* The dot */
+.exp-dot {
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  margin-top: 1.35rem;
+  border-radius: 50%;
+  background: var(--color-fg-bold);
+  flex-shrink: 0;
 }
 
-.exp-marker::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-border);
+/* Right column: job details */
+.exp-detail-col {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.exp-marker--now::before {
-  background: var(--color-accent);
+.exp-entry:last-child .exp-detail-col {
+  border-bottom: none;
 }
 
-.exp-marker--bottom {
-  align-items: flex-end;
+.exp-position {
+  margin: 0 0 0.15rem;
+  color: var(--color-fg);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
-.exp-marker--bottom::before {
-  top: auto;
-  bottom: 0;
+.exp-company {
+  margin: 0 0 0.65rem;
+  color: var(--color-fg-bold);
+  font-size: 1.06rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.exp-marker-label {
-  position: relative;
-  top: -0.65em;
-  padding: 0.15em 0.55em;
-  border-radius: 4px;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  color: var(--color-fg-light);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+.exp-company a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.exp-marker--now .exp-marker-label {
-  border-color: var(--color-accent);
+.exp-company a:hover {
   color: var(--color-accent);
 }
 
-.exp-marker--bottom .exp-marker-label {
-  top: auto;
-  bottom: -0.65em;
+.exp-highlights {
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
 }
 
-/* Position cards */
-.exp-item {
-  padding: 0.4rem;
+.exp-highlights li {
+  margin-bottom: 0.2rem;
+  color: var(--color-fg-light);
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-.exp-item--left {
-  grid-column: 1;
+.exp-highlights li::marker {
+  color: var(--color-border);
 }
 
-.exp-item--right {
-  grid-column: 3;
+.exp-highlights li:last-child {
+  margin-bottom: 0;
 }
 
-.exp-item .jobs-container {
-  height: 100%;
-  margin-inline: 0;
-  border-bottom: none;
-  padding: 1.18rem 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.exp-item .jobs-container:hover {
-  border-color: var(--color-accent-border);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Mobile: single column, simple list */
-@media (max-width: 768px) {
-  .exp-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding-left: 28px;
-    position: relative;
+/* Mobile: stack date above details */
+@media (max-width: 600px) {
+  .exp-entry {
+    grid-template-columns: 24px 1fr;
   }
 
-  .exp-timeline::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--color-border);
-  }
-
-  .exp-axis,
-  .exp-marker {
+  .exp-date-col {
     display: none;
   }
 
-  .exp-item--left,
-  .exp-item--right {
-    padding: 0;
+  .exp-dot-col {
+    grid-column: 1;
+    grid-row: 1 / 3;
   }
 
-  .exp-item .jobs-container {
-    height: auto;
+  .exp-entry:first-child .exp-dot-col::before {
+    top: 1.15rem;
+  }
+
+  .exp-entry:last-child .exp-dot-col::before {
+    bottom: calc(100% - 1.15rem);
+  }
+
+  .exp-dot {
+    margin-top: 1rem;
+  }
+
+  .exp-detail-col {
+    grid-column: 2;
+    padding: 0.85rem 0;
+  }
+
+  .exp-detail-col::before {
+    content: attr(data-date);
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--color-fg-bold);
+    font-size: 0.8rem;
+    font-weight: 650;
   }
 }
 
