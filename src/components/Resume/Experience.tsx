@@ -45,9 +45,6 @@ export default function Experience({ data }: ExperienceProps) {
           const extraInfo = getExtraInfo(job.subtitleSuffix);
           const duration = formatDuration(job.startDate, job.endDate);
           const dateText = formatDateRange(job.startDate, job.endDate);
-          const dateWithDuration = duration
-            ? `${dateText} · ${duration}`
-            : dateText;
 
           return (
             <div
@@ -55,13 +52,14 @@ export default function Experience({ data }: ExperienceProps) {
               key={`${job.name}-${job.position}-${job.startDate}`}
             >
               <div className="exp-date-col">
-                <span className="exp-date">{dateWithDuration}</span>
+                <span className="exp-date">{dateText}</span>
+                {duration && <span className="exp-duration">{duration}</span>}
                 {location && <span className="exp-location">{location}</span>}
               </div>
               <div className="exp-dot-col" aria-hidden="true">
                 <span className="exp-dot" />
               </div>
-              <div className="exp-detail-col" data-date={dateWithDuration}>
+              <div className="exp-detail-col" data-date={dateText}>
                 <h4 className="exp-position">{job.position}</h4>
                 <p className="exp-company">
                   {job.url ? (

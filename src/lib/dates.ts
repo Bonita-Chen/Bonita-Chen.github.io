@@ -9,10 +9,10 @@ export function formatDuration(
   startDate?: string,
   endDate?: string,
 ): string | null {
-  if (!startDate || !endDate) return null;
+  if (!startDate) return null;
 
   const start = dayjs(startDate);
-  const end = dayjs(endDate);
+  const end = endDate ? dayjs(endDate) : dayjs();
   const totalMonths = end.diff(start, 'month') + 1;
 
   const years = Math.floor(totalMonths / 12);

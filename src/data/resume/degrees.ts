@@ -6,6 +6,7 @@ export interface Degree {
   startDate?: string;
   endDate?: string;
   subtitleSuffix?: string;
+  subtitleUrl?: string;
   description?: string;
   achievements?: string[];
 }
@@ -33,6 +34,8 @@ const degrees: Degree[] = [
     year: 2024,
     startDate: '2021-09-01',
     endDate: '2024-05-01',
+    subtitleSuffix: 'School of Management',
+    subtitleUrl: 'https://ms.jnu.edu.cn/',
   },
 ];
 

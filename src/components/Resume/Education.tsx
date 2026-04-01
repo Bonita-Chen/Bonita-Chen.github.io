@@ -34,7 +34,16 @@ export default function Education({ data }: EducationProps) {
               <h4 className="exp-position">{degree.degree}</h4>
               <p className="exp-company">
                 <a href={degree.link}>{degree.school}</a>
-                {degree.subtitleSuffix && <> · {degree.subtitleSuffix}</>}
+                {degree.subtitleSuffix && (
+                  <>
+                    {' · '}
+                    {degree.subtitleUrl ? (
+                      <a href={degree.subtitleUrl}>{degree.subtitleSuffix}</a>
+                    ) : (
+                      degree.subtitleSuffix
+                    )}
+                  </>
+                )}
               </p>
               {degree.description && (
                 <p className="exp-description">{degree.description}</p>
