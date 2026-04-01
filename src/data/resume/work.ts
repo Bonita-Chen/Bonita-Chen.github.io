@@ -5,6 +5,7 @@ export interface Position {
   name: string;
   position: string;
   url?: string;
+  suburl?: string;
   startDate: string;
   endDate?: string;
   subtitleSuffix?: string;
@@ -44,10 +45,11 @@ const work: Position[] = [
   {
     name: 'Carlson Ventures Enterprise, UMN',
     position: 'Venture Capital Project Consultant',
-    url: 'https://carlsonschool.umn.edu/',
+    url: 'https://carlsonschool.umn.edu/experience/experiential-learning/enterprise-programs/ventures/',
     startDate: '2025-09-01',
     endDate: '2025-12-01',
     subtitleSuffix: 'Carlson School of Management · Minneapolis, MN',
+    suburl: 'https://carlsonschool.umn.edu/',
     highlights: [
       'Evaluated partnership and market-entry opportunities for an AI hardware startup and translated research into client-facing investment theses.',
       'Compiled a structured database of historical partnership models, pilots, and venture relationships across three public technology companies.',
