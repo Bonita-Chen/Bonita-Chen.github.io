@@ -94,9 +94,9 @@ const work: Position[] = [
     ],
   },
   {
-    name: 'Deloitte',
+    name: 'Deloitte China',
     position: 'Financial Advisory Department Intern',
-    url: 'https://www.deloitte.com/',
+    url: 'https://www.deloitte.com/cn/en.html',
     startDate: '2023-07-01',
     endDate: '2023-09-01',
     subtitleSuffix: 'Guangzhou, China',
