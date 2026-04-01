@@ -1,6 +1,6 @@
 import type { EditableInterestEntry } from './types';
 import type { AdminStore } from './useAdminStore';
-import { getEstimatedInterestProgress, triggerDownload } from './utils';
+import { triggerDownload } from './utils';
 
 interface InterestsTabProps {
   store: AdminStore;
@@ -52,7 +52,7 @@ export default function InterestsTab({ store }: InterestsTabProps) {
                 {interest.icon} {interest.name}
               </strong>
               <span>{interest.trackLabel}</span>
-              <small>{getEstimatedInterestProgress(interest)}</small>
+              <small>Since {interest.start}</small>
             </button>
           ))}
         </div>
@@ -149,23 +149,6 @@ export default function InterestsTab({ store }: InterestsTabProps) {
                     }
                   />
                 </label>
-                <label>
-                  Target Months
-                  <input
-                    type="number"
-                    min="1"
-                    value={selectedInterest.targetMonths || ''}
-                    disabled={selectedInterest.ongoing}
-                    onChange={(e) =>
-                      updateInterest(selectedInterest.id, (i) => ({
-                        ...i,
-                        targetMonths: e.target.value
-                          ? Number(e.target.value)
-                          : undefined,
-                      }))
-                    }
-                  />
-                </label>
                 <label className="admin-form-grid-wide">
                   Track Label
                   <input
@@ -193,57 +176,16 @@ export default function InterestsTab({ store }: InterestsTabProps) {
                 </label>
               </div>
 
-              <div className="admin-check-row">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedInterest.ongoing}
-                    onChange={(e) =>
-                      updateInterest(selectedInterest.id, (i) => ({
-                        ...i,
-                        ongoing: e.target.checked,
-                        targetMonths: e.target.checked
-                          ? undefined
-                          : i.targetMonths || 6,
-                      }))
-                    }
-                  />
-                  Ongoing
-                </label>
-                <p className="admin-helper-text">
-                  Estimated progress:{' '}
-                  {getEstimatedInterestProgress(selectedInterest)}
-                </p>
-              </div>
-
               <div className="admin-stack">
                 <p className="admin-helper-text">
-                  <strong>Gantt range:</strong> {selectedInterest.start}
-                  {' → '}
-                  {selectedInterest.ongoing
-                    ? 'Open-ended'
-                    : selectedInterest.targetMonths
-                      ? new Date(
-                          new Date(
-                            `${selectedInterest.start}T12:00:00`,
-                          ).getFullYear(),
-                          new Date(
-                            `${selectedInterest.start}T12:00:00`,
-                          ).getMonth() +
-                            selectedInterest.targetMonths -
-                            1,
-                          1,
-                        )
-                          .toISOString()
-                          .slice(0, 7)
-                      : selectedInterest.start}
+                  <strong>Timeline:</strong> {selectedInterest.start} → Now
                 </p>
                 <div
                   style={{
                     height: '18px',
                     borderRadius: '4px',
                     background: `linear-gradient(135deg, ${selectedInterest.accent}, color-mix(in srgb, ${selectedInterest.accent} 54%, white))`,
-                    width: `${Math.min(100, Math.max(15, ((selectedInterest.targetMonths || 12) / 24) * 100))}%`,
+                    width: '100%',
                   }}
                 />
               </div>
@@ -277,7 +219,7 @@ export default function InterestsTab({ store }: InterestsTabProps) {
                       {interest.trackLabel}
                     </div>
                     <div className="admin-interest-preview-progress">
-                      {getEstimatedInterestProgress(interest)}
+                      Since {interest.start}
                     </div>
                   </div>
                 ))}

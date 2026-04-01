@@ -13,34 +13,23 @@ export const metadata: Metadata = createPageMetadata({
   path: '/interests/',
 });
 
-function startOfMonth(value: string) {
-  const date = new Date(value);
-  return new Date(date.getFullYear(), date.getMonth(), 1);
-}
-
-function monthDiff(start: Date, end: Date) {
-  return (
-    (end.getFullYear() - start.getFullYear()) * 12 +
-    end.getMonth() -
-    start.getMonth()
-  );
-}
-
-function getProgress(
-  interestStart: string,
-  targetMonths?: number,
-  ongoing?: boolean,
-) {
-  if (ongoing || !targetMonths) {
-    return null;
-  }
+function formatDuration(startStr: string) {
+  const start = new Date(startStr);
+  const startMonth = new Date(start.getFullYear(), start.getMonth(), 1);
   const now = new Date();
   const nowMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const elapsed = Math.max(
-    monthDiff(startOfMonth(interestStart), nowMonth) + 1,
-    0,
+  const totalMonths = Math.max(
+    (nowMonth.getFullYear() - startMonth.getFullYear()) * 12 +
+      nowMonth.getMonth() -
+      startMonth.getMonth() +
+      1,
+    1,
   );
-  return Math.min(100, Math.round((elapsed / targetMonths) * 100));
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  if (years === 0) return `${months} mo`;
+  if (months === 0) return `${years} yr`;
+  return `${years} yr ${months} mo`;
 }
 
 function appendFrom(url: string): string {
@@ -87,9 +76,9 @@ export default function InterestsPage() {
             <em>Interests</em>
           </h1>
           <p className="interests-note">
-            The percentages below are estimated from elapsed months versus the
-            planned duration for each interest area. Ongoing interests stay
-            open-ended by design.
+            The timeline below shows how long I&apos;ve been investing time in
+            each interest area. Drag the divider to adjust the label column
+            width.
           </p>
         </header>
 
@@ -97,12 +86,6 @@ export default function InterestsPage() {
 
         <div className="interests-details">
           {interests.map((interest) => {
-            const progress = getProgress(
-              interest.start,
-              interest.targetMonths,
-              interest.ongoing,
-            );
-
             return (
               <section
                 className="interest-detail"
@@ -121,14 +104,14 @@ export default function InterestsPage() {
                     </p>
                   </div>
                   <div className="interest-detail-stat">
-                    <span>Estimated Progress</span>
-                    <strong>
-                      {interest.ongoing ? 'Open-ended' : `${progress}%`}
-                    </strong>
+                    <span>Duration</span>
+                    <strong>{formatDuration(interest.start)}</strong>
                     <small>
-                      {interest.ongoing
-                        ? 'No fixed finish date'
-                        : `Target: ${interest.targetMonths} months`}
+                      Since{' '}
+                      {new Date(interest.start).toLocaleDateString('en-US', {
+                        month: 'short',
+                        year: 'numeric',
+                      })}
                     </small>
                   </div>
                 </div>

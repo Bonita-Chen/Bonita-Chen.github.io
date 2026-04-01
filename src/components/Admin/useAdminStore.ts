@@ -613,8 +613,6 @@ export function useAdminStore({
       summary: 'Describe what this interest means to you.',
       trackLabel: 'Learning Track',
       start: new Date().toISOString().slice(0, 10),
-      targetMonths: 6,
-      ongoing: false,
       accent: '#43638C',
       entries: [],
     };

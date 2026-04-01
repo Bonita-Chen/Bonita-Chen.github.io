@@ -14,8 +14,6 @@ export interface Interest {
   summary: string;
   trackLabel: string;
   start: string;
-  targetMonths?: number;
-  ongoing?: boolean;
   accent: string;
   entries: InterestEntry[];
 }
@@ -29,7 +27,6 @@ const interests: Interest[] = [
       'I’m drawn to methods that help explain not just what happened, but what might have happened otherwise.',
     trackLabel: 'Causal Methods',
     start: '2025-04-01',
-    targetMonths: 12,
     accent: '#223C5B',
     entries: [
       {
@@ -66,7 +63,6 @@ const interests: Interest[] = [
       'I like building visuals that make other people feel oriented quickly, especially when the underlying data is complicated.',
     trackLabel: 'Viz Journey',
     start: '2025-06-01',
-    targetMonths: 12,
     accent: '#43638C',
     entries: [
       {
@@ -106,7 +102,6 @@ const interests: Interest[] = [
       'Writing helps me test whether I truly understand an analysis, a result, or a professional lesson well enough to share it clearly.',
     trackLabel: 'Research & Writing',
     start: '2025-09-01',
-    targetMonths: 9,
     accent: '#7189A5',
     entries: [
       {
@@ -136,7 +131,6 @@ const interests: Interest[] = [
       'Photography is the non-spreadsheet version of attention for me: noticing light, texture, timing, and small changes in a place.',
     trackLabel: 'Creative Exploration',
     start: '2025-10-01',
-    targetMonths: 12,
     accent: '#ADD1F3',
     entries: [
       {
@@ -157,7 +151,6 @@ const interests: Interest[] = [
       'Fitness is one of the main ways I keep energy and discipline steady when everything else gets busy.',
     trackLabel: 'Ongoing',
     start: '2025-01-01',
-    ongoing: true,
     accent: '#DDE7F3',
     entries: [
       {

@@ -183,9 +183,25 @@
   background: transparent;
 }
 
-[data-theme='dark'] .interest-progress-card {
+[data-theme='dark'] .gantt-container {
   background: var(--glass-bg);
   border-color: var(--glass-border);
+}
+
+[data-theme='dark'] .gantt-track {
+  background: rgba(173, 209, 243, 0.08);
+}
+
+[data-theme='dark'] .gantt-row:hover {
+  background: rgba(173, 209, 243, 0.04);
+}
+
+[data-theme='dark'] .gantt-header {
+  border-bottom-color: var(--glass-border);
+}
+
+[data-theme='dark'] .gantt-row {
+  border-bottom-color: var(--glass-border);
 }
 
 /*
@@ -226,10 +242,6 @@
 [data-theme='dark'] .interest-entry-tags span {
   background: rgba(173, 209, 243, 0.1);
   color: var(--color-fg-bold);
-}
-
-[data-theme='dark'] .interest-progress-track {
-  background: rgba(173, 209, 243, 0.08);
 }
 
 [data-theme='dark'] .tech-tag {

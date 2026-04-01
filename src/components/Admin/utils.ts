@@ -76,8 +76,6 @@ export function toSeedInterests(
     summary: interest.summary,
     trackLabel: interest.trackLabel,
     start: interest.start,
-    targetMonths: interest.targetMonths,
-    ongoing: Boolean(interest.ongoing),
     accent: interest.accent,
     entries: interest.entries.map((entry) => ({
       ...entry,
@@ -236,8 +234,6 @@ export function buildInterestsDataSource(interests: EditableInterest[]) {
     summary: interest.summary,
     trackLabel: interest.trackLabel,
     start: interest.start,
-    ...(interest.targetMonths ? { targetMonths: interest.targetMonths } : {}),
-    ...(interest.ongoing ? { ongoing: true } : {}),
     accent: interest.accent,
     entries: interest.entries.map(({ id: _id, href, ...entry }) => ({
       ...entry,
@@ -245,24 +241,5 @@ export function buildInterestsDataSource(interests: EditableInterest[]) {
     })),
   }));
 
-  return `export interface InterestEntry {\n  type: 'Course' | 'Event' | 'Project' | 'Blog';\n  title: string;\n  description: string;\n  date: string;\n  tags: string[];\n  href?: string;\n}\n\nexport interface Interest {\n  slug: string;\n  name: string;\n  icon: string;\n  summary: string;\n  trackLabel: string;\n  start: string;\n  targetMonths?: number;\n  ongoing?: boolean;\n  accent: string;\n  entries: InterestEntry[];\n}\n\nconst interests: Interest[] = ${JSON.stringify(interestExports, null, 2)};\n\nexport default interests;\n`;
-}
-
-export function getEstimatedInterestProgress(interest: EditableInterest) {
-  if (interest.ongoing || !interest.targetMonths) {
-    return 'Ongoing';
-  }
-
-  const start = new Date(`${interest.start}T12:00:00`);
-  const now = new Date();
-  const elapsedMonths =
-    (now.getFullYear() - start.getFullYear()) * 12 +
-    now.getMonth() -
-    start.getMonth() +
-    1;
-
-  return `${Math.min(
-    100,
-    Math.max(0, Math.round((elapsedMonths / interest.targetMonths) * 100)),
-  )}%`;
+  return `export interface InterestEntry {\n  type: 'Course' | 'Event' | 'Project' | 'Blog';\n  title: string;\n  description: string;\n  date: string;\n  tags: string[];\n  href?: string;\n}\n\nexport interface Interest {\n  slug: string;\n  name: string;\n  icon: string;\n  summary: string;\n  trackLabel: string;\n  start: string;\n  accent: string;\n  entries: InterestEntry[];\n}\n\nconst interests: Interest[] = ${JSON.stringify(interestExports, null, 2)};\n\nexport default interests;\n`;
 }

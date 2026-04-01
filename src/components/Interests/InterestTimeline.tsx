@@ -1,6 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import type { Interest } from '@/data/interests';
 
@@ -17,24 +18,15 @@ function monthDiff(start: Date, end: Date) {
   );
 }
 
-function formatMonthYear(value: string) {
-  const date = new Date(value);
-  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-}
-
-function getProgress(
-  interestStart: string,
-  targetMonths?: number,
-  ongoing?: boolean,
-) {
-  if (ongoing || !targetMonths) return null;
-  const now = new Date();
-  const nowMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const elapsed = Math.max(
-    monthDiff(startOfMonth(interestStart), nowMonth) + 1,
-    0,
-  );
-  return Math.min(100, Math.round((elapsed / targetMonths) * 100));
+function formatDuration(startStr: string) {
+  const start = startOfMonth(startStr);
+  const now = startOfMonth(new Date());
+  const totalMonths = Math.max(monthDiff(start, now) + 1, 1);
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  if (years === 0) return `${months} mo`;
+  if (months === 0) return `${years} yr`;
+  return `${years} yr ${months} mo`;
 }
 
 function getBarPalette(accent?: string) {
@@ -53,63 +45,143 @@ function getBarPalette(accent?: string) {
   }
 }
 
+function generateMonthMarkers(earliest: Date, latest: Date) {
+  const markers: { date: Date; label: string }[] = [];
+  const current = new Date(earliest.getFullYear(), earliest.getMonth(), 1);
+  while (current <= latest) {
+    markers.push({
+      date: new Date(current),
+      label: current.toLocaleDateString('en-US', {
+        month: 'short',
+        year: '2-digit',
+      }),
+    });
+    current.setMonth(current.getMonth() + 1);
+  }
+  return markers;
+}
+
 interface InterestTimelineProps {
   interests: Interest[];
 }
 
+const MIN_LABEL_WIDTH = 140;
+const MAX_LABEL_WIDTH = 320;
+const DEFAULT_LABEL_WIDTH = 180;
+
 export default function InterestTimeline({ interests }: InterestTimelineProps) {
+  const [labelWidth, setLabelWidth] = useState(DEFAULT_LABEL_WIDTH);
+  const dragging = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    dragging.current = true;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragging.current || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    setLabelWidth(Math.min(MAX_LABEL_WIDTH, Math.max(MIN_LABEL_WIDTH, x)));
+  }, []);
+
+  const onPointerUp = useCallback(() => {
+    dragging.current = false;
+  }, []);
+
+  // Compute timeline range
+  const now = startOfMonth(new Date());
+  const earliest = interests.reduce((min, i) => {
+    const d = startOfMonth(i.start);
+    return d < min ? d : min;
+  }, now);
+  const latest = now;
+  const totalMonths = monthDiff(earliest, latest) + 1;
+  const markers = generateMonthMarkers(earliest, latest);
+
+  function getBarStyle(interest: Interest): CSSProperties {
+    const start = startOfMonth(interest.start);
+    const offsetMonths = monthDiff(earliest, start);
+    const spanMonths = monthDiff(start, latest) + 1;
+    const leftPercent = (offsetMonths / totalMonths) * 100;
+    const widthPercent = (spanMonths / totalMonths) * 100;
+    const palette = getBarPalette(interest.accent);
+
+    return {
+      left: `${leftPercent}%`,
+      width: `${widthPercent}%`,
+      background: `linear-gradient(90deg, ${palette.start} 0%, ${palette.mid} 50%, ${palette.end} 100%)`,
+    };
+  }
+
   return (
     <div
-      className="interest-progress-grid"
-      aria-label="Interest progress overview"
+      className="gantt-container"
+      ref={containerRef}
+      style={{ '--gantt-label-width': `${labelWidth}px` } as CSSProperties}
+      aria-label="Interest duration timeline"
     >
-      {interests.map((interest) => {
-        const progress = getProgress(
-          interest.start,
-          interest.targetMonths,
-          interest.ongoing,
-        );
-        const palette = getBarPalette(interest.accent);
+      {/* Header row with month markers */}
+      <div className="gantt-header">
+        <div className="gantt-label-col" />
+        <div
+          className="gantt-divider"
+          role="separator"
+          aria-label="Resize label column"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+        />
+        <div className="gantt-timeline-col">
+          <div className="gantt-markers">
+            {markers.map((m, i) => (
+              <span
+                key={m.label}
+                className="gantt-marker"
+                style={{
+                  left: `${(i / totalMonths) * 100}%`,
+                  width: `${(1 / totalMonths) * 100}%`,
+                }}
+              >
+                {m.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
 
+      {/* Interest rows */}
+      {interests.map((interest) => {
+        const palette = getBarPalette(interest.accent);
         return (
           <a
             key={interest.slug}
             href={`#${interest.slug}`}
-            className="interest-progress-card"
-            style={
-              {
-                '--bar-start': palette.start,
-                '--bar-mid': palette.mid,
-                '--bar-end': palette.end,
-              } as CSSProperties
-            }
+            className="gantt-row"
           >
-            <div className="interest-progress-top">
-              <div className="interest-progress-name">
-                <span className="interest-progress-icon" aria-hidden="true">
-                  {interest.icon}
-                </span>
-                <span className="interest-progress-label">{interest.name}</span>
+            <div className="gantt-label-col">
+              <span className="gantt-icon" aria-hidden="true">
+                {interest.icon}
+              </span>
+              <span className="gantt-name">{interest.name}</span>
+            </div>
+            <div className="gantt-divider-spacer" />
+            <div className="gantt-timeline-col">
+              <div className="gantt-track">
+                <div className="gantt-bar" style={getBarStyle(interest)}>
+                  <span
+                    className="gantt-duration"
+                    style={
+                      {
+                        '--bar-end': palette.end,
+                      } as CSSProperties
+                    }
+                  >
+                    {formatDuration(interest.start)}
+                  </span>
+                </div>
               </div>
-              <span className="interest-progress-value">
-                {interest.ongoing ? 'Ongoing' : `${progress}%`}
-              </span>
-            </div>
-
-            <div className="interest-progress-track">
-              <div
-                className={`interest-progress-fill${interest.ongoing ? ' interest-progress-fill--ongoing' : ''}`}
-                style={{ width: interest.ongoing ? '100%' : `${progress}%` }}
-              />
-            </div>
-
-            <div className="interest-progress-meta">
-              <span>Started {formatMonthYear(interest.start)}</span>
-              <span>
-                {interest.ongoing
-                  ? 'No end date'
-                  : `Target: ${interest.targetMonths} months`}
-              </span>
             </div>
           </a>
         );

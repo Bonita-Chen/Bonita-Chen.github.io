@@ -66,8 +66,6 @@ export type EditableInterest = {
   summary: string;
   trackLabel: string;
   start: string;
-  targetMonths?: number;
-  ongoing: boolean;
   accent: string;
   entries: EditableInterestEntry[];
 };
