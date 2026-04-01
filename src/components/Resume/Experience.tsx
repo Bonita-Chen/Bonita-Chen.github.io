@@ -1,6 +1,6 @@
 import type { Position } from '@/data/resume/work';
 
-import { formatDateRange } from '@/lib/dates';
+import { formatDateRange, formatDuration } from '@/lib/dates';
 
 interface ExperienceProps {
   data: Position[];
@@ -43,6 +43,11 @@ export default function Experience({ data }: ExperienceProps) {
         {data.map((job) => {
           const location = getLocation(job.subtitleSuffix);
           const extraInfo = getExtraInfo(job.subtitleSuffix);
+          const duration = formatDuration(job.startDate, job.endDate);
+          const dateText = formatDateRange(job.startDate, job.endDate);
+          const dateWithDuration = duration
+            ? `${dateText} · ${duration}`
+            : dateText;
 
           return (
             <div
@@ -50,18 +55,13 @@ export default function Experience({ data }: ExperienceProps) {
               key={`${job.name}-${job.position}-${job.startDate}`}
             >
               <div className="exp-date-col">
-                <span className="exp-date">
-                  {formatDateRange(job.startDate, job.endDate)}
-                </span>
+                <span className="exp-date">{dateWithDuration}</span>
                 {location && <span className="exp-location">{location}</span>}
               </div>
               <div className="exp-dot-col" aria-hidden="true">
                 <span className="exp-dot" />
               </div>
-              <div
-                className="exp-detail-col"
-                data-date={formatDateRange(job.startDate, job.endDate)}
-              >
+              <div className="exp-detail-col" data-date={dateWithDuration}>
                 <h4 className="exp-position">{job.position}</h4>
                 <p className="exp-company">
                   {job.url ? (

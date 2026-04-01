@@ -8,6 +8,7 @@ export interface Position {
   startDate: string;
   endDate?: string;
   subtitleSuffix?: string;
+  subtitleUrl?: string;
   supervisorName?: string;
   supervisorUrl?: string;
   subtitleUrl?: string;
