@@ -72,7 +72,11 @@ export default function Experience({ data }: ExperienceProps) {
                 </p>
                 {(extraInfo || job.supervisorName) && (
                   <p className="exp-meta">
-                    {extraInfo}
+                    {extraInfo && job.subtitleUrl ? (
+                      <a href={job.subtitleUrl}>{extraInfo}</a>
+                    ) : (
+                      extraInfo
+                    )}
                     {extraInfo && job.supervisorName && ' · '}
                     {job.supervisorName && (
                       <>
