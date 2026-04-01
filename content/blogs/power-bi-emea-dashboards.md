@@ -4,7 +4,6 @@ date: '2026-01-22'
 description: 'What changed when a dashboard stopped being a one-team artifact and became something larger, cleaner, and more reusable.'
 tags:
   - work
-  - other
 collection: 'data-notes'
 image: '/images/blogs/power-bi-emea.svg'
 icon: '💻'

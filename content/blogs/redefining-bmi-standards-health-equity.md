@@ -4,7 +4,6 @@ date: '2024-11-04'
 description: 'A public health equity study based on the Hennepin County 2022 SHAPE Survey, examining how BMI thresholds for hypertension and diabetes screening should differ across racial groups.'
 tags:
   - academics
-  - other
 collection: 'public-health-equity'
 image: '/images/blogs/bmi-equity.svg'
 icon: "\uD83D\uDCCA"

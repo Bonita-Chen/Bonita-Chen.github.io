@@ -4,7 +4,6 @@ date: '2026-03-15'
 description: 'From keyword research to campaign optimization, a few practical lessons from my first marketing analytics internship.'
 tags:
   - work
-  - other
 collection: 'intern-diaries'
 image: '/images/blogs/amazon-analytics.svg'
 icon: '💼'
