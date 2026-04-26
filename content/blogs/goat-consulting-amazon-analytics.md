@@ -1,7 +1,7 @@
 ---
 title: 'What Goat Consulting Taught Me About Amazon Analytics'
 date: '2026-03-15'
-description: 'From keyword research to campaign optimization, a few practical lessons from my first marketing analytics internship.'
+description: 'From keyword research to campaign optimization, a few practical lessons from my first account manager internship.'
 tags:
   - work
 collection: 'intern-diaries'

@@ -83,7 +83,7 @@ describe('PersonSchema', () => {
     );
     const data = JSON.parse(script?.innerHTML || '{}');
 
-    expect(data.jobTitle).toBe('Marketing Analytics Intern');
+    expect(data.jobTitle).toBe('Account Manager Intern');
   });
 
   it('includes alumniOf schools', () => {

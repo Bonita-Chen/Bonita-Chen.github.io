@@ -18,7 +18,7 @@ export interface Position {
 const work: Position[] = [
   {
     name: 'Goat Consulting',
-    position: 'Marketing Analytics Intern',
+    position: 'Account Manager Intern',
     url: 'https://goatconsulting.com/',
     startDate: '2026-01-01',
     subtitleSuffix: 'Minneapolis, MN',

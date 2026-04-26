@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'statistics',
     'University of Minnesota',
     'research assistant',
-    'marketing analytics',
+    'account management',
     'data visualization',
     'causal inference',
   ],
