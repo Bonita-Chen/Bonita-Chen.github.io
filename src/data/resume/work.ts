@@ -37,9 +37,11 @@ const work: Position[] = [
     supervisorName: 'Anran Li, Ph.D.',
     supervisorUrl: 'https://sites.google.com/view/anranli/home',
     highlights: [
-      'Built reproducible Python and Stata pipelines for approximately 2.5 million administrative records, including string standardization, entity resolution, and quality diagnostics.',
-      'Compiled AI adoption panel data for roughly 900 hospital systems with structured source validation and timing variables for downstream analysis.',
-      'Created identifier crosswalks that supported consistent merges across BoardEx, Citeline, and SSR datasets.',
+      'Built an end-to-end Python pipeline merging 10 quarterly federal No Surprises Act IDR public-use files (2023 Q1–2025 Q2) into a longitudinal panel of approximately 5.25 million out-of-network emergency dispute records for healthcare-policy research.',
+      'Designed an iterative human-in-the-loop curation workflow with versioned milestones, where automated fuzzy scoring exports structured review workbooks and a finalize step replays manual decisions so every mapping is auditable and reversible across quarterly refreshes.',
+      'Lifted row-level match rate to roughly 91% across repeated review cycles, collapsed about 19,000 raw payer names into a standardized issuer dictionary, and reached full coverage across all major issuer families.',
+      'Engineered three analytical universes (~500K rows) using a dual-evidence rule on issuer-name tokens and email domains, producing about 35 IDRE-compensation–weighted descriptive charts by quarter, year, and CPT/HCPCS code.',
+      'Embedded reproducibility through per-step audit sheets logging input lineage, filter logic, and row-count deltas, plus a self-refreshing Word onboarding document that re-reads the latest outputs on each build to eliminate stale figures.',
     ],
   },
   {
