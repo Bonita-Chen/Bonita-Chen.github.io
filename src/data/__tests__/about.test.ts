@@ -10,16 +10,15 @@ describe('about data', () => {
 
   it('contains the intro section', () => {
     expect(aboutMarkdown).toContain('# Intro');
-    expect(aboutMarkdown).toContain('University of Minnesota, Twin Cities');
-    expect(aboutMarkdown).toContain('graduating in May 2026');
+    expect(aboutMarkdown).toContain('University of Minnesota');
+    expect(aboutMarkdown).toContain('graduating May 2026');
   });
 
   it('contains the updated builder-pattern intro', () => {
-    expect(aboutMarkdown).toContain('messy operational or business problems');
+    expect(aboutMarkdown).toContain('messy or inefficient problem');
     expect(aboutMarkdown).toContain('Goat Consulting');
     expect(aboutMarkdown).toContain('Heller-Hurwicz Economics Institute');
     expect(aboutMarkdown).toContain('Bio-Techne');
-    expect(aboutMarkdown).toContain('bonitachen910@gmail.com');
   });
 
   it('contains no additional section headings', () => {

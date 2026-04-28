@@ -1,16 +1,18 @@
 export const aboutMarkdown = `# Intro
 
-Hi, I'm Bonita Chen, a senior at the University of Minnesota, Twin Cities, finishing a B.S. in Economics with a minor in Statistics and graduating in May 2026.
+I'm an Economics major with a Statistics minor at the University of Minnesota, graduating May 2026. My work sits at the intersection of analytics, operations, and cross-functional decision making.
 
-The shortest version of how I work: I take messy operational or business problems, build a lightweight first version, get it in front of the people who'll actually use it, and iterate through their feedback until it becomes something a team can keep using (a tool, dashboard, SOP, or pipeline). I'd rather ship a rough working thing on Monday and improve it on Friday than polish in private for a week.
+The way I work tends to follow the same arc. I start with a messy or inefficient problem, build a lightweight prototype to test whether the approach holds, and then turn that prototype into something reusable: a dashboard, a tool, a pipeline, or an SOP. Once it's in the hands of stakeholders, I treat their feedback (positive or negative) as the real signal, and iterate from there.
 
-That pattern shows up across my work. At Goat Consulting, a one-off Amazon return-rate diagnosis for a client became a reusable browser-based audit tool plus SOP that the agency now runs across any seller account, with the underlying classification work projected to cut controllable returns by 40 to 60%. At the Heller-Hurwicz Economics Institute, I built an end-to-end Python pipeline that merges 10 quarterly federal No Surprises Act IDR files into a 5.25M-record longitudinal panel, with a human-in-the-loop curation workflow that keeps every issuer mapping reversible across quarterly refreshes. At Bio-Techne, I scaled Power BI dashboards from U.S. to EMEA coverage so credit and AR-aging analysis could move from a finance-team request into a self-serve view across 70K+ invoices.
+A few examples of what that looks like in practice:
 
-I'm targeting first-job roles where that builder pattern is what the work actually rewards: Product and Growth Analytics, Revenue and GTM Operations, Healthcare and Biotech Commercial Analytics, and BI / Data Automation. Ideally on cross-functional teams that touch product, operations, finance, customer success, or leadership rather than sitting behind one dashboard. I care a lot about who's going to use what I build and what decision it changes; reports that disappear into a folder are the work I'd most like to avoid.
+At Goat Consulting, a one-time return-rate diagnosis for an Amazon client became a browser-based return audit tool and SOP that the agency now runs across other seller accounts. It moved a one-off client deliverable into a recurring agency workflow.
 
-A few things that are true of me as a teammate: I learn fastest with a senior person nearby who actually reviews draft work, I default to flagging risk early instead of going quiet, and I'd rather ask a basic clarifying question on day one than a tradeoff question the day before a deadline. I do my best work when projects have clear users, real feedback loops, and room to keep improving the workflow itself, not just the next deliverable.
+At the Heller-Hurwicz Economics Institute, I built a Python pipeline that merges 10 quarters of federal healthcare dispute records into a 5.25M-row panel, with versioned milestones and audit sheets so every mapping decision stays reviewable across quarterly refreshes.
 
-Outside of analytics work, I write occasionally about what I'm learning on the job and the side of econ I find most fun (forecasting, time series, and policy data). If any of this lines up with what your team is hiring for, I'd love to chat. Reach me at bonitachen910@gmail.com or through the contact page.
+At Bio-Techne, I scaled Power BI dashboards from U.S. to EMEA coverage across 70K+ invoices and 48K+ customers, turning monthly aging outputs into self-serve views the credit team uses directly.
+
+I do my best work in cross-functional teams where analytics is close to product, customer, or revenue decisions, and where I can see how my deliverables get used. I like having structured onboarding in the first few months, then room to improve the workflow once I've earned context. The roles I'm most drawn to are in product analytics, customer insights, and revenue/GTM operations, especially at consumer or tech companies where the feedback loop is fast and the work shows up in something a real team relies on.
 `;
 
 export const aboutAvatarPath = '/images/me.jpg';
