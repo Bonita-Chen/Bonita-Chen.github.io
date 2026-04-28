@@ -15,9 +15,9 @@ describe('about data', () => {
   });
 
   it('contains the updated builder-pattern intro', () => {
-    expect(aboutMarkdown).toContain('a problem that has room for optimization');
+    expect(aboutMarkdown).toContain('a problem that has room for improvement');
     expect(aboutMarkdown).toContain('Goat Consulting');
-    expect(aboutMarkdown).toContain('Heller-Hurwicz Economics Institute');
+    expect(aboutMarkdown).toContain('Heller Hurwicz Economics Institute');
     expect(aboutMarkdown).toContain('Bio-Techne');
   });
 
