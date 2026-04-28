@@ -12,15 +12,14 @@ describe('about data', () => {
     expect(aboutMarkdown).toContain('# Intro');
     expect(aboutMarkdown).toContain('University of Minnesota, Twin Cities');
     expect(aboutMarkdown).toContain('graduating in May 2026');
-    expect(aboutMarkdown).toContain('analyst roles in finance');
   });
 
-  it('contains the updated four-paragraph intro', () => {
-    expect(aboutMarkdown).toContain(
-      'solving complex problems and turning data into actionable insights',
-    );
-    expect(aboutMarkdown).toContain('coursework, research, and internships');
-    expect(aboutMarkdown).toContain('Please feel free to reach out');
+  it('contains the updated builder-pattern intro', () => {
+    expect(aboutMarkdown).toContain('messy operational or business problems');
+    expect(aboutMarkdown).toContain('Goat Consulting');
+    expect(aboutMarkdown).toContain('Heller-Hurwicz Economics Institute');
+    expect(aboutMarkdown).toContain('Bio-Techne');
+    expect(aboutMarkdown).toContain('bonitachen910@gmail.com');
   });
 
   it('contains no additional section headings', () => {
