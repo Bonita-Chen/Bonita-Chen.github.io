@@ -11,11 +11,11 @@ describe('about data', () => {
   it('contains the intro section', () => {
     expect(aboutMarkdown).toContain('# Intro');
     expect(aboutMarkdown).toContain('University of Minnesota');
-    expect(aboutMarkdown).toContain('graduating May 2026');
+    expect(aboutMarkdown).toContain('graduating in May 2026');
   });
 
   it('contains the updated builder-pattern intro', () => {
-    expect(aboutMarkdown).toContain('messy or inefficient problem');
+    expect(aboutMarkdown).toContain('a problem that has room for optimization');
     expect(aboutMarkdown).toContain('Goat Consulting');
     expect(aboutMarkdown).toContain('Heller-Hurwicz Economics Institute');
     expect(aboutMarkdown).toContain('Bio-Techne');

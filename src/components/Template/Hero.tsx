@@ -40,7 +40,7 @@ export default function Hero() {
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
-          <span>🎯 Open to Full-Time Roles</span>
+          <span>🚀 Open to Full-Time Roles</span>
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
