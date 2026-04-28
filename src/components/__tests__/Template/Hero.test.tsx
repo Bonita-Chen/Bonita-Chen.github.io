@@ -34,7 +34,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(screen.getByText(/UMN Twin Cities/)).toBeInTheDocument();
-    expect(screen.getByText(/Research & Internship/)).toBeInTheDocument();
+    expect(screen.getByText(/Open to Full-Time Roles/)).toBeInTheDocument();
     expect(screen.getByText(/Minneapolis, MN/)).toBeInTheDocument();
   });
 
