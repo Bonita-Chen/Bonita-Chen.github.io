@@ -44,11 +44,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(screen.getByText(/Based in Twin Cities/)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /Willing to relocate anywhere in the U\.S\.; Chicago, NYC, DC, Seattle/,
-      ),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Willing to relocate/)).toBeInTheDocument();
   });
 
   it('renders a circular portrait image', () => {

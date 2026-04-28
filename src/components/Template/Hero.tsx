@@ -52,10 +52,7 @@ export default function Hero() {
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
-          <span>
-            ✈️ Willing to relocate anywhere in the U.S.; Chicago, NYC, DC,
-            Seattle, and other major metros preferred
-          </span>
+          <span>✈️ Willing to relocate</span>
         </p>
 
         <div className="hero-cta fade-in stagger-4">
