@@ -23,9 +23,10 @@ const work: Position[] = [
     startDate: '2026-01-01',
     subtitleSuffix: 'Minneapolis, MN',
     highlights: [
-      'Built and optimized Amazon product listings across titles, bullets, descriptions, and A+ Content using keyword research and marketplace best practices.',
-      'Supported campaign setup, optimization, and weekly reporting for Amazon Ads, helping account managers turn metrics into concrete next steps.',
-      'Maintained internal reporting workflows and surfaced actionable takeaways for clients through recurring performance analysis.',
+      'Built a fully formula-driven Excel demand forecast and FBA inventory plan for a 7-SKU Amazon client across three scenarios, helping drive manufacturing and inbound-shipment timing ahead of 174% YoY Q4 revenue growth.',
+      'Diagnosed an above-category return rate by classifying about 1,300 returns and tagging customer comments, isolating a listing-information gap projected to cut controllable returns 40–60% (roughly $7K–$11K per year in refund savings).',
+      'Productized the monthly return audit into a reusable, browser-based tool plus SOP, converting a one-off client deliverable into a recurring agency workflow runnable on any Amazon account.',
+      'Owned monthly Seller Central and Amazon Advertising data pulls across four seller clients, syncing 10+ report tabs per client into centralized Google Sheets while supporting Amazon listing optimization and Ads campaign setup.',
     ],
   },
   {
