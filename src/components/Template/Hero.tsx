@@ -36,15 +36,26 @@ export default function Hero() {
         </p>
 
         <p className="hero-facts fade-in stagger-3">
-          <span>🎓 UMN Twin Cities</span>
-          <span className="hero-facts-dot" aria-hidden="true">
-            ·
-          </span>
           <span>🚀 Open to Full-Time Roles</span>
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
-          <span>📍 Minneapolis, MN</span>
+          <span>📅 Available July 13, 2026</span>
+          <span className="hero-facts-dot" aria-hidden="true">
+            ·
+          </span>
+          <span>🛂 F-1 STEM OPT (No Sponsor Needed)</span>
+        </p>
+
+        <p className="hero-location fade-in stagger-3">
+          <span>📍 Based in Twin Cities</span>
+          <span className="hero-facts-dot" aria-hidden="true">
+            ·
+          </span>
+          <span>
+            ✈️ Willing to relocate to Chicago, NYC, DC, Seattle, and other major
+            U.S. metros
+          </span>
         </p>
 
         <div className="hero-cta fade-in stagger-4">

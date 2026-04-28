@@ -30,12 +30,23 @@ describe('Hero', () => {
     expect(screen.getByText(/real-world impact/i)).toBeInTheDocument();
   });
 
-  it('displays hero chips for credentials', () => {
+  it('displays hero chips for recruiter facts', () => {
     render(<Hero />);
 
-    expect(screen.getByText(/UMN Twin Cities/)).toBeInTheDocument();
     expect(screen.getByText(/Open to Full-Time Roles/)).toBeInTheDocument();
-    expect(screen.getByText(/Minneapolis, MN/)).toBeInTheDocument();
+    expect(screen.getByText(/Available July 13, 2026/)).toBeInTheDocument();
+    expect(screen.getByText(/F-1 STEM OPT/)).toBeInTheDocument();
+  });
+
+  it('displays location and relocation preferences', () => {
+    render(<Hero />);
+
+    expect(screen.getByText(/Based in Twin Cities/)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Willing to relocate to Chicago, NYC, DC, Seattle, and other major/,
+      ),
+    ).toBeInTheDocument();
   });
 
   it('renders a circular portrait image', () => {
