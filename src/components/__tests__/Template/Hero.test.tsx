@@ -34,7 +34,9 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(screen.getByText(/Open to Full-Time Roles/)).toBeInTheDocument();
-    expect(screen.getByText(/Available July 13, 2026/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Earliest start: Monday, July 13, 2026/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/F-1 STEM OPT/)).toBeInTheDocument();
   });
 
@@ -44,7 +46,7 @@ describe('Hero', () => {
     expect(screen.getByText(/Based in Twin Cities/)).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Willing to relocate to Chicago, NYC, DC, Seattle, and other major/,
+        /Willing to relocate anywhere in the U\.S\.; Chicago, NYC, DC, Seattle/,
       ),
     ).toBeInTheDocument();
   });

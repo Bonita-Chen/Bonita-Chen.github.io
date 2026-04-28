@@ -40,11 +40,11 @@ export default function Hero() {
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
-          <span>📅 Available July 13, 2026</span>
+          <span>📅 Earliest start: Monday, July 13, 2026</span>
           <span className="hero-facts-dot" aria-hidden="true">
             ·
           </span>
-          <span>🛂 F-1 STEM OPT (No Sponsor Needed)</span>
+          <span>🛂 F-1 STEM OPT</span>
         </p>
 
         <p className="hero-location fade-in stagger-3">
@@ -53,8 +53,8 @@ export default function Hero() {
             ·
           </span>
           <span>
-            ✈️ Willing to relocate to Chicago, NYC, DC, Seattle, and other major
-            U.S. metros
+            ✈️ Willing to relocate anywhere in the U.S.; Chicago, NYC, DC,
+            Seattle, and other major metros preferred
           </span>
         </p>
 
