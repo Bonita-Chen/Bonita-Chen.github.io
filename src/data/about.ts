@@ -15,6 +15,12 @@ At Bio-Techne, I expanded Power BI dashboards from U.S. to EMEA coverage across 
 This is the kind of work I want to keep doing, which is why I'm drawn to roles across the analyst spectrum, including business analyst, business intelligence analyst, data analyst, product analyst, customer insights, and revenue or GTM operations. The scope and tech stack may vary, but the core loop is the same: frame the problem, build something useful, and improve it through iteration. What carries across all of those roles is the craft of turning a business question into a system that holds up over time.
 
 I'm equally drawn to both building and optimizing, because dashboards, pipelines, and reporting systems only become more valuable as they earn trust, and maintaining that trust is a craft in itself.
+
+A few practical details for recruiters:
+
+- Earliest start date: Monday, July 13, 2026
+- Work authorization: F-1 STEM OPT, no employer sponsorship required for three years from my start date
+- Locations: Twin Cities (home base), Chicago, NYC, DC, Seattle, and other major U.S. metros
 `;
 
 export const aboutAvatarPath = '/images/me.jpg';
