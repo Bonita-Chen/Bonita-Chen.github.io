@@ -98,6 +98,10 @@
   scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
+.exp-entry {
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
 .resume-page .education .title,
 .resume-page .experience .title,
 .resume-page .skills .title,

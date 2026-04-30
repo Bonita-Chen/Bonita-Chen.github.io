@@ -1,5 +1,6 @@
 import type { Position } from '@/data/resume/work';
 
+import { createHeadingId } from '@/lib/anchors';
 import { formatDateRange, formatDuration } from '@/lib/dates';
 
 interface ExperienceProps {
@@ -46,9 +47,12 @@ export default function Experience({ data }: ExperienceProps) {
           const duration = formatDuration(job.startDate, job.endDate);
           const dateText = formatDateRange(job.startDate, job.endDate);
 
+          const entryId = createHeadingId(job.name);
+
           return (
             <div
               className="exp-entry"
+              id={entryId}
               key={`${job.name}-${job.position}-${job.startDate}`}
             >
               <div className="exp-date-col">

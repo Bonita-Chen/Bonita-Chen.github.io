@@ -6,11 +6,11 @@ Throughout my experience, I keep returning to the same approach: start with a pr
 
 From there, I think about the architecture: not just what solves the immediate ask, but what the work will look like after I hand it off. Only then do I start prototyping. Once people are using what I've built, their feedback becomes the strongest signal for refinement, and I keep iterating from there.
 
-At Goat Consulting, my mentor handed me a one-month return analysis for an Amazon client, but I saw a recurring monthly workflow underneath and turned it into a browser-based return audit tool the agency now runs across other seller accounts, on any account, without me.
+At [Goat Consulting](/resume/#goat-consulting), my mentor handed me a one-month return analysis for an Amazon client, but I saw a recurring monthly workflow beneath it and built a browser-based return audit tool that the agency now runs across other seller accounts, on any account, without me.
 
-At the Heller Hurwicz Economics Institute, my supervisor asked me to look into Multiplan; I went further to architect a human-in-the-loop curation workflow, where automated fuzzy matching exports structured review workbooks, human decisions get replayed and saved as versioned milestones, and each quarterly refresh inherits prior decisions instead of restarting, keeping the project running long after I graduate.
+At the [Heller Hurwicz Economics Institute](/resume/#heller-hurwicz-economics-institute-umn), my supervisor asked me to look into Multiplan; I went further to architect a human-in-the-loop curation workflow, where automated fuzzy matching exports structured review workbooks, human decisions get replayed and saved as versioned milestones, and each quarterly refresh inherits prior decisions instead of restarting, keeping the project running long after I graduate.
 
-At Bio-Techne, what started as cleaning customer master data became a Power BI buildout that scaled from U.S. to EMEA coverage across 70K+ invoices and 48K+ customers, and I built the reports so the credit team could run them on their own, which is why they still rely on those reports a year after my internship ended.
+At [Bio-Techne](/resume/#bio-techne), what started as cleaning customer master data became a Power BI buildout that scaled from U.S. to EMEA coverage across 70K+ invoices and 48K+ customers, and I built the reports so the credit team could run them on their own, which is why they still rely on those reports a year after my internship ended.
 
 This is the kind of work I want to keep doing, which is why I'm drawn to roles across the analyst spectrum: business analyst, business intelligence analyst, data analyst, product analyst, customer insights, and revenue or GTM operations. The scope and tech stack vary, but the core loop is the same: frame the problem, build something useful, and improve it through iteration.
 
